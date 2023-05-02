@@ -13,6 +13,9 @@ export default function Home() {
 
       <div className={styles.grid}>
         인기 검색어
+        <div className={styles.card}>
+          test
+        </div>
       </div>
     </main>
   );
