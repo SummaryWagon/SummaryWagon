@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.input {
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #0077cc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: block; /* 추가 */
+}
+
+.submit {
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block; /* 추가 */
+  margin-top: 1rem; /* 추가 */
+}
