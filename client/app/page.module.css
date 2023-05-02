@@ -12,13 +12,17 @@
   display: inherit;
   justify-content: inherit;
   align-items: inherit;
-  font-size: 0.7rem;
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
 }
-
+.description h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4F4557;
+  margin-bottom: 0.7rem;
+}
 .description span {
   display: inline-block;
   transition: transform 200ms;
