@@ -21,6 +21,15 @@ logs
 *.log
 *.mp3
 
+# gitignore add (Early-Devloper)
+auto_gpt_workspace
+ai_settings.yaml
+auto-gpt.json
+
+# docker (Early-Devloper)
+docker-compose.yml 
+Dockerfile
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -158,4 +167,10 @@ vicuna-*
 .DS_Store
 
 # news
+<<<<<<< HEAD
 CURRENT_BULLETIN.md
+=======
+CURRENT_BULLETIN.md
+
+# logs 
+>>>>>>> dff1142b7f121552ae647a706bda1ab2dae90ef1
