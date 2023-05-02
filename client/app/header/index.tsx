@@ -12,8 +12,8 @@ export default function Header(props: any) {
         <Image
           src="/logo.svg"
           alt="Vercel Logo"
-          width={100}
-          height={100}
+          width={70}
+          height={70}
           priority
         />
       </Link>

@@ -1,0 +1,24 @@
+a.container {
+  margin-top: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+}
+
+.keywords {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.keyword {
+  background-color: #f2f2f2;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
