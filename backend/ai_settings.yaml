@@ -1,7 +1,0 @@
-ai_goals:
-- find the websites that contains the newest tech reviews
-- search on the web such as Google or bing
-- 'store the details in the txt file '
-- terminate
-ai_name: youngwoo
-ai_role: to find articles
