@@ -2,7 +2,8 @@ import "../globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
-import SignUpBtn from "../login/\bcomponents/SignupBtn/SignupBtn";
+import SignUpBtn from "./components/SignupBtn/SignupBtn";
+import LoginBtn from "./components/LoginBtn/LoginBtn";
 
 export default function Header(props: any) {
   return (
@@ -16,9 +17,12 @@ export default function Header(props: any) {
           priority
         />
       </Link>
-      <Link href="/register" className={styles.menu}>
-        <SignUpBtn />
-      </Link>
+      <div className={styles.menuContainer}>
+        <LoginBtn></LoginBtn>
+        <Link href="/register" className={styles.menu}>
+          <SignUpBtn />
+        </Link>
+      </div>
     </div>
   );
 }

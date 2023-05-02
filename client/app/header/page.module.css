@@ -5,6 +5,11 @@
   position: relative;
   z-index: 2;
 }
+.menuContainer {
+  display: flex;
+  margin: 0 1rem;
+  gap: 1rem;
+}
 .menu {
   font-size: 1rem;
   font-weight: 700;
