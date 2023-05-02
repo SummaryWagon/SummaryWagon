@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 export default function SearchBar() {
   return (
     <div className={styles.searchBox}>
-      <h1>🤔 What are you curious about? </h1>
+      <h1 className={styles.slide}>🤔 What are you curious about? </h1>
       <input
         type="text"
         placeholder="Search.."
