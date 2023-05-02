@@ -15,7 +15,7 @@ const PopularKeywords = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>🔥 hits </h2>
+      <h2 className={styles.title}>⭐️ hits  </h2>
       <ul className={styles.keywords}>
         {keywords.map((keyword) => (
           <li key={keyword} className={styles.keyword}>

@@ -20,6 +20,7 @@ a.container {
 .keyword {
   background-color: #576CBC;
   color: #fff;
+  cursor: pointer;
   padding: 4px 8px;
   border-radius: 4px;
   font-family: var(--font-mono);
