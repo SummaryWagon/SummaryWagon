@@ -171,6 +171,16 @@ def construct_prompt() -> str:
         str: The prompt string
     """
     config = AIConfig.load(CFG.ai_settings_file)
+    
+    config.ai_name = "Early-Developer"
+    config.ai_role = "AI that search the hottest articles"
+    config.ai_goals = ["find the most hottest tech articles on the web",
+                      "the articles should be the newest articles from now on",
+                      "write down the titles and links in the txt file",
+                      "terminate"]
+    
+    should_continue = "n"
+    
     if CFG.skip_reprompt and config.ai_name:
         logger.typewriter_log("Name :", Fore.GREEN, config.ai_name)
         logger.typewriter_log("Role :", Fore.GREEN, config.ai_role)
@@ -182,13 +192,14 @@ def construct_prompt() -> str:
             f"Would you like me to return to being {config.ai_name}?",
             speak_text=True,
         )
-        should_continue = clean_input(
-            f"""Continue with the last settings?
-Name:  {config.ai_name}
-Role:  {config.ai_role}
-Goals: {config.ai_goals}
-Continue (y/n): """
-        )
+        """'이전 세팅 그대로 사용할건지?(Y/N)' 문제 제거 """
+        # should_continue = clean_input(
+        #     f"""Continue with the last settings?
+        # Name:  {config.ai_name}
+        # Role:  {config.ai_role}
+        # Goals: {config.ai_goals}
+        # Continue (y/n): """
+        # )
         if should_continue.lower() == "n":
             config = AIConfig()
 

@@ -3,41 +3,53 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import subprocess
 
-app = FastAPI() 
 
-class Item(BaseModel):
-    name: str 
-    price: float
-    is_offer: Union[bool, None] = None 
+
+class Request(BaseModel):
+    id: str 
+    topic: str 
+    date: str 
+
+# 예시 API
+external_data = {
+    "id" : "jamiehun",
+    "topic" : "AI",
+    "date" : "2023-05-03"
+}
+
+request = Request(**external_data)
+# print(request.id)
+
+app = FastAPI() 
 
 @app.get("/")
 def read_root():
-    cmd = "./run.sh"
-    process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, encoding="utf-8")
-    
+    return {"Greetings" : "Hello, World"}
 
+@app.get("/topic/")
+def request_to_autoGPT():
+    cmd = "./run.sh"
+    process = subprocess.Popen(cmd, shell=True,
+                                    stdout=subprocess.PIPE, 
+                                    encoding="utf-8")
+    
     while True:
         output = process.stdout.readline()
-    
-        if (output == '' and process.poll() is not None):
-            break
         
-        if output.startswith("Continue with the last settings?"):
-            while True:
-                output = process.stdout.readline()
-                print("========%%%%%%%%%==========")
-                print(output.strip())
-                
         if output:
             print(output.strip())
             print()
+
+    return {"Mission" : "Completed"}
+
+""" ToDo: 추후 api 통신에 활용 예정 """
+@app.get("/topic_with_request/")
+async def find_articles(request : Request):
+     # 필요 : topic을 command에 넣기
+    request = Request(**external_data)
+    
+    find_articles()
             
-    return hi
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id" : item_id, "q" : q} 
-
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    return {"item_name" : item.name, "item_id" : item_id}
+        # To Do : 종료 조건 
+        
+    return request
