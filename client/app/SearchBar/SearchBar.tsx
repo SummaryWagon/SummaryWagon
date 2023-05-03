@@ -1,3 +1,4 @@
+"use client";
 import styles from "./page.module.css";
 
 export default function SearchBar() {
@@ -7,6 +8,7 @@ export default function SearchBar() {
       <input
         type="text"
         placeholder="Search.."
+        onKeyUp={() => console.log("여기에 연관 검색어 로직 짜면 될듯")}
         // onkeyup={showRelatedKeywords(this.value)}
       />
       <div id="related-keywords"></div>

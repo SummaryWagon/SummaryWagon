@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./RealtimeSearch.module.css";
 const dummy = ["React", "Vue", "Angular", "JavaScript"];
 function RealtimeSearch() {
-  const [searches, setSearches] = useState([]);
+  const [searches, setSearches] = useState<String[]>([]);
 
   useEffect(() => {
     // API 호출하여 실시간 검색어 가져오기

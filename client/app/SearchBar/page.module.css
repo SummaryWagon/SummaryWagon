@@ -24,6 +24,10 @@
   width: auto;
   height: 1.5rem;
 }
+.searchBox input[type="text"]:focus {
+  outline-color: #576CBC;
+}
+
 
 @media (min-width: 768px) {
   .searchBox {
