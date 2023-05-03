@@ -33,7 +33,8 @@ def prompt_user() -> AIConfig:
     logger.typewriter_log(
         "Name your AI: ", Fore.GREEN, "For example, 'Entrepreneur-GPT'"
     )
-    ai_name = utils.clean_input("AI Name: ")
+    # ai_name = utils.clean_input("AI Name: ")
+    ai_name = "Early-developer"
     if ai_name == "":
         ai_name = "Entrepreneur-GPT"
 
@@ -48,7 +49,8 @@ def prompt_user() -> AIConfig:
         "For example, 'an AI designed to autonomously develop and run businesses with"
         " the sole goal of increasing your net worth.'",
     )
-    ai_role = utils.clean_input(f"{ai_name} is: ")
+    # ai_role = utils.clean_input(f"{ai_name} is: ")
+    ai_role = "an AI designed to autonomously search articles and store in the txt file for the service"
     if ai_role == "":
         ai_role = "an AI designed to autonomously develop and run businesses with the"
         " sole goal of increasing your net worth."
@@ -61,17 +63,26 @@ def prompt_user() -> AIConfig:
         " multiple businesses autonomously'",
     )
     print("Enter nothing to load defaults, enter nothing when finished.", flush=True)
-    ai_goals = []
-    for i in range(5):
-        ai_goal = utils.clean_input(f"{Fore.LIGHTBLUE_EX}Goal{Style.RESET_ALL} {i+1}: ")
-        if ai_goal == "":
-            break
-        ai_goals.append(ai_goal)
-    if not ai_goals:
-        ai_goals = [
-            "Increase net worth",
-            "Grow Twitter Account",
-            "Develop and manage multiple businesses autonomously",
-        ]
+    
+    """ToDo: 추후 토픽에 따른 구문 변경 필요 (api request와 연동)"""
+    ai_goals = [
+        "find the most recent and popular tech blogs at this moment"
+        "the articles should be closely related to AI" # put the topic here
+        "the article could be found either on blogs or medias that should be accessible for everyone"
+        "After finding five articles, put the titles and website links of the content in a txt file"
+        "terminate"
+    ]
+    # loop 5번 제거
+    # for i in range(5):
+    #     ai_goal = utils.clean_input(f"{Fore.LIGHTBLUE_EX}Goal{Style.RESET_ALL} {i+1}: ")
+    #     if ai_goal == "":
+    #         break
+    #     ai_goals.append(ai_goal)
+    # if not ai_goals:
+    #     ai_goals = [
+    #         "Increase net worth",
+    #         "Grow Twitter Account",
+    #         "Develop and manage multiple businesses autonomously",
+    #     ]
 
     return AIConfig(ai_name, ai_role, ai_goals)

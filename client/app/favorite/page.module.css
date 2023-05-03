@@ -5,8 +5,11 @@
   min-height: 100vh;
 }
 .title {
-  font-size: 1.3rem;
+  font-size: 2rem;
   font-weight: 700;
+  color: #4f4557;
+  margin-bottom: 0.7rem;
+  font-family: Verdana, sans-serif;
 }
 .description {
   display: inherit;
@@ -18,10 +21,6 @@
   font-family: var(--font-mono);
 }
 .description h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #4F4557;
-  margin-bottom: 0.7rem;
 }
 .description span {
   display: inline-block;

@@ -1,0 +1,26 @@
+.login {
+font-size: 1rem;
+padding: 0.5rem 1rem;
+background-color: #fff;
+color: #3F51B5;
+border: 2px solid #3F51B5;
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.3s ease;
+font-family: var(--font-mono);
+}
+
+.login:hover {
+background-color: #3F51B5;
+color: #fff;
+transform: scale(1.1);
+}
+
+@keyframes bg-color-change {
+  0% {
+    background-color: #576CBC;
+  }
+  100% {
+    background-color: #5975D1;
+  }
+}
