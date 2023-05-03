@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import subprocess
 
-app = FastAPI() 
+app = FastAPI()
 
 class Item(BaseModel):
     name: str 
@@ -32,7 +32,7 @@ def read_root():
             print(output.strip())
             print()
             
-    return hi
+    return 'hi'
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
