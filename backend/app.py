@@ -3,8 +3,6 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import subprocess
 
-
-
 class Request(BaseModel):
     id: str 
     topic: str 
