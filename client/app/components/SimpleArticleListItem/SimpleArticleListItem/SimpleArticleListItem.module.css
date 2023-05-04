@@ -8,16 +8,12 @@
   width: 50px;
   height: 50px;
   margin-right: 10px;
+  border-radius: 50%;
 }
 
 .article_list_item_text h3 {
-  font-size: 1rem;
-  
+  font-size: 1.0rem;
+  color : #4F4557;
   margin: 0;
 }
 
-.article_list_item_text p {
-  font-size: 1rem;
-  color: #666;
-  margin: 5px 0 0 0;
-}

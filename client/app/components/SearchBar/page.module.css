@@ -5,6 +5,7 @@
   flex-direction: column;
   width: auto;
   height: 100%;
+  margin-top : 2rem;
 }
 
 .searchBox h1 {

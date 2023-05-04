@@ -1,18 +1,16 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import PopularKeywords from "./PopularKeywords/PopularKeywords";
-import SearchBar from "./SearchBar/SearchBar";
-import RealtimeSearch from "./RealtimeSearch/RealtimeSearch";
-import History from "./History/History";
+import PopularKeywords from "./components/PopularKeywords/PopularKeywords";
+import SearchBar from "./components/SearchBar/SearchBar";
+import RealtimeSearch from "./components/RealtimeSearch/RealtimeSearch";
+import History from "./components/History/History";
 const myDummy = {};
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <SearchBar></SearchBar>
-      <div>
-        <PopularKeywords></PopularKeywords>
-      </div>
+      <PopularKeywords></PopularKeywords>
       <div className={styles.categories}>
         <History></History>
         <div>
