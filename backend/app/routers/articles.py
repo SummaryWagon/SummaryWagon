@@ -12,18 +12,6 @@ router = APIRouter(
 
 @router.get("/")
 async def read_articles():
-    cmd = "./run.sh"
-    process = subprocess.Popen(cmd, shell=True,
-                                    stdout=subprocess.PIPE, 
-                                    encoding="utf-8")
-    
-    while True:
-        output = process.stdout.readline()
-        
-        if output:
-            print(output.strip())
-            print()
-
     return {"Mission" : "Completed"}
 
 
