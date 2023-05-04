@@ -3,6 +3,9 @@ import styles from "./page.module.css";
 import PopularKeywords from "./PopularKeywords/PopularKeywords";
 import SearchBar from "./SearchBar/SearchBar";
 import RealtimeSearch from "./RealtimeSearch/RealtimeSearch";
+import History from "./History/History";
+const myDummy = {};
+
 export default function Home() {
   return (
     <main className={styles.main}>
@@ -11,16 +14,9 @@ export default function Home() {
         <PopularKeywords></PopularKeywords>
       </div>
       <div className={styles.categories}>
+        <History></History>
         <div>
-          <h1>🚀 favorite tech</h1>
-          <ul>
-            <li>React</li>
-            <li>Vue</li>
-            <li>Angular</li>
-          </ul>
-        </div>
-        <div>
-          <h1>🔥 hot tech</h1>
+          <h1>🔥 hot topic</h1>
           <ul>
             <li>ai</li>
             <li>web design</li>

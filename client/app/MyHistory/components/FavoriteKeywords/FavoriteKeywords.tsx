@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FavoriteKeywords.module.css";
-
+import Link from "next/link";
 const FavoriteKeywords = () => {
   const keywords = [
     "FrontEnd",
@@ -17,9 +17,9 @@ const FavoriteKeywords = () => {
     <div className={styles.container}>
       <ul className={styles.keywords}>
         {keywords.map((keyword) => (
-          <li key={keyword} className={styles.keyword}>
-            {keyword}
-          </li>
+          <Link key={keyword} href={`MyHistory/${keyword}`}>
+            <li className={styles.keyword}>{keyword}</li>
+          </Link>
         ))}
       </ul>
     </div>

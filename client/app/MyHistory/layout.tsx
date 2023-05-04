@@ -5,15 +5,10 @@ import FavoriteKeywords from "./components/FavoriteKeywords/FavoriteKeywords";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "test",
-  description: "GPT-powered Tech Forum for the Latest Tech Information",
-};
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <h1 className={styles.title}>🚀 favorite tech</h1>
+      <h1 className={styles.title}> 📝 My History</h1>
       <FavoriteKeywords></FavoriteKeywords> {children}
     </div>
   );
