@@ -5,29 +5,22 @@
   min-height: 100vh;
 }
 .title {
-  font-size: 1.3rem;
+  font-size: 2rem;
   font-weight: 700;
+  color: #4f4557;
+  margin-bottom: 0.7rem;
+  font-family: Verdana, sans-serif;
 }
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-
-  /* justify-content: center; */
+.description {
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
 }
-.categories > div {
-  display: inline-block;
-  width: 50%;
-  vertical-align: top;
-}
 .description h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #4f4557;
-  margin-bottom: 0.7rem;
 }
 .description span {
   display: inline-block;

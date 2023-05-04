@@ -10,9 +10,23 @@ export default function Home() {
       <div>
         <PopularKeywords></PopularKeywords>
       </div>
-      <div className={styles.description}>
-        <h1>🚀 favorite tech</h1>
-        <h1>🔥 hot tech</h1>
+      <div className={styles.categories}>
+        <div>
+          <h1>🚀 favorite tech</h1>
+          <ul>
+            <li>React</li>
+            <li>Vue</li>
+            <li>Angular</li>
+          </ul>
+        </div>
+        <div>
+          <h1>🔥 hot tech</h1>
+          <ul>
+            <li>ai</li>
+            <li>web design</li>
+            <li>ui/ux</li>
+          </ul>
+        </div>
       </div>
       <RealtimeSearch></RealtimeSearch>
     </main>
