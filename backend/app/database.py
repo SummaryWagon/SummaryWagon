@@ -25,19 +25,19 @@ async def get_user(user_id:str):
     return user
 
 
-async def update_user(user_id:str, link:str):
-    user = await db.users.find_one({"_id": ObjectId(user_id), "links": {"$exists": 1}})
+async def update_user(email:str, link:str):
+    user = await db.users.find_one({"email": email, "links": {"$exists": 1}})
 
     if (user):
-        await db.users.update_one({"_id": ObjectId(user_id)}, {"$push": {"links": link}})
+        await db.users.update_one({"email": email}, {"$push": {"links": link}})
     else:
-        await db.users.update_one({"_id": ObjectId(user_id)}, {"$set": {"links": [link]}})
+        await db.users.update_one({"email": email}, {"$set": {"links": [link]}})
 
     return user_helper(user)
 
 
-async def get_articles(user_id:str): 
-    user = await db.users.find_one({"_id": ObjectId(user_id)})
+async def get_articles(email:str): 
+    user = await db.users.find_one({"email": email})
     user_links = user["links"]
     articles = []
     for link in user_links:
