@@ -13,14 +13,14 @@ export default function SearchBar({session} ) {
       return;
     }
     console.log("searchHandler", inputRef.current.value);
-    const res = await fetch("http://localhost:8000/", {
+    const result = await fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ url: inputRef.current.value, email: session?.email}),
     }).then((res) => res.json());
-    
+
 
   };
 
