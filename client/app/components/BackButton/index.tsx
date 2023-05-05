@@ -1,24 +1,14 @@
-'use client'
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-
+"use client";
+import { useRouter } from "next/navigation";
+import styles from "./BackButton.module.css";
 function BackButton() {
-  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const handleClick = () => {
-    router.back();
-  };
-
-    return (
-      <button type="button" onClick={() => router.back()}>
-        Click here to go back
-      </button>
-    );
+  return (
+    <button type="button" onClick={() => router.back()} className={styles.backButton}>
+      ">"
+    </button>
+  );
 }
 
 export default BackButton;
