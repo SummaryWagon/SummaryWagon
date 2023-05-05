@@ -11,7 +11,8 @@ from ..database import (
 )
 
 class User(BaseModel):
-    user_id: str
+    # user_id: str
+    email: str
     link: str | None = None
 
 router = APIRouter(
@@ -22,12 +23,12 @@ router = APIRouter(
 
 @router.get("/")
 async def read_user_articles(user:User):
-    user_articles = await get_articles(user.user_id)
+    user_articles = await get_articles(user.email)
     return user_articles
 
 
 @router.post("/")
 async def add_user_article(user:User):
-    user = await update_user(user.user_id, user.link)
+    user = await update_user(user.email, user.link)
     
     return ResponseModel(user, "User link added successfully.")
