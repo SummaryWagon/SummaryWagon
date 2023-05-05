@@ -35,7 +35,7 @@ export default function Detail() {
         </ul>
 
         <p>
-          source : <QuickLink href={dummy.url}>Link</QuickLink>
+          source : <QuickLink link={dummy.url}></QuickLink>
         </p>
         {/* <Image src={dummy.image} width={100} height={100} alt=""></Image> */}
       </div>

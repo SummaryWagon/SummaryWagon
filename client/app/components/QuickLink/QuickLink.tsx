@@ -1,11 +1,11 @@
 import styles from "./QuickLink.module.css";
 interface QuickLinkProps {
-  href: string;
+  link: string;
 }
 
-const QuickLink = ({ href }: QuickLinkProps) => {
+const QuickLink = ({ link }: QuickLinkProps) => {
   return (
-    <a href={href} className={styles.quick_link}>
+    <a href={link} className={styles.quick_link}>
       Link
     </a>
   );

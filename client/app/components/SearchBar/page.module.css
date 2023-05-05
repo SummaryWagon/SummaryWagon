@@ -16,27 +16,32 @@
   font-family: Verdana, sans-serif;
 }
 
-.searchBox input[type="text"] {
+
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.inputContainer input {
   padding: 10px;
-  border-radius: 5px;
   border: none;
-  background-color: #f2f2f2;
+  outline: none;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-  width: auto;
+  padding: 1rem;
   height: 1.5rem;
-}
-.searchBox input[type="text"]:focus {
-  outline-color: #576CBC;
+  width: 20rem;
+
 }
 
 
-@media (min-width: 768px) {
-  .searchBox {
-    flex-direction: column;
-    width: 100%;
-  }
-  .searchBox input[type="text"] {
-    width: 100%;
-    max-width: 40rem;
-  }
+.searchButton {
+  background-color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem;
 }

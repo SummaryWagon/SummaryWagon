@@ -4,11 +4,12 @@ import styles from "./page.module.css";
 import SignUpBtn from "./components/SignupBtn/SignupBtn";
 import LoginBtn from "./components/LoginBtn/LoginBtn";
 import LogoutBtn from "./\bcomponents/LogoutBtn/LogoutBtn";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-export default async function Header(props: any) {
-  let session = await getServerSession(authOptions);
+interface HeaderProps {
+  session: any;
+}
+
+export default function Header({ session }: HeaderProps) {
   return (
     <div className={styles.header}>
       <Link href="/" className="logo">
