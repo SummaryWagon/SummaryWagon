@@ -1,43 +1,66 @@
 import Image from "next/image";
+import { ObjectId } from "mongodb";
 import styles from "./page.module.css";
 import BackButton from "@/app/components/BackButton";
 import KeywordTag from "@/app/components/KeywordTag/KeywordTag";
 import QuickLink from "@/app/components/QuickLink/QuickLink";
-const dummy = {
-  title: "Ai is the future",
-  description:
-    "Artificial Intelligence (AI) has become one of the most exciting and rapidly developing fields in recent years. It is the science and engineering of creating intelligent machines that can perform tasks that typically require human intelligence, such as visual perception, speech recognition, decision-making, and language translation. The concept of AI has been around for many years, but recent advancements in computing power, data storage, and algorithms have brought it to the forefront of modern technology",
-  image:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiRqbGDnW4-4a8vOkIQlCqvs3vYqscD3Ky1KMfe6tjiQ&s",
-  url: "https://www.google.com",
-  summary: ["Ai is the future", "Ai is t", "gpt"],
-  categorie: ["ai", "artificial intelligence", "machine learning"],
-};
-export default function Detail() {
+import { clientDB } from "@/util/database";
+import { Key } from "react";
+interface Article {
+  _id: ObjectId;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  summary: string[];
+  categories: string[];
+}
+
+interface DetailProps {
+  params: {
+    id: string;
+  };
+}
+export default async function Detail(props: DetailProps) {
+  let db = (await clientDB).db("dbEarlyDev");
+  const result = await db
+    .collection("articles")
+    .findOne({ _id: new ObjectId(props.params.id) });
+
+  const article: Article | null = result
+    ? {
+        _id: result._id,
+        title: result.title,
+        description: result.description,
+        image: result.image,
+        link: result.link,
+        summary: result.summary,
+        categories: result.categories,
+      }
+    : null;
   return (
     <main className={styles.main}>
       {/* <BackButton></BackButton> */}
       <div>
-        <h1 className={styles.title}>{dummy.title}</h1>
+        <h1 className={styles.title}>{result?.title}</h1>
         <ul className={styles.keyword_container}>
-          {dummy.categorie.map((item, idx) => (
+          {article?.categories.map((item, idx) => (
             <KeywordTag keyword={item} key={idx}></KeywordTag>
           ))}
         </ul>
-        <img src={dummy.image} alt="" height="400"></img>
+        <img src={article?.image} alt="" height="400"></img>
         <h2>description</h2>
-        <p>{dummy.description}</p>
+        <p>{article?.description}</p>
         <h2>Summary</h2>
         <ul className={styles.summary_container}>
-          {dummy.summary.map((item, idx) => (
+          {article?.summary.map((item, idx) => (
             <li key={idx}>{item}</li>
           ))}
         </ul>
 
         <p>
-          source : <QuickLink link={dummy.url}></QuickLink>
+          source : <QuickLink link={article?.link || ""}></QuickLink>
         </p>
-        {/* <Image src={dummy.image} width={100} height={100} alt=""></Image> */}
       </div>
     </main>
   );

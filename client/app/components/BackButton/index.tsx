@@ -6,7 +6,7 @@ function BackButton() {
 
   return (
     <button type="button" onClick={() => router.back()} className={styles.backButton}>
-      ">"
+      {/* ">" */}
     </button>
   );
 }

@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
-      <SearchBar></SearchBar>
+      <SearchBar session={session}></SearchBar>
       <PopularKeywords></PopularKeywords>
       <div className={styles.categories}>
         {session && <History />}

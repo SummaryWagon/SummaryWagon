@@ -3,16 +3,25 @@ import styles from "./page.module.css";
 import { useRef } from "react";
 import { useSession } from "next-auth/react";
 
-export default function SearchBar() {
+export default function SearchBar({session} ) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const searchHandler = (e: any) => {
+  const searchHandler = async (e: any) => {
     if (e.key !== "Enter" && e.type !== "click") return;
     if (!inputRef?.current?.value) {
       alert("no input");
       return;
     }
     console.log("searchHandler", inputRef.current.value);
+    const res = await fetch("http://localhost:8000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: inputRef.current.value, email: session?.email}),
+    }).then((res) => res.json());
+    
+
   };
 
   return (

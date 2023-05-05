@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import styles from "./page.module.css";
 import Favorite from "./page";
-import FavoriteKeywords from "./components/FavoriteKeywords/FavoriteKeywords";
+import FavoriteKeywords from "./components/HotKeywords/HotKeywords";
 
 const inter = Inter({ subsets: ["latin"] });
 
