@@ -3,7 +3,9 @@ from app.routers.preprocess import word_preprocess
 
 
 # from ..models.article import Article
-from ..database import db
+from ..database import (
+    get_hot_articles,
+)
 
 router = APIRouter(
     prefix="/articles",
@@ -16,7 +18,7 @@ url = "https://techblog.woowahan.com/11072/"
 
 @router.get("/")
 async def read_hot_articles():
-    hot_articles = await db.get_hot_articles()
+    hot_articles = await get_hot_articles()
     return hot_articles
  
  
@@ -28,4 +30,3 @@ async def crawling_articles():
     print(result)
     
     return True
- 
