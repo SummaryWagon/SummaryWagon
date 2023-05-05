@@ -21,13 +21,13 @@ router = APIRouter(
 )
 
 
-@router.get("/")
+@router.get("")
 async def read_user_articles(user:User):
     user_articles = await get_articles(user.email)
     return user_articles
 
 
-@router.post("/")
+@router.post("")
 async def add_user_article(user:User):
     user = await update_user(user.email, user.link)
     
