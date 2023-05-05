@@ -18,7 +18,7 @@ export default function SearchBar({session} ) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ url: inputRef.current.value, email: session?.email}),
+      body: JSON.stringify({ link: inputRef.current.value, email: session?.email}),
     }).then((res) => res.json());
 
 
