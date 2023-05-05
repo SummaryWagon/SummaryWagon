@@ -29,7 +29,7 @@ const HotTopic = () => {
       </Link>
       <ul className={styles.ul}>
         {dummpy.map((item) => (
-          <Link key={item.title} href={`MyHistory/Ai/${item.id}`}>
+          <Link key={item.title} href={`Detail/${item.id}`}>
             <SimpleArticleListItem
               imageSrc={item.imageSrc}
               title={item.title}
@@ -37,7 +37,6 @@ const HotTopic = () => {
           </Link>
         ))}
       </ul>
-      ...more
     </div>
   );
 };

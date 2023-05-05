@@ -12,8 +12,6 @@
 .categories {
   display: flex;
   flex-wrap: wrap;
-
-  /* justify-content: center; */
   max-width: var(--max-width);
   width: 100%;
   font-family: var(--font-mono);

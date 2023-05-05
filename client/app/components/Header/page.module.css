@@ -19,3 +19,16 @@
   font-weight: 700;
   font-family: var(--font-mono);
 }
+
+.userImage{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #eee;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+.userImage:hover{
+  opacity: 0.8;
+}

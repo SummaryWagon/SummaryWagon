@@ -37,7 +37,6 @@ const History = () => {
           </Link>
         ))}
       </ul>
-      ...more
     </div>
   );
 };

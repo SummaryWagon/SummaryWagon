@@ -10,12 +10,13 @@ interface HeaderProps {
 }
 
 export default function Header({ session }: HeaderProps) {
+  console.log(session);
   return (
     <div className={styles.header}>
       <Link href="/" className="logo">
         <Image
           src="/logo.svg"
-          alt="Vercel Logo"
+          alt="ED Logo"
           width={70}
           height={70}
           priority
@@ -30,7 +31,16 @@ export default function Header({ session }: HeaderProps) {
             </Link>
           </>
         ) : (
-          <LogoutBtn></LogoutBtn>
+          <>
+            <LogoutBtn></LogoutBtn>
+            <Image
+              src={session.user.image}
+              alt={session.user.name}
+              width={40}
+              height={40}
+              className={styles.userImage}
+            />
+          </>
         )}
       </div>
     </div>
