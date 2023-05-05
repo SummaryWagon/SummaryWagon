@@ -14,7 +14,7 @@ export default function SearchBar({ session }:SearchBarProps) {
       alert("no input");
       return;
     }
-    // console.log("searchHandler", inputRef.current.value, session);
+    console.log("searchHandler", inputRef.current.value, session);
     if (session) {
       const result = await fetch("http://localhost:8000/users", {
         method: "POST",
