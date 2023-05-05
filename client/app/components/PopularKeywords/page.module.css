@@ -1,0 +1,27 @@
+a.container {
+  margin-top: 20px;
+}
+
+
+.title {
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+}
+
+.keywords {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.keyword {
+  background-color: #576CBC;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+
+}

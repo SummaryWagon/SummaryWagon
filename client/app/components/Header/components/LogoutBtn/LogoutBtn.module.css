@@ -1,0 +1,26 @@
+.logout {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  color: #FF5722;
+  border: 2px solid #FF5722;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-mono);
+}
+
+.logout:hover {
+  background-color: #FF5722;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+@keyframes bg-color-change {
+  0% {
+    background-color: #576CBC;
+  }
+  100% {
+    background-color: #FF5722;
+  }
+}

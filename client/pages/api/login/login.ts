@@ -9,8 +9,8 @@ export default async function handler(
       return res.status(400).json({ message: "Invalid input" });
     }
     try {
-      const db = (await clientDB).db("forum");
-      const userCollection = db.collection("user");
+      const db = (await clientDB).db("dbEarlyDev");
+      const userCollection = db.collection("users");
       const check = await userCollection.findOne({ id: req.body.id });
       if (check) {
         return res.status(400).json({ message: "ID already exists" });
