@@ -1,12 +1,11 @@
-// import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import { clientDB } from "@/util/database";
-// import bcrypt from "bcrypt";
-// import { SessionStrategy } from "next-auth";
-// import {With}
+import { clientDB } from "@/util/database";
+import bcrypt from "bcrypt";
+import { SessionStrategy } from "next-auth";
 
 interface User {
   email: string;
@@ -86,6 +85,6 @@ export const authOptions = {
     },
   },
   secret: process.env.NEXTAUTH_SECRET as string,
-  // adapter: MongoDBAdapter(clientDB),
+  adapter: MongoDBAdapter(clientDB),
 };
 export default NextAuth(authOptions);

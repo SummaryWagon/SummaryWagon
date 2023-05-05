@@ -12,7 +12,7 @@ export default async function handler(
       return res.status(400).json({ message: "Invalid input" });
     }
     // 이메일 중복 확인
-    const db = (await clientDB).db("forum");
+    const db = (await clientDB).db("dbEarlyDev");
     const userCollection = db.collection("user_cred");
     const check = await userCollection.findOne({ email: req.body.email });
     // 중복이면 에러
