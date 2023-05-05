@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./page.module.css";
-
-const PopularKeywords = () => {
+import styles from "./FavoriteKeywords.module.css";
+import Link from "next/link";
+const FavoriteKeywords = () => {
   const keywords = [
     "FrontEnd",
     "BackEnd",
@@ -15,16 +15,15 @@ const PopularKeywords = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>⭐️ hits </h1>
       <ul className={styles.keywords}>
         {keywords.map((keyword) => (
-          <li key={keyword} className={styles.keyword}>
-            {keyword}
-          </li>
+          <Link key={keyword} href={`MyHistory/${keyword}`}>
+            <li className={styles.keyword}>{keyword}</li>
+          </Link>
         ))}
       </ul>
     </div>
   );
 };
 
-export default PopularKeywords;
+export default FavoriteKeywords;

@@ -15,7 +15,7 @@ function RealtimeSearch() {
       <h1>📈 Popular Searches</h1>
       <ul>
         {searches.map((search, idx) => (
-          <li key={search}>
+          <li key={idx}>
             {idx + 1}. {search}
           </li>
         ))}

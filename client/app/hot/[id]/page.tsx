@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import ArticleListItem from "../components/ArticleListItem/ArticleListItem";
 const dummy = {
   title: "Ai",
   description: "Ai is the future",
@@ -12,16 +13,16 @@ const dummy = {
 export default function FavoriteTech() {
   return (
     <main className={styles.main}>
-      <div>
-        <h1>{dummy.title}</h1>
-        <p>{dummy.description}</p>
-        <p>{dummy.url}</p>
-        <p>{dummy.summary}</p>
-        <p>{dummy.keywords}</p>
-        
-        {/* <Image src={dummy.image} width={100} height={100} alt=""></Image> */}
-
-      </div>
+      <ArticleListItem
+        imageSrc={dummy.image}
+        title={dummy.title}
+        description={dummy.description}
+      ></ArticleListItem>
+      <ArticleListItem
+        imageSrc={dummy.image}
+        title={dummy.title}
+        description={dummy.description}
+      ></ArticleListItem>
     </main>
   );
 }

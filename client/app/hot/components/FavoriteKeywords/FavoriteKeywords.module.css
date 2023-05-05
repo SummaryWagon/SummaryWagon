@@ -2,8 +2,9 @@ a.container {
   margin-top: 20px;
 }
 
-
 .title {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 16px;
   font-family: var(--font-mono);
 }
