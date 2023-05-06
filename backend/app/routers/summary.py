@@ -10,7 +10,7 @@ def summarize(text):
 
     model_engine = "text-davinci-003"
 
-    max_tokens = 100
+    max_tokens = 200
     
     prompt = f'''Summarize the paragraph below in 3 sentences. Put an newline between the sentences so that each sentence can be distinguished.
 
