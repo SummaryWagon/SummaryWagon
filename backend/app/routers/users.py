@@ -45,7 +45,6 @@ async def read_user_articles(email:str):
 @router.post("/")
 async def add_user_article(user:User):
     
-
     # 기사 히스토리에 추가
     title, image, keyword = word_preprocess(user.link)
     summary = summarize(text)

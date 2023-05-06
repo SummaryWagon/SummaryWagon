@@ -1,30 +1,27 @@
 import openai
 from decouple import config
 
-# OPENAI API키 설정
+
 OPENAI_API_KEY = config("OPENAI_API_KEY")
 openai.api_key = OPENAI_API_KEY
 
-# ChatGPT 요약
+
 def summarize(text):
-    # 모델 엔진 선택
+
     model_engine = "text-davinci-003"
-    
-    # 맥스 토큰
+
     max_tokens = 100
     
-    # 프롬프트 (요약해줘!)
     prompt = f'''Summarize the paragraph below in 3 sentences. Put an newline between the sentences so that each sentence can be distinguished.
 
     {text}
     '''
     
-    # 요약 요청
     completion = openai.Completion.create(
         engine=model_engine,
         prompt=prompt,
         max_tokens=max_tokens,
-        temperature=0.3,      # creativity
+        temperature=0.3,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0
