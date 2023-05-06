@@ -7,7 +7,6 @@ export const dynamic = "force-dynamic";
 export default async function MyHistory() {
   let db = (await clientDB).db("dbEarlyDev");
   let result = await db.collection("articles").find({}).toArray();
-  console.log(result);
   return (
     <main className={styles.main}>
       {result &&
