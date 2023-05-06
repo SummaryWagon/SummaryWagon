@@ -16,7 +16,13 @@ db = client.dbEarlyDev
 def user_helper(user) -> dict:
     return {
         "id": str(user["_id"]),
-        "links": user["links"],
+        "article_ids": user["article_ids"]
+    }
+
+
+def article_helper(article) -> dict:
+    return {
+        "id": str(article["_id"]),
     }
 
 
@@ -25,24 +31,24 @@ async def get_user(user_id:str):
     return user
 
 
-async def update_user(email:str, link:str):
-    user = await db.users.find_one({"email": email, "links": {"$exists": 1}})
-
-    if (user):
-        await db.users.update_one({"email": email}, {"$push": {"links": link}})
-    else:
-        await db.users.update_one({"email": email}, {"$set": {"links": [link]}})
-
-    return user_helper(user)
+async def update_user(email:str, article_id:str):
+    return await db.users.update_one({"email": email}, {"$push": {"article_ids": article_id}})
 
 
 async def get_articles(email:str): 
     user = await db.users.find_one({"email": email})
-    user_links = user["links"]
+    user_articles = user["article_ids"]
     articles = []
-    for link in user_links:
-        article = await db.articles.find_one({"link": link},{"_id": 0})
-        articles.append(article)
+    for id in user_articles[::-1]:
+        article = await db.articles.find_one({"_id": ObjectId(id["id"])})
+        temp = {
+            "id": str(article["_id"]),
+            "title": article["title"],
+            "image": article["image"]
+        }
+        articles.append(temp)
+        if (len(articles) == 5):
+            break
     return articles
 
 
@@ -52,5 +58,5 @@ async def get_hot_articles():
 
 
 async def add_article(article:Article): 
-    article = await db.articles.insert_one(article.dict())
-    return article
+    await db.articles.insert_one(article)
+    return article_helper(article)

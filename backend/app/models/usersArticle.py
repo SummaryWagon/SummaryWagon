@@ -3,35 +3,37 @@ from datetime import datetime
 
 
 class User(BaseModel):
-    links: list[str]
+    article_ids: list[str]
 
     class Config:
         schema_extra = {
             "example" : {
-                "link": ["https://www.naver.com", "https://www.google.com"]
+                "article_ids": ["1", "2"]
             }
         }
 
 
 class Article(BaseModel):
-    category: str 
     link: str 
     datetime: datetime
     title: str
-    contents: list[str]
     image: str
     cnt: int
+    summary: list[str]
+    description: str
+    categories: list[str] 
 
     class Config:
         schema_extra = {
             "example" : {
-                "category": "AI",
                 "link": "https://www.naver.com",
                 "datetime" : "2008-09-15T15:53:00+05:00",
                 "title": "Fundamental of AI",
-                "content": ["foo", "bar", "baz"],
                 "image": "https://www.naver.com",
-                "cnt": 1
+                "cnt": 1,
+                "summary": ["foo", "bar", "baz"],
+                "description": "foo bar baz",
+                "categories": ["AI", "ML"]
             }
         }
 
