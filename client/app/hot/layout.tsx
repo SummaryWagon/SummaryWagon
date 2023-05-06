@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <h1 className={styles.title}> 🔥 hot topic</h1>
+      <h1 className={styles.title}> 🔥 Hot Topic</h1>
       <FavoriteKeywords></FavoriteKeywords> {children}
     </div>
   );

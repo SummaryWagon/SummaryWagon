@@ -4,10 +4,9 @@ import { clientDB } from "@/util/database";
 import ArticleListItem from "../components/ArticleListItem/ArticleListItem";
 export const dynamic = "force-dynamic";
 
-export default async function MyHistory() {
+export default async function Hot() {
   let db = (await clientDB).db("dbEarlyDev");
   let result = await db.collection("articles").find({}).toArray();
-  console.log(result);
   return (
     <main className={styles.main}>
       {result &&
