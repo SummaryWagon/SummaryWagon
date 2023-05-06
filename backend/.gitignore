@@ -26,6 +26,7 @@ auto_gpt_workspace
 ai_settings.yaml
 auto-gpt.json
 autogpt/__pycache__
+data/*
 
 # docker (Early-Devloper)
 docker-compose.yml 
