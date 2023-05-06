@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { clientDB } from "@/util/database";
 import bcrypt from "bcrypt";
+import { redirect } from "next/dist/server/api-utils";
 
 export default async function handler(
   req: NextApiRequest,
@@ -23,6 +24,6 @@ export default async function handler(
     req.body.password = hash;
 
     await db.collection("user_cred").insertOne(req.body);
-    res.status(200).json("성공");
+    res.status(200).json({ message: "success" });
   }
 }
