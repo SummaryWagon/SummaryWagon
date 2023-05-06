@@ -1,12 +1,15 @@
 "use client";
+import Spinner from "../Spinner";
 import styles from "./page.module.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 interface SearchBarProps {
   session: any;
 }
-export default function SearchBar({ session }:SearchBarProps) {
+
+export default function SearchBar({ session }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchHandler = async (e: any) => {
     if (e.key !== "Enter" && e.type !== "click") return;
@@ -14,21 +17,16 @@ export default function SearchBar({ session }:SearchBarProps) {
       alert("no input");
       return;
     }
+    setIsLoading(true);
     console.log("searchHandler", inputRef.current.value, session);
     if (session) {
-      const result = await fetch("http://localhost:8000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          link: inputRef.current.value,
-          email: session?.user.email,
-        }),
-      }).then((res) => res.json());
+      setTimeout(() => {
+        setIsLoading(false);
+        window.location.href = "www.google.com";
+      }, 10000);
     }
   };
-
+  if (isLoading) return <Spinner />;
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>

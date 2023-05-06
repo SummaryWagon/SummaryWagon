@@ -3,7 +3,11 @@ import Link from "next/link";
 import SimpleArticleListItem from "../SimpleArticleListItem/SimpleArticleListItem/SimpleArticleListItem";
 import { clientDB } from "@/util/database";
 
-const HotTopic = async () => {
+export const dynamic = "force-dynamic";
+
+type HotTopicProps = {};
+
+const HotTopic = async (props: HotTopicProps): Promise<JSX.Element> => {
   let db = (await clientDB).db("dbEarlyDev");
   let result = await db.collection("articles").find({}).toArray();
   return (
@@ -12,14 +16,20 @@ const HotTopic = async () => {
         <h1> 🔥 Hot Topic </h1>
       </Link>
       <ul className={styles.ul}>
-        {result.map((item) => (
-          <Link href={`Detail/${item._id.toString()}`} key={item._id.toString()}>
-            <SimpleArticleListItem
-              imageSrc={item.image}
-              title={item.title}
-            ></SimpleArticleListItem>
-          </Link>
-        ))}
+        {result.map((item, idx) => {
+          if (idx > 3) return;
+          return (
+            <Link
+              href={`Detail/${item._id.toString()}`}
+              key={item._id.toString()}
+            >
+              <SimpleArticleListItem
+                imageSrc={item.image}
+                title={item.title}
+              ></SimpleArticleListItem>
+            </Link>
+          );
+        })}
       </ul>
     </div>
   );
