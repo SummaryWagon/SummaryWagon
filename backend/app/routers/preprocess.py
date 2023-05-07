@@ -6,16 +6,16 @@ from app.routers.keyword import find_keyword
 
 skip_txt = {"", " "}
 skip_word = {"수", "하는", "이", "더", "한", ""}
-file_path = "./data/articles.txt"
+# file_path = "./data/articles.txt"
 
 # ToDo : ChatGPT에게 보낼 텍스트 파싱 필요
 def word_preprocess(url : str):
     response = requests.get(url)
     
-    if (os.path.exists(file_path)):
-        os.remove(file_path)
+    # if (os.path.exists(file_path)):
+    #     os.remove(file_path)
 
-    f = open(file_path, "w")
+    # f = open(file_path, "w")
     
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -36,7 +36,7 @@ def word_preprocess(url : str):
             txt = p.text
             if txt in skip_txt:
                 continue
-            f.wirte(txt)
+            # f.wirte(txt)
             
             # txt -> list
             data_list = txt.split(" ")
@@ -55,7 +55,7 @@ def word_preprocess(url : str):
         # Step 3: 파싱한 단어 중에 가장 많이 나오는 단어 찾기 (keyword)
         keyword = find_keyword(sorted_dict[:10])
         
-        f.close()
+        # f.close()
         
         return [title_and_image[0], title_and_image[1], keyword]
         

@@ -40,15 +40,19 @@ async def get_articles(email:str):
     user_articles = user["article_ids"]
     articles = []
     for id in user_articles[::-1]:
+        print(id)
         article = await db.articles.find_one({"_id": ObjectId(id["id"])})
+        print(article)
         temp = {
             "id": str(article["_id"]),
+            "datetime": article["datetime"],
             "title": article["title"],
             "image": article["image"]
         }
         articles.append(temp)
         if (len(articles) == 5):
             break
+    articles.sort(key=lambda x: x["datetime"], reverse=True)
     return articles
 
 
