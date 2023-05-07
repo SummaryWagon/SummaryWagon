@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Spinner from "../Spinner";
 import styles from "./page.module.css";
 import { useRef, useState } from "react";
@@ -10,7 +11,8 @@ interface SearchBarProps {
 export default function SearchBar({ session }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isDone, setIsDone] = useState(false);
+  const [url, setUrl] = useState("");
   const searchHandler = async (e: any) => {
     if (e.key !== "Enter" && e.type !== "click") return;
     if (!inputRef?.current?.value) {
@@ -20,13 +22,32 @@ export default function SearchBar({ session }: SearchBarProps) {
     setIsLoading(true);
     console.log("searchHandler", inputRef.current.value, session);
     if (session) {
-      setTimeout(() => {
-        setIsLoading(false);
-        window.location.href = "www.google.com";
-      }, 10000);
+      fetch("http://127.0.0.1:8000/users", {
+        method: "POST",
+        body: JSON.stringify({
+          link: inputRef.current.value,
+          email: session.user.email,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setIsLoading(false);
+          setIsDone(true);
+          setUrl(data.data.id);
+          console.log("Success:", data);
+          alert("Success: " + data.message);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Error: " + error.message);
+        });
     }
   };
   if (isLoading) return <Spinner />;
+  if (isDone) return <a href={`Detail/${url}`}>Go to the article</a>;
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>

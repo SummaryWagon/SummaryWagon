@@ -17,3 +17,7 @@
   margin: 0;
 }
 
+.article_list_item:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
