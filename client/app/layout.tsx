@@ -23,7 +23,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Header session={session} />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
