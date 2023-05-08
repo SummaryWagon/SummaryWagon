@@ -17,7 +17,7 @@ export default async function Home() {
       <PopularKeywords></PopularKeywords>
       <div className={styles.categories}>
         {session && <History />}
-        {/* <HotTopic /> */}
+        <HotTopic />
       </div>
       <RealtimeSearch></RealtimeSearch>
     </main>
