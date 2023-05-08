@@ -6,6 +6,7 @@ import KeywordTag from "@/app/components/KeywordTag/KeywordTag";
 import QuickLink from "@/app/components/QuickLink/QuickLink";
 import { clientDB } from "@/util/database";
 import { Key } from "react";
+import NotFound from "@/app/not-found";
 interface Article {
   _id: ObjectId;
   title: string;
@@ -26,7 +27,9 @@ export default async function Detail(props: DetailProps) {
   const result = await db
     .collection("articles")
     .findOne({ _id: new ObjectId(props.params.id) });
-
+  if (result === null) {
+    return NotFound();
+  }
   const article: Article | null = result
     ? {
         _id: result._id,

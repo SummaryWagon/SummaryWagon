@@ -19,12 +19,10 @@ export default async function handler(
       )
         return res.status(500).json({ message: "권한이 없습니다" });
       try {
-        console.log("여기옴?");
         const db = (await clientDB).db("forum");
         const result = await db.collection("post").deleteOne({
           _id: new ObjectId(req.body.id),
         });
-        // console.log(result);
         if (result.deletedCount === 1) {
           return res.status(200).json({ message: "삭제되었습니다" });
         } else {

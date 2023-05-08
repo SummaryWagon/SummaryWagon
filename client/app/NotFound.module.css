@@ -1,0 +1,42 @@
+.notFound {
+  width: 80%;
+  max-width: 800px;
+  margin: 100px auto;
+  text-align: center;
+  background-color: #fff;
+  padding: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.heading {
+  font-size: 10rem;
+  color: #e74c3c;
+  margin: 0;
+}
+
+.subheading {
+  font-size: 2rem;
+  color: #444;
+  margin: 20px 0 0 0;
+}
+
+.message {
+  font-size: 1.2rem;
+  color: #777;
+  margin: 20px 0 0 0;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #3498db;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.link:hover {
+  background-color: #2980b9;
+}
