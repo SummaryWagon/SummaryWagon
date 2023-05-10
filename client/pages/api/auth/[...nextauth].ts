@@ -60,23 +60,23 @@ export const authOptions = {
     maxAge: 30 * 24 * 60 * 60, //30일
   },
 
-  callbacks: {
-    session: async ({ session, token }: any) => {
-      session.user = token.user;
-      return session as any;
-    },
+  // callbacks: {
+  //   session: async ({ session, token }: any) => {
+  //     session.user = token.user;
+  //     return session as any;
+  //   },
 
-    async jwt({ token, user }: any) {
-      if (user) {
-        token.user = {};
-        token.user.name = user.name;
-        token.user.email = user.email;
-        token.user.role = user.role;
-        token.accessToken = user.accessToken;
-      }
-      return token as any;
-    },
-  },
+  //   async jwt({ token, user }: any) {
+  //     if (user) {
+  //       token.user = {};
+  //       token.user.name = user.name;
+  //       token.user.email = user.email;
+  //       token.user.role = user.role;
+  //       token.accessToken = user.accessToken;
+  //     }
+  //     return token as any;
+  //   },
+  // },
 
   // callbacks: {
   //   //4. jwt 만들 때 실행되는 코드

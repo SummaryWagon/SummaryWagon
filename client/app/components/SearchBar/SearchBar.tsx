@@ -14,6 +14,7 @@ export default function SearchBar({ session }: SearchBarProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [url, setUrl] = useState("");
+  console.log(process.env);
   const searchHandler = async (e: any) => {
     if (e.key !== "Enter" && e.type !== "click") return;
     if (!inputRef?.current?.value) {
@@ -22,7 +23,7 @@ export default function SearchBar({ session }: SearchBarProps) {
     }
     setIsLoading(true);
     if (session) {
-      fetch("http://127.0.0.1:8000/users", {
+      fetch(`${process.env.SERVER_URL}/users`, {
         method: "POST",
         body: JSON.stringify({
           link: inputRef.current.value,
@@ -37,17 +38,16 @@ export default function SearchBar({ session }: SearchBarProps) {
           setIsLoading(false);
           setIsDone(true);
           setUrl(data.data.id);
-    
+
           alert("Success: " + data.message);
         })
         .catch((error) => {
-
           alert("Error: " + error.message);
         });
     }
   };
   if (isLoading) return <Spinner />;
-  if (isDone) return <GotoArticle url={url}/>;
+  if (isDone) return <GotoArticle url={url} />;
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>
