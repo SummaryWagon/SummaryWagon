@@ -8,8 +8,8 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Early Developer",
-  description: "GPT-powered Tech Forum for the Latest Tech Information",
+  title: "SummaryWagon",
+  description: "Three-sentence summary of using GPT",
 };
 
 export default async function RootLayout({
@@ -18,6 +18,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   let session = await getServerSession(authOptions);
+  console.log(session);
   return (
     <html lang="en">
       <body className={inter.className}>
