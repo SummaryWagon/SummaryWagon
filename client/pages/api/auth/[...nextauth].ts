@@ -60,42 +60,42 @@ export const authOptions = {
     maxAge: 30 * 24 * 60 * 60, //30일
   },
 
-  // callbacks: {
-  //   session: async ({ session, token }: any) => {
-  //     session.user = token.user;
-  //     return session as any;
-  //   },
-
-  //   async jwt({ token, user }: any) {
-  //     if (user) {
-  //       token.user = {};
-  //       token.user.name = user.name;
-  //       token.user.email = user.email;
-  //       token.user.role = user.role;
-  //       token.accessToken = user.accessToken;
-  //     }
-  //     return token as any;
-  //   },
-  // },
-
   callbacks: {
-    //4. jwt 만들 때 실행되는 코드
-    //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
-    jwt: async ({ token, user }: any) => {
+    session: async ({ session, token }: any) => {
+      session.user = token.user;
+      return session as any;
+    },
+
+    async jwt({ token, user }: any) {
       if (user) {
         token.user = {};
         token.user.name = user.name;
         token.user.email = user.email;
         token.user.role = user.role;
+        token.accessToken = user.accessToken;
       }
       return token as any;
     },
-    //5. 유저 세션이 조회될 때 마다 실행되는 코드
-    session: async ({ session, token }: any) => {
-      session.user = token.user;
-      return session as any;
-    },
   },
+
+  // callbacks: {
+  //   //4. jwt 만들 때 실행되는 코드
+  //   //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
+  //   jwt: async ({ token, user }: any) => {
+  //     if (user) {
+  //       token.user = {};
+  //       token.user.name = user.name;
+  //       token.user.email = user.email;
+  //       token.user.role = user.role;
+  //     }
+  //     return token as any;
+  //   },
+  //   //5. 유저 세션이 조회될 때 마다 실행되는 코드
+  //   session: async ({ session, token }: any) => {
+  //     session.user = token.user;
+  //     return session as any;
+  //   },
+  // },
   secret: process.env.NEXTAUTH_SECRET as string,
   adapter: MongoDBAdapter(clientDB),
 };
