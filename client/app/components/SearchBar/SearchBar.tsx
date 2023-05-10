@@ -22,7 +22,7 @@ export default function SearchBar({ session }: SearchBarProps) {
     }
     setIsLoading(true);
     if (session) {
-      fetch(`http://${process.env.SERVER_URL}:8000/users`, {
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, {
         method: "POST",
         body: JSON.stringify({
           link: inputRef.current.value,
