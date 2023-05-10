@@ -1,0 +1,18 @@
+.quick_link {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #0077cc;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.quick_link:hover {
+  background-color: #005fa3;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  transform: translate(1px, 1px);
+}
