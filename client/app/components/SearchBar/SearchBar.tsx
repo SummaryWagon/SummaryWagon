@@ -3,6 +3,7 @@ import Link from "next/link";
 import Spinner from "../Spinner";
 import styles from "./page.module.css";
 import { useRef, useState } from "react";
+import GotoArticle from "./components/GoToArticle";
 
 interface SearchBarProps {
   session: any;
@@ -46,7 +47,7 @@ export default function SearchBar({ session }: SearchBarProps) {
     }
   };
   if (isLoading) return <Spinner />;
-  if (isDone) return <a href={`Detail/${url}`}>Go to the article</a>;
+  if (isDone) return <GotoArticle url={url}/>;
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>

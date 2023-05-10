@@ -1,0 +1,15 @@
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  color: #0077cc;
+}
+.link:hover {
+  color: #005fa3;
+}
+.link:active {
+  color: #004d85;
+}
