@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { clientDB } from "@/util/database";
-import ArticleListItem from "../components/ArticleListItem/ArticleListItem";
+import ArticleListItem from "../components/ArticleListItem";
 export const dynamic = "force-dynamic";
 
 export default async function Hot() {

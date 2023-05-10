@@ -3,7 +3,7 @@ import Link from "next/link";
 import SimpleArticleListItem from "../SimpleArticleListItem/SimpleArticleListItem/SimpleArticleListItem";
 import { clientDB } from "@/util/database";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 type HotTopicProps = {};
 

@@ -17,7 +17,7 @@ const FavoriteKeywords = ({}) => {
     <div className={styles.container}>
       <ul className={styles.keywords}>
         {keywords.map((keyword) => (
-          <Link key={keyword} href={`${MyHistory}/${keyword}`}>
+          <Link key={keyword} href={`MyHistory/${keyword}`}>
             <li className={styles.keyword}>{keyword}</li>
           </Link>
         ))}
