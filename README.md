@@ -44,23 +44,18 @@
 | **AI**                    | <img src="https://img.shields.io/badge/OpenAI%20API-FF9500?style=for-the-badge&logo=openai&logoColor=white">                                                                                                                                                                                                                   |
 | **Infrastructure/DevOps** | <img src="https://img.shields.io/badge/EC2-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_lambda-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> |
 
-팀원 : 3 
+팀원 : 3
 
-| FE | BE | BE |
-| --------- | --------- | --------- |
+| FE                                                                           | BE                                                                                         | BE                                                                               |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
 | [![프로필1](https://github.com/ChoBae.png?s=200)](https://github.com/ChoBae) | [![프로필2](https://github.com/YoungwooKim09.png?s=200)](https://github.com/YoungwooKim09) | [![프로필3](https://github.com/jamiehun.png?s=200)](https://github.com/jamiehun) |
-
-
-
-
+| [🤠ChoBae](https://github.com/ChoBae)                                          | [🤡Youngwoo](https://github.com/YoungwooKim09)                                          | [🥸Jamie](https://github.com/jamiehun)                                          |
 
 <!-- 웹사이트 : [바로가기](https://highlighters.site/) -->
 
 <!-- - demo 계정 : test@test.com
 - demo 계정 비밀번호 : 1234
 - 익스텐션을 설치해야 그룹원들의 하이라이팅을 볼 수 있고, 피드를 추가할 수 있으니 아래의 스토어에서 설치 후 이용해주시면 감사하겠습니다. -->
-
-
 
 <p align="right">(<a href="#readme-top">맨 위로</a>)</p>
 
