@@ -14,7 +14,6 @@ export default function SearchBar({ session }: SearchBarProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [url, setUrl] = useState("");
-  console.log(process.env);
   const searchHandler = async (e: any) => {
     if (e.key !== "Enter" && e.type !== "click") return;
     if (!inputRef?.current?.value) {
