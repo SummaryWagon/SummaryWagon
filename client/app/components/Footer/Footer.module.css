@@ -1,9 +1,11 @@
-/* Footer.module.css */
 .footer {
+  height: 80px;
   background-color: #576cbc;
   color: #fff;
-  padding: 20px;
   text-align: center;
-  margin-top: 2rem;
   border-radius: 3px;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

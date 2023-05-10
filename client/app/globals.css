@@ -13,7 +13,10 @@ body {
   overflow-x: hidden;
   font-family: "Noto Sans KR", sans-serif;
 }
-
+main {
+  flex: 1;
+  padding: 20px;
+}
 body {
   background-color: white;
 }
@@ -22,4 +25,3 @@ a {
   color: inherit;
   text-decoration: none;
 }
-

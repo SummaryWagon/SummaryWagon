@@ -20,7 +20,6 @@ export default function SearchBar({ session }: SearchBarProps) {
       return;
     }
     setIsLoading(true);
-    console.log("searchHandler", inputRef.current.value, session);
     if (session) {
       fetch("http://127.0.0.1:8000/users", {
         method: "POST",
@@ -37,11 +36,11 @@ export default function SearchBar({ session }: SearchBarProps) {
           setIsLoading(false);
           setIsDone(true);
           setUrl(data.data.id);
-          console.log("Success:", data);
+    
           alert("Success: " + data.message);
         })
         .catch((error) => {
-          console.error("Error:", error);
+
           alert("Error: " + error.message);
         });
     }

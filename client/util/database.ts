@@ -1,7 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const uri =
-  "mongodb+srv://earlydevuser0:Ml7lY6K9PxN3Ztxk@earlydevcluster.2adkqhc.mongodb.net/dbEarlyDev?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI as string;
 let client: MongoClient;
 let clientDB: Promise<MongoClient>;
 

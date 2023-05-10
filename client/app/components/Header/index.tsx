@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 export default function Header({ session }: HeaderProps) {
-  console.log(session);
+
   return (
     <div className={styles.header}>
       <Link href="/" className="logo">
