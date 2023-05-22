@@ -27,6 +27,13 @@ ai_settings.yaml
 auto-gpt.json
 autogpt/__pycache__
 data/*
+sam-installation
+lambda-s3/.aws-sam
+lambda-s3/samconfig.toml
+lambda-s3/prerequisite
+lambda-s3/package
+aws
+
 
 # docker (Early-Devloper)
 docker-compose.yml 
