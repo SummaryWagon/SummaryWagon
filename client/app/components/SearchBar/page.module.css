@@ -5,7 +5,12 @@
   flex-direction: column;
   width: auto;
   height: 100%;
-  margin-top : 2rem;
+  margin-top: 2rem;
+  border-style: groove;
+  border-color: #576cbc;
+  border-radius: 10px;
+  padding: 0 1rem;
+  margin: 1.5rem 1rem;
 }
 
 .searchBox h1 {
@@ -15,8 +20,6 @@
   margin-bottom: 2rem;
   font-family: Verdana, sans-serif;
 }
-
-
 
 .inputContainer {
   display: flex;
@@ -34,9 +37,7 @@
   padding: 1rem;
   height: 1.5rem;
   width: 20rem;
-
 }
-
 
 .searchButton {
   background-color: #fff;
@@ -44,4 +45,40 @@
   outline: none;
   cursor: pointer;
   padding: 0.5rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.button {
+  background-color: #576cbc;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+  border-radius: 4px;
+  height: 2.5rem;
+}
+
+.button:hover {
+  background-color: #2c4375;
+}
+
+.input {
+  padding: 8px;
+  border: 1px solid #576cbc;
+  border-radius: 4px;
+  width: 20rem;
+  height: 1.5rem;
+}
+
+.emphasize {
+  color: #576cbc;
+  font-weight: bold;
+  font-size: 1.5rem;
 }

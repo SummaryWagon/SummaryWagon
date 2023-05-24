@@ -1,3 +1,4 @@
+// 'use client'
 import styles from "./HotTopic.module.css";
 import Link from "next/link";
 import SimpleArticleListItem from "../SimpleArticleListItem/SimpleArticleListItem/SimpleArticleListItem";
@@ -7,11 +8,11 @@ import { clientDB } from "@/util/database";
 
 type HotTopicProps = {};
 
-const HotTopic = async (props: HotTopicProps): Promise<JSX.Element> => {
+const HotTopic = async (props: HotTopicProps) => {
   let db = (await clientDB).db("dbEarlyDev");
   let result = await db.collection("articles").find({}).toArray();
   return (
-    <div>
+    <div className={styles.main_container}>
       <Link href="/hot">
         <h1> 🔥 Hot Topic </h1>
       </Link>
