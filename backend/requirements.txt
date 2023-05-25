@@ -15,3 +15,4 @@ python-decouple==3.8
 #requests
 #bs4
 #openai
+#boto3

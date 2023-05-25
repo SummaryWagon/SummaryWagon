@@ -3,6 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 from app.routers.info import find_og_info
 from app.routers.keyword import find_keyword
+from app.routers.image_resizing import *
+import time 
 
 skip_txt = {"", " "}
 skip_word = {"수", "하는", "이", "더", "한", ""}
@@ -23,6 +25,14 @@ def word_preprocess(url : str):
         # Step 1: title, image 찾기
         title_and_image = find_og_info(soup)
         
+        og_title = title_and_image[0]
+        og_image = title_and_image[1]
+        image_content_type = title_and_image[2]
+        
+        # Step 1-1: image resizing 
+        upload_image = upload_to_s3(og_title, og_image, image_content_type) # before resizing
+        time.sleep(5) # need to refactor
+        resized_image = download_from_s3(upload_image)
         
         # Step 2: 단어 파싱하기
         find_all_p = soup.find_all('p')
@@ -57,5 +67,5 @@ def word_preprocess(url : str):
         
         f.close()
         
-        return [title_and_image[0], title_and_image[1], keyword]
+        return [og_title, resized_image, keyword]
         
