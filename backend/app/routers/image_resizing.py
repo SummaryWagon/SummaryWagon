@@ -44,10 +44,19 @@ def upload_to_s3(og_title, og_image, image_content_type):
         print(f"Image Upload to S3 Error Occured : {e}")
         
 def download_from_s3(image_title):
-    with open(image_title, 'w') as data:
-        response = s3_client.download_fileobj(RESIZED_BUCKET_NAME, 'resized-'+image_title, data)
-        print(response)
-
+    try:
+        response = s3_client.get_object(
+            Bucket=RESIZED_BUCKET_NAME,
+            Key='resized-'+image_title)
+        
+        object_body = response.get('Body')
+        content = object_body.read()
+        resized_image = io.BytesIO(content)
+        
+        print(resized_image)
+        
+        return resized_image
+        
     except Exception as e:
         print(f"Image Download to S3 Error Occured : {e}")
         
