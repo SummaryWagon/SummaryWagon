@@ -10,14 +10,14 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
-
+  // 세션가져올때 정보에 있어야하나? ㅇㅇ 그럴듯
   return (
     <main className={styles.main}>
       <SearchBar session={session}></SearchBar>
-      <PopularKeywords></PopularKeywords>
+      {/* <PopularKeywords></PopularKeywords> */}
       <div className={styles.categories}>
         {session && <History />}
-        {/* <HotTopic /> */}
+        <HotTopic />
       </div>
       <RealtimeSearch></RealtimeSearch>
     </main>

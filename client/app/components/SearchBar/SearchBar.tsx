@@ -14,6 +14,18 @@ export default function SearchBar({ session }: SearchBarProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [url, setUrl] = useState("");
+
+  const [inputValue, setInputValue] = useState("");
+
+  const handleButtonClick = () => {
+    navigator.clipboard.readText().then((text) => {
+      setInputValue(text);
+    });
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
   const searchHandler = async (e: any) => {
     if (e.key !== "Enter" && e.type !== "click") return;
     if (!inputRef?.current?.value) {
@@ -22,7 +34,7 @@ export default function SearchBar({ session }: SearchBarProps) {
     }
     setIsLoading(true);
     if (session) {
-      fetch("http://127.0.0.1:8000/users", {
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, {
         method: "POST",
         body: JSON.stringify({
           link: inputRef.current.value,
@@ -37,23 +49,24 @@ export default function SearchBar({ session }: SearchBarProps) {
           setIsLoading(false);
           setIsDone(true);
           setUrl(data.data.id);
-    
+
           alert("Success: " + data.message);
         })
         .catch((error) => {
-
           alert("Error: " + error.message);
         });
     }
   };
   if (isLoading) return <Spinner />;
-  if (isDone) return <GotoArticle url={url}/>;
+  if (isDone) return <GotoArticle url={url} />;
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>
-        {`🤖 "Which link would you like me to summarize for you?"`}
+        {`🤖 "Which link would you like me to `}
+        <span className={styles.emphasize}>summarize</span>
+        {` for you?"`}
       </h1>
-      <div className={styles.inputContainer}>
+      {/* <div className={styles.inputContainer}>
         <input
           type="text"
           placeholder="Search.."
@@ -65,7 +78,19 @@ export default function SearchBar({ session }: SearchBarProps) {
             🔍
           </span>
         </button>
+      </div> */}
+      <div className={styles.buttonContainer}>
+        <input
+          type="text"
+          className={styles.input}
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <button className={styles.button} onClick={handleButtonClick}>
+          붙여넣기
+        </button>
       </div>
+      <p>count:1/5</p>
       <div id="related-keywords"></div>
     </div>
   );

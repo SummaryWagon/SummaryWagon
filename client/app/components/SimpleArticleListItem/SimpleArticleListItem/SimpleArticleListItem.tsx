@@ -15,7 +15,7 @@ function SimpleArticleListItem({
     <li className={styles.article_list_item}>
         <img src={imageSrc} alt="" className={styles.article_list_item_img} />
         <div className={styles.article_list_item_text}>
-          <h3>{title}</h3>
+          <p>{title.length > 20 ? title.substring(0,20) + '...' : title}</p>
         </div>
 
     </li>
