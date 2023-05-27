@@ -4,6 +4,7 @@ import Spinner from "../Spinner";
 import styles from "./page.module.css";
 import { useRef, useState } from "react";
 import GotoArticle from "./components/GoToArticle";
+import RemainingCount from "../RemainingCount";
 
 interface SearchBarProps {
   session: any;
@@ -23,7 +24,7 @@ export default function SearchBar({ session }: SearchBarProps) {
     });
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     setInputValue(e.target.value);
   };
   const searchHandler = async (e: any) => {
@@ -86,11 +87,18 @@ export default function SearchBar({ session }: SearchBarProps) {
           value={inputValue}
           onChange={handleInputChange}
         />
-        <button className={styles.button} onClick={handleButtonClick}>
-          붙여넣기
-        </button>
+
+        {!inputValue ? (
+          <button className={styles.paste_button} onClick={handleButtonClick}>
+            붙여넣기
+          </button>
+        ) : (
+          <button className={styles.summary_button} onClick={searchHandler}>
+            요약하기
+          </button>
+        )}
       </div>
-      <p>count:1/5</p>
+      <RemainingCount></RemainingCount>
       <div id="related-keywords"></div>
     </div>
   );
