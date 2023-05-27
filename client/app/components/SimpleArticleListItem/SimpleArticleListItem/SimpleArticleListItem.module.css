@@ -1,7 +1,7 @@
 .article_list_item {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .article_list_item_img {
@@ -11,13 +11,14 @@
   border-radius: 50%;
 }
 
-.article_list_item_text h3 {
+.article_list_item_text p {
   font-size: 1rem;
-  color: #4f4557;
+  color: #DBDFEA;
   margin: 0;
 }
 
 .article_list_item:hover {
-  background-color: #f5f5f5;
+  background-color: #2C4375;
   cursor: pointer;
+  border-radius: 10px;
 }

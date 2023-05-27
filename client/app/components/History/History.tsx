@@ -23,7 +23,7 @@ const dummpy = [
 ];
 const History = () => {
   return (
-    <div>
+    <div className={styles.main_container}>
       <Link href="/MyHistory">
         <h1>📝 My History</h1>
       </Link>

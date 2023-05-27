@@ -3,8 +3,9 @@
   flex-direction: column;
   /* align-items: center; */
   flex: 1;
-  gap: 4rem;
+  gap: 1rem;
   min-height: 100vh;
+  padding: 0;
 }
 .title {
   font-size: 1.3rem;
@@ -19,7 +20,8 @@
 }
 .categories > div {
   display: inline-block;
-  width: 50%;
+  /* width: 50%; */
+  flex: 1;
   vertical-align: top;
 }
 
