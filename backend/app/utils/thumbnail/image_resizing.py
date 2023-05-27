@@ -16,7 +16,7 @@ s3_client = boto3.client(
 )
 
 # upload file to s3 and resizing 
-def (og_title, og_image, image_content_type):
+def upload_to_s3(og_title, og_image, image_content_type):
     try:
         response = requests.get(og_image)
         response.raise_for_status()

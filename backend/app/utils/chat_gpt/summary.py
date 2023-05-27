@@ -35,17 +35,3 @@ def summarize(text):
         result.append(sentence)
 
     return result
-
-# text = '''Google is planning to make its search engine more "visual, snackable, personal, and human," with a focus on serving young people globally, the Wall Street Journal reported on Saturday, citing documents.
-
-# The move comes as artificial intelligence (AI) applications such as ChatGPT are rapidly gaining in popularity, highlighting a technology that could upend the way businesses and society operate.
-
-# The tech giant will nudge its service further away from "10 blue links," which is a traditional format of presenting search results and plans to incorporate more human voices as part of the shift, the report said.
-
-# At its annual I/O developer conference in the coming week, Google is expected to debut new features that allow users to carry out conversations with an AI program, a project code-named "Magi," WSJ added, citing people familiar with the matter.
-
-# Generative AI has become a buzzword this year, with applications capturing the public's fancy and sparking a rush among companies to launch similar products they believe will change the nature of work.
-
-# Google, part of Alphabet Inc., did not immediately respond to Reuters' request for comment.'''
-
-# print(summarize(text))
