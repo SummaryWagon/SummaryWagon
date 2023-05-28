@@ -6,13 +6,9 @@ from app.utils.bs4.keyword import find_keyword
 from app.utils.thumbnail.image_resizing import *
 import time
 
-from decouple import config
-
 skip_txt = {"", " "}
 skip_word = {"수", "하는", "이", "더", "한", ""}
 file_path = "app/data/articles.txt"
-
-DEFAULT_IMAGE_URL = config("DEFAULT_IMAGE_URL")
 
 # ToDo : ChatGPT에게 보낼 텍스트 파싱 필요
 def word_preprocess(url : str):
@@ -32,11 +28,6 @@ def word_preprocess(url : str):
         og_title = title_and_image[0]
         og_image = title_and_image[1]
         image_content_type = title_and_image[2]
-        
-        # Step 1-1: image resizing 
-        upload_image = upload_to_s3(og_title, og_image, image_content_type) # before resizing
-        # time.sleep(5) # need to refactor
-        # resized_image = download_from_s3(upload_image)
         
         # Step 2: 단어 파싱하기
         find_all_p = soup.find_all('p')
@@ -71,5 +62,5 @@ def word_preprocess(url : str):
         
         f.close()
         
-        return [og_title, DEFAULT_IMAGE_URL, keyword]
+        return [og_title, og_image, image_content_type, keyword]
         
