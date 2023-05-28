@@ -1,5 +1,5 @@
 from fastapi import FastAPI 
-from .routers import articles, users
+from .articles import articles_router
 from decouple import config
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -19,8 +19,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(articles.router)
-app.include_router(users.router)
+
+app.include_router(articles_router.router)
 
 
 @app.get("/")

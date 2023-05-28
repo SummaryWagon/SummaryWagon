@@ -28,12 +28,11 @@ auto-gpt.json
 autogpt/__pycache__
 data/*
 sam-installation
-lambda-s3/.aws-sam
-lambda-s3/samconfig.toml
-lambda-s3/prerequisite
-lambda-s3/package
-aws
-
+app/utils/thumbnail/lambda-s3/.aws-sam
+app/utils/thumbnail/lambda-s3/samconfig.toml
+app/utils/thumbnail/lambda-s3/prerequisite
+app/utils/thumbnail/lambda-s3/package
+app/utils/aws
 
 # docker (Early-Devloper)
 docker-compose.yml 
@@ -176,10 +175,4 @@ vicuna-*
 .DS_Store
 
 # news
-<<<<<<< HEAD
 CURRENT_BULLETIN.md
-=======
-CURRENT_BULLETIN.md
-
-# logs 
->>>>>>> dff1142b7f121552ae647a706bda1ab2dae90ef1
