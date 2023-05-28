@@ -38,3 +38,8 @@ async def add_article(article: Article):
     await db.articles.insert_one(article)
     
     return article_helper(article)
+
+async def update_article(article_id: article_helper, image_url: str):
+    await db.articles.update_one({"_id":ObjectId(article_id['id'])}, {"$set":{"image":image_url}})
+    
+    return 

@@ -16,14 +16,10 @@ s3_client = boto3.client(
 )
 
 # upload file to s3 and resizing 
-def upload_to_s3(og_title, og_image, image_content_type):
+def upload_to_s3(og_title, og_image, extension):
     try:
         response = requests.get(og_image)
         response.raise_for_status()
-        
-        # file extension setting 
-        idx_start = image_content_type.find('/')
-        extension = image_content_type[(idx_start+1):]
         
         # upload_fileobj parameter setting
         image_url = io.BytesIO(response.content)
