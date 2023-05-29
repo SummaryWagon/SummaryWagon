@@ -1,7 +1,7 @@
-import styles from "./Loading.module.css";
+import Spinner from "./components/Spinner";
 
 function Loading() {
-  return <div className={styles.loader}></div>;
+  return <Spinner></Spinner>;
 }
 
 export default Loading;
