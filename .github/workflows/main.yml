@@ -12,9 +12,6 @@ jobs:
     if: github.event.pull_request.merged == true
     
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.10", "3.11"]
     
     steps:
       - name: PR Check
@@ -22,21 +19,27 @@ jobs:
           echo The PR was merged
       
       - uses: actions/checkout@v3
-      - name: Set up Python ${{matrix.python-version}}
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: ${{matrix.python-version}}
+          python-version: '3.10'
           cache: 'pip'
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+
       - name: Set up venv 
         run: |
           cd backend
-          if [! -f .venv]; then python -m venv .venv; fi
+          if [ ! -d .venv ]; then python -m venv .venv; fi
           . .venv/bin/activate 
 
       - name: Install dependencies
         run: |
+          cd backend
           python -m pip install --upgrade pip 
-          if [-f requirements.txt]; then pip install -r requirements.txt; fi
+          pwd
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Access to secrets
         run: |
@@ -63,4 +66,5 @@ jobs:
 
       - name: Run the project 
         run: |
-          uvicorn app.main:app --reload host=0.0.0.0
+          cd backend
+          uvicorn app.main:app --reload --host=0.0.0.0
