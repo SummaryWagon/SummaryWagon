@@ -32,8 +32,18 @@ const HotTopic = async (props: HotTopicProps) => {
           );
         })}
       </ul>
+      <div className={styles.scrollButtonContainer}>
+        <button className={styles.scrollButton}>
+          <Link href="/hot">더보기</Link>
+        </button>
+      </div>
     </div>
   );
 };
 
 export default HotTopic;
+
+
+// async function fetchData(params:any) {
+//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
+// }

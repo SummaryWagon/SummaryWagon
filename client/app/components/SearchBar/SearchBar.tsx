@@ -35,7 +35,7 @@ export default function SearchBar({ session }: SearchBarProps) {
     }
     setIsLoading(true);
     if (session) {
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, {
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/articles`, {
         method: "POST",
         body: JSON.stringify({
           link: inputRef.current.value,
@@ -67,25 +67,13 @@ export default function SearchBar({ session }: SearchBarProps) {
         <span className={styles.emphasize}>summarize</span>
         {` for you?"`}
       </h1>
-      {/* <div className={styles.inputContainer}>
-        <input
-          type="text"
-          placeholder="Search.."
-          ref={inputRef}
-          onKeyDown={searchHandler}
-        />
-        <button className={styles.searchButton} onClick={searchHandler}>
-          <span role="img" aria-label="Search">
-            🔍
-          </span>
-        </button>
-      </div> */}
       <div className={styles.buttonContainer}>
         <input
           type="text"
           className={styles.input}
           value={inputValue}
           onChange={handleInputChange}
+          placeholder="Ctrl + v 하거나 옆에 버튼을 클릭하세요 📎"
         />
 
         {!inputValue ? (
