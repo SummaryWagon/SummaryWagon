@@ -1,0 +1,70 @@
+name: Python package 
+
+on:   
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
+
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: PR Check
+        run: |
+          echo The PR was merged
+      
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+
+      - name: Set up venv 
+        run: |
+          cd backend
+          if [ ! -d .venv ]; then python -m venv .venv; fi
+          . .venv/bin/activate 
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip 
+          pwd
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Access to secrets
+        run: |
+          echo "MONGODB_URI=$MONGODB_URI" >> .env 
+          echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> .env
+          echo "CORS_ORIGIN=$CORS_ORIGIN" >> .env
+          echo "S3_ACCESS_KEY_ID=$S3_ACCESS_KEY_ID" >> .env
+          echo "S3_SECRET_ACCESS_KEY=$S3_SECRET_ACCESS_KEY" >> .env
+          echo "BUCKET_NAME=$BUCKET_NAME" >> .env
+          echo "RESIZED_BUCKET_NAME=$RESIZED_BUCKET_NAME" >> .env
+          echo "IMAGE_URL=$IMAGE_URL" >> .env
+          echo "DEFAULT_IMAGE_URL=$DEFAULT_IMAGE_URL" >> .env
+
+        env:
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
+          OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+          CORS_ORIGIN: ${{secrets.CORS_ORIGIN}}
+          S3_ACCESS_KEY_ID: ${{secrets.S3_ACCESS_KEY_ID}}
+          S3_SECRET_ACCESS_KEY: ${{secrets.S3_SECRET_ACCESS_KEY}}
+          BUCKET_NAME: ${{secrets.BUCKET_NAME}}
+          RESIZED_BUCKET_NAME: ${{secrets.RESIZED_BUCKET_NAME}}
+          IMAGE_URL: ${{secrets.IMAGE_URL}}
+          DEFAULT_IMAGE_URL: ${{secrets.DEFAULT_IMAGE_URL}}            
+
+      - name: Run the project 
+        run: |
+          cd backend
+          uvicorn app.main:app --reload --host=0.0.0.0

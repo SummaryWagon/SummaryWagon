@@ -11,8 +11,11 @@ typing_extensions==4.5.0
 uvicorn==0.22.0
 motor== 3.1.2
 python-decouple==3.8
+requests
+bs4
+openai
+boto3
 ##추가해야 할 것
-#requests
-#bs4
-#openai
-#boto3
+
+
+
