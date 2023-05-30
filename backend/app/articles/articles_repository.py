@@ -47,10 +47,7 @@ async def find_article(article_id: str):
 async def find_article_by_link(link: str):
     article = await db.articles.find_one({"link": link}, {"_id": 1})
 
-    if article:
-        return str(article["_id"])
-    else:
-        return None
+    return str(article["_id"]) if article else None
 
 
 async def add_article(article: Article):

@@ -43,7 +43,11 @@ async def add_article(addArticleDto: addArticleDto):
 
     if isExist:
         await articles_repository.update_article_cnt(isExist)
-        await users_repository.update_user(email, isExist)
+
+        isSameUser = await users_repository.find_user_by_article_id(email, isExist)
+
+        if isSameUser is None:
+            await users_repository.update_user(email, isExist)
 
         return ResponseModel(isExist, "Article already exists in DB.")
     
