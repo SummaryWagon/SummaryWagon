@@ -9,7 +9,7 @@ def article_helper(article) -> dict:
     }
 
 
-async def find_articles(article_ids: list[int]):
+async def find_all_articles(article_ids: list[str]):
     articles = []
     cnt = 0;
     
@@ -34,12 +34,33 @@ async def find_articles(article_ids: list[int]):
     return articles
 
 
+async def find_hot_articles():
+    return await db.articles.find({}, {"_id": 0}).sort([("cnt", -1), ("datetime", -1)]).to_list(length=5)
+
+
+async def find_article(article_id: str):
+    article = await db.articles.find_one({"_id": ObjectId(article_id)}, {"_id": 0})
+    
+    return article
+
+
+async def find_article_by_link(link: str):
+    article = await db.articles.find_one({"link": link}, {"_id": 1})
+
+    return str(article["_id"]) if article else None
+
+
 async def add_article(article: Article):
     await db.articles.insert_one(article)
     
     return article_helper(article)
 
+
 async def update_article(article_id: article_helper, image_url: str):
     await db.articles.update_one({"_id":ObjectId(article_id['id'])}, {"$set":{"image":image_url}})
     
-    return 
+    return
+
+
+async def update_article_cnt(article_id: str):
+    return await db.articles.update_one({"_id": ObjectId(article_id)}, {"$inc": {"cnt": 1}})
