@@ -15,11 +15,20 @@ from decouple import config
 IMAGE_URL = config('IMAGE_URL')
 DEFAULT_IMAGE_URL = config('DEFAULT_IMAGE_URL')
 
-async def read_articles(email: str):
+
+async def read_all_articles(email: str):
     user = await users_repository.find_user_by_email(email)
     article_ids = user["article_ids"]
 
-    return await articles_repository.find_articles(article_ids)
+    return await articles_repository.find_all_articles(article_ids)
+
+
+async def read_hot_articles():
+    return await articles_repository.find_hot_articles()
+
+
+async def read_article(article_id: str):
+    return await articles_repository.find_article(article_id)
 
 
 async def add_article(addArticleDto: addArticleDto):
@@ -28,6 +37,15 @@ async def add_article(addArticleDto: addArticleDto):
 
     email = addArticleDto.email
     link = addArticleDto.link
+
+    # 기사가 이미 존재하는지 확인
+    isExist = await articles_repository.find_article_by_link(link)
+
+    if isExist:
+        await articles_repository.update_article_cnt(isExist)
+        await users_repository.update_user(email, isExist)
+
+        return ResponseModel(isExist, "Article already exists in DB.")
     
     # 기사 히스토리에 추가
     title, image, image_content_type, keyword = word_preprocess(link)
@@ -70,7 +88,7 @@ async def add_article(addArticleDto: addArticleDto):
     print("Resized image updated to DB successfully")
     
     # 유저 히스토리에 추가
-    updateRes = await users_repository.update_user(email, article_id)
+    await users_repository.update_user(email, article_id)
 
     # end_time = process_time()
     end_time = time()

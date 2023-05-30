@@ -10,8 +10,18 @@ router = APIRouter(
 
 
 @router.get("/")
-async def read_articles(email: str):
-    return await articles_service.read_articles(email)
+async def read_all_articles(email: str):
+    return await articles_service.read_all_articles(email)
+
+
+@router.get("/hot")
+async def read_hot_articles():
+    return await articles_service.read_hot_articles()
+
+
+@router.get("/{article_id}")
+async def read_article(article_id: str):
+    return await articles_service.read_article(article_id)
 
 
 @router.post("/")
