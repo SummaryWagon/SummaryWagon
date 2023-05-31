@@ -1,12 +1,14 @@
 import os
 import requests
 from bs4 import BeautifulSoup
-from app.routers.info import find_og_info
-from app.routers.keyword import find_keyword
+from app.utils.bs4.info import find_og_info
+from app.utils.bs4.keyword import find_keyword
+from app.utils.thumbnail.image_resizing import *
+import time
 
 skip_txt = {"", " "}
 skip_word = {"수", "하는", "이", "더", "한", ""}
-file_path = "./data/articles.txt"
+file_path = "app/data/articles.txt"
 
 # ToDo : ChatGPT에게 보낼 텍스트 파싱 필요
 def word_preprocess(url : str):
@@ -23,6 +25,9 @@ def word_preprocess(url : str):
         # Step 1: title, image 찾기
         title_and_image = find_og_info(soup)
         
+        og_title = title_and_image[0]
+        og_image = title_and_image[1]
+        image_content_type = title_and_image[2]
         
         # Step 2: 단어 파싱하기
         find_all_p = soup.find_all('p')
@@ -57,5 +62,5 @@ def word_preprocess(url : str):
         
         f.close()
         
-        return [title_and_image[0], title_and_image[1], keyword]
+        return [og_title, og_image, image_content_type, keyword]
         

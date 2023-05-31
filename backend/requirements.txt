@@ -1,17 +1,37 @@
-#API Server
+aiohttp==3.8.4
+aiosignal==1.3.1
 anyio==3.6.2
+async-timeout==4.0.2
+attrs==23.1.0
+beautifulsoup4==4.12.2
+boto3==1.26.139
+botocore==1.29.142
+bs4==0.0.1
+certifi==2023.5.7
+charset-normalizer==3.1.0
 click==8.1.3
+dnspython==2.3.0
 fastapi==0.95.1
+frozenlist==1.3.3
 h11==0.14.0
 idna==3.4
+jmespath==1.0.1
+motor==3.1.2
+multidict==6.0.4
+openai==0.27.6
 pydantic==1.10.7
-sniffio==1.3.0
-starlette==0.26.1
-typing_extensions==4.5.0
-uvicorn==0.22.0
-motor== 3.1.2
+pymongo==4.3.3
+python-dateutil==2.8.2
 python-decouple==3.8
-##추가해야 할 것
-#requests
-#bs4
-#openai
+redis==4.5.5
+requests==2.30.0
+s3transfer==0.6.1
+six==1.16.0
+sniffio==1.3.0
+soupsieve==2.4.1
+starlette==0.26.1
+tqdm==4.65.0
+typing_extensions==4.5.0
+urllib3==1.26.16
+uvicorn==0.22.0
+yarl==1.9.2

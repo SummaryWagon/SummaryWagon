@@ -2,13 +2,15 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
-class User(BaseModel):
-    article_ids: list[str]
+class addArticleDto(BaseModel):
+    email: str
+    link: str
 
     class Config:
         schema_extra = {
-            "example" : {
-                "article_ids": ["1", "2"]
+            "example": {
+                "email": "test@test.com",
+                "link": "testlink"
             }
         }
 
@@ -36,15 +38,3 @@ class Article(BaseModel):
                 "categories": ["AI", "ML"]
             }
         }
-
-
-def ResponseModel(data, message):
-    return {
-        "data": data,
-        "code": 200,
-        "message": message,
-    }
-
-
-def ErrorResponseModel(error, code, message):
-    return {"error": error, "code": code, "message": message}
