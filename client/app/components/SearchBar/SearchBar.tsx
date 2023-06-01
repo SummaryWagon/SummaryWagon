@@ -63,9 +63,9 @@ export default function SearchBar({ session }: SearchBarProps) {
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>
-        {`🤖 "Which link would you like me to `}
-        <span className={styles.emphasize}>summarize</span>
-        {` for you?"`}
+        {` 혹시 `}
+        <span className={styles.emphasize}>세줄 요약</span>
+        {` 필요하신가요? 링크만 가져오세요🤖`}
       </h1>
       <div className={styles.buttonContainer}>
         <input
