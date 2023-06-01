@@ -7,6 +7,7 @@ import History from "./components/History/History";
 import HotTopic from "./components/HotTopic/HotTopic";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import KeywordTag from "./components/KeywordTag/KeywordTag";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
@@ -19,7 +20,8 @@ export default async function Home() {
         {session && <History />}
         <HotTopic />
       </div>
-      <RealtimeSearch></RealtimeSearch>
+      <KeywordTag></KeywordTag>
+      {/* <RealtimeSearch></RealtimeSearch> */}
     </main>
   );
 }

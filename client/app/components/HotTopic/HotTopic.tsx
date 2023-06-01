@@ -34,7 +34,7 @@ const HotTopic = async (props: HotTopicProps) => {
       </ul>
       <div className={styles.scrollButtonContainer}>
         <button className={styles.scrollButton}>
-          <Link href="/hot">더보기</Link>
+          <Link href="/hot">🔎</Link>
         </button>
       </div>
     </div>

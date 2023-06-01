@@ -1,6 +1,8 @@
+'use client'
 import styles from "./History.module.css";
 import Link from "next/link";
 import SimpleArticleListItem from "../SimpleArticleListItem/SimpleArticleListItem/SimpleArticleListItem";
+import { useEffect, useState } from "react";
 const dummpy = [
   {
     title: "AI is the future",
@@ -22,6 +24,31 @@ const dummpy = [
   },
 ];
 const History = () => {
+  const [historys, setHistorys] = useState([]);
+
+  useEffect(() => {
+    console.log("history");
+    const fetchData = async () => {
+      const data = fetchData();
+      setHistorys(data);
+
+      console.log(data);
+    };
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/articles/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    return data;
+  };
+
   return (
     <div className={styles.main_container}>
       <Link href="/MyHistory">

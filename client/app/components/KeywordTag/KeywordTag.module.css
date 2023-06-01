@@ -1,10 +1,37 @@
 
+
 .keyword {
-  background-color: #576CBC;
-  color: #fff;
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 4px;
   font-family: var(--font-mono);
+}
 
+.keywordList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  list-style: none;
+  padding: 0;
+
+  gap: 1rem;
+}
+
+.keywordItem {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.keyword:hover {
+  text-decoration: underline;
+}
+
+.divide {
+  margin-right: 0.6rem;
+}
+.textMute{
+  color: #6c757d;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-right: 0.6rem;
 }
