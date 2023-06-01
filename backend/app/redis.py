@@ -6,8 +6,8 @@ def limiter(key, limit):
     req = client.incr(key)
 
     if req == 1:
-        client.expire(key, 60)
-        ttl = 60
+        client.expire(key, 86400)
+        ttl = 86400
     else:
         ttl = client.ttl(key)
 

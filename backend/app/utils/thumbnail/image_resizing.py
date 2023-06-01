@@ -5,7 +5,7 @@ import io
 
 S3_ACCESS_KEY_ID = config("S3_ACCESS_KEY_ID")
 S3_SECRET_ACCESS_KEY = config("S3_SECRET_ACCESS_KEY")
-BUCEKT_NAME = config("BUCEKT_NAME")
+BUCKET_NAME = config("BUCKET_NAME")
 RESIZED_BUCKET_NAME = config("RESIZED_BUCKET_NAME")
 
 # Connect to S3 
@@ -23,7 +23,7 @@ def upload_to_s3(og_title, og_image, extension):
         
         # upload_fileobj parameter setting
         image_url = io.BytesIO(response.content)
-        bucket_name = BUCEKT_NAME
+        bucket_name = BUCKET_NAME
         object_name = og_title + "." + extension # 파일명에 확장자 추가
         
         s3_client.upload_fileobj(

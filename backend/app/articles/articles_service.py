@@ -20,11 +20,23 @@ async def read_all_articles(email: str):
     user = await users_repository.find_user_by_email(email)
     article_ids = user["article_ids"]
 
-    return await articles_repository.find_all_articles(article_ids)
+    articles = await articles_repository.find_all_articles(article_ids)
+    articles.sort(key=lambda x: x["datetime"], reverse=True)
+
+    return articles
 
 
 async def read_hot_articles():
     return await articles_repository.find_hot_articles()
+
+
+async def read_all_hot_articles(limit: int, next: str | None):
+    articles = await articles_repository.find_all_hot_articles(limit, next)
+
+    lastArticle = articles[-1]
+    next = str(lastArticle["cnt"]) + "_" + lastArticle["_id"]
+
+    return {"articles": articles, "next": next}
 
 
 async def read_article(article_id: str):
@@ -39,17 +51,18 @@ async def add_article(addArticleDto: addArticleDto):
     link = addArticleDto.link
 
     # 기사가 이미 존재하는지 확인
-    isExist = await articles_repository.find_article_by_link(link)
+    isArticle = await articles_repository.find_article_by_link(link)
+    
+    if isArticle:
+        isArticle_id = isArticle["_id"]
+        await articles_repository.update_article_cnt(isArticle_id)
 
-    if isExist:
-        await articles_repository.update_article_cnt(isExist)
-
-        isSameUser = await users_repository.find_user_by_article_id(email, isExist)
+        isSameUser = await users_repository.find_user_by_article_id(email, isArticle_id)
 
         if isSameUser is None:
-            await users_repository.update_user(email, isExist)
+            await users_repository.update_user(email, isArticle_id)
 
-        return ResponseModel(isExist, "Article already exists in DB.")
+        return ResponseModel(isArticle, "Article already exists in DB.")
     
     # 기사 히스토리에 추가
     title, image, image_content_type, keyword = word_preprocess(link)
@@ -85,8 +98,8 @@ async def add_article(addArticleDto: addArticleDto):
     extension = image_content_type[(idx_start+1):]
 
     # image_resizing 
-    upload_to_s3(article_id['id'], image, extension)
-    image_url = IMAGE_URL + 'resized-' + article_id["id"] + "." + extension
+    upload_to_s3(article_id, image, extension)
+    image_url = IMAGE_URL + 'resized-' + article_id + "." + extension
     
     await articles_repository.update_article(article_id, image_url)
     print("Resized image updated to DB successfully")
@@ -97,5 +110,5 @@ async def add_article(addArticleDto: addArticleDto):
     # end_time = process_time()
     end_time = time()
     print("time: ", end_time - start_time)
-
+    
     return ResponseModel(article_id, "Article added successfully.")
