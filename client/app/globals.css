@@ -1,5 +1,5 @@
 :root {
-  --max-width: 60vw;
+  --max-width: 1000px;
   --border-radius: 12px;
   --font-mono: "Noto Sans KR", ui-monospace, Menlo, Monaco, "Cascadia Mono",
     "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
@@ -8,7 +8,7 @@
 
 html,
 body {
-  max-width: 60vw;
+  max-width: 1000px;
   margin: 0 auto;
   overflow-x: hidden;
   font-family: "Noto Sans KR", sans-serif;
