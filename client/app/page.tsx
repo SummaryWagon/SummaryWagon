@@ -12,16 +12,19 @@ import KeywordTag from "./components/KeywordTag/KeywordTag";
 export default async function Home() {
   let session = await getServerSession(authOptions);
   // 세션가져올때 정보에 있어야하나? ㅇㅇ 그럴듯
+  let userEmail;
+  if (session) {
+    userEmail = session.user.email;
+  }
+  // console.log(userEmail);
   return (
     <main className={styles.main}>
       <SearchBar session={session}></SearchBar>
-      {/* <PopularKeywords></PopularKeywords> */}
       <div className={styles.categories}>
-        {session && <History />}
+        <History userEmail={userEmail} />
         <HotTopic />
       </div>
       <KeywordTag></KeywordTag>
-      {/* <RealtimeSearch></RealtimeSearch> */}
     </main>
   );
 }
