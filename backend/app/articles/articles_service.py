@@ -1,10 +1,11 @@
 from . import articles_repository
 from ..users import users_repository
 
-from .articles_schema import addArticleDto
+from .articles_schema import addArticleDto, getKeywordDto
 from ..models import ResponseModel
 
-from ..utils.bs4.preprocess import word_preprocess
+from ..utils.bs4.preprocess import title_image_parsing, text_parsing, load_text
+from ..utils.bs4.keyword import keyword_finder
 from ..utils.chat_gpt.summary import summarize
 from ..utils.thumbnail.image_resizing import upload_to_s3
 
@@ -51,21 +52,16 @@ async def add_article(addArticleDto: addArticleDto):
 
         return ResponseModel(isExist, "Article already exists in DB.")
     
-    # 기사 히스토리에 추가
-    title, image, image_content_type, keyword = word_preprocess(link)
-    default_image = DEFAULT_IMAGE_URL
-
-    file_path = "app/data/articles.txt"
-    text = ''''''
-
-    f = open(file_path, "r")
-
-    while True:
-        line = f.readline()
-        if not line: break
-        text += line
-
-    summary = summarize(text)
+    # text 및 title, image 파싱
+    text_parsing(link)
+    content = load_text()
+    title, image, image_content_type = title_image_parsing(link)
+    
+    # keyword 추출
+    keyword = keyword_finder(content)
+    
+    # text 요약
+    summary = summarize(content)
 
     article = {
         "link": link,
@@ -99,3 +95,13 @@ async def add_article(addArticleDto: addArticleDto):
     print("time: ", end_time - start_time)
 
     return ResponseModel(article_id, "Article added successfully.")
+
+
+async def get_keyword(getKeywordDto: getKeywordDto):
+    text_parsing(getKeywordDto.link)
+    content = load_text()
+    keyword = keyword_finder(content)
+    
+    return keyword
+    
+    
