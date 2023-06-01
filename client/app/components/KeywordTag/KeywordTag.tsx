@@ -18,7 +18,7 @@ const KeywordTag = () => {
   };
 
   return (
-    <div className={styles.keywordTag}>
+    <div className={styles.keywordTagContainer}>
       <div>
         <p className={styles.textMute}>*최근 많이 검색된 키워드 순</p>
       </div>
