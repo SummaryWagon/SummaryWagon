@@ -4,7 +4,7 @@ from ..users import users_repository
 from .articles_schema import addArticleDto, getKeywordDto
 from ..models import ResponseModel
 
-from ..utils.bs4.preprocess import title_image_parsing, text_parsing
+from ..utils.bs4.preprocess import title_image_parsing, text_parsing, load_text
 from ..utils.bs4.keyword import keyword_finder
 from ..utils.chat_gpt.summary import summarize
 from ..utils.thumbnail.image_resizing import upload_to_s3
@@ -53,11 +53,15 @@ async def add_article(addArticleDto: addArticleDto):
         return ResponseModel(isExist, "Article already exists in DB.")
     
     # text 및 title, image 파싱
-    text_all = text_parsing(link)
+    text_parsing(link)
+    content = load_text()
     title, image, image_content_type = title_image_parsing(link)
     
+    # keyword 추출
+    keyword = keyword_finder(content)
+    
     # text 요약
-    summary = summarize(text_all)
+    summary = summarize(content)
 
     article = {
         "link": link,
@@ -94,9 +98,9 @@ async def add_article(addArticleDto: addArticleDto):
 
 
 async def get_keyword(getKeywordDto: getKeywordDto):
-    link = getKeywordDto.link
-    text_all = text_parsing(link)
-    keyword = keyword_finder(text_all)
+    text_parsing(getKeywordDto.link)
+    content = load_text()
+    keyword = keyword_finder(content)
     
     return keyword
     

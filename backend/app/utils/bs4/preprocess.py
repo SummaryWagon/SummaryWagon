@@ -47,7 +47,21 @@ def text_parsing(link: str): # return = text_all
     
     f.close()
     
-    return text_all
+    return 
+
+
+""" 메모장에서 text 불러오기 """
+def load_text():
+    text = ''''''
+
+    f = open(file_path, "r")
+
+    while True:
+        line = f.readline()
+        if not line: break
+        text += line
+        
+    return text
 
 
 """ Title, Image 파싱 """
