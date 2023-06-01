@@ -1,10 +1,9 @@
-
-
 .keyword {
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 4px;
   font-family: var(--font-mono);
+  color: #27374d;
 }
 
 .keywordList {
@@ -26,10 +25,14 @@
   text-decoration: underline;
 }
 
+.focused {
+  color: #537188;
+}
 .divide {
   margin-right: 0.6rem;
+  color: #025464;
 }
-.textMute{
+.textMute {
   color: #6c757d;
   font-size: 0.8rem;
   font-weight: 400;
