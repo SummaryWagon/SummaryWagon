@@ -15,6 +15,17 @@ class addArticleDto(BaseModel):
         }
 
 
+class getKeywordDto(BaseModel):
+    link: str 
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "link": "testlink"
+            }
+        }
+
+
 class Article(BaseModel):
     link: str 
     datetime: datetime

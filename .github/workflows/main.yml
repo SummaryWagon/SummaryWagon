@@ -1,0 +1,33 @@
+name: Python package 
+
+on:   
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Access to AWS SSH 
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.AWS_SSH_HOST}}
+          username: ${{secrets.AWS_SSH_USERNAME}}
+          key: ${{secrets.AWS_SSH_KEY}}
+          port: ${{secrets.AWS_SSH_PORT}}
+          script: |
+            whoami
+            cd SummaryWagon/backend
+            git checkout main
+            git pull origin main
+            . .venv/bin/activate
+            ls -al
+            ./deploy.sh
+
+      - name: Jobs Done
+        run: |
+          echo "Everything is Fine :)"
