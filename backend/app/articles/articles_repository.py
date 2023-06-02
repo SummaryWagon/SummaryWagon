@@ -3,39 +3,43 @@ from bson.objectid import ObjectId
 from .articles_schema import Article
 
 
-def article_helper(article) -> dict:
-    return {
-        "id": str(article["_id"]),
-    }
-
-
-async def find_all_articles(article_ids: list[str]):
-    articles = []
-    cnt = 0;
-    
-    for id in article_ids[::-1]:
-        article = await db.articles.find_one({"_id": ObjectId(id["id"])})
-
-        temp = {
-            "id": str(article["_id"]),
-            "datetime": article["datetime"],
-            "title": article["title"],
-            "image": article["image"]
-        }
-        articles.append(temp)
-        cnt += 1
-
-        # pagination 추가하기
-        if (cnt == 5):
-            break
-
-    articles.sort(key=lambda x: x["datetime"], reverse=True)
+def article_helper(articles):
+    for article in articles:
+        article["_id"] = str(article["_id"])
 
     return articles
 
 
+async def find_articles(article_ids: list[str]):
+    articles = await db.articles.find({"_id": {"$in": [ObjectId(article_id) for article_id in article_ids]}}).sort([("datetime", -1), ("_id", -1)]).to_list(length=4)
+
+    return article_helper(articles)
+
+
+async def find_all_articles(article_ids: list[str], limit: int, next: str | None):
+    if next is None:
+        articles = await db.articles.find({"_id": {"$in": [ObjectId(article_id) for article_id in article_ids]}}).sort([("datetime", -1), ("_id", -1)]).to_list(length=limit)
+    else:
+        next_datetime, next_id = next.split("_")
+        articles = await db.articles.find({"$or": [{"datetime": {"$lt": next_datetime}}, {"_id": {"$lt": ObjectId(next_id)}}]}).sort([("datetime", -1), ("_id", -1)]).to_list(length=limit)
+
+    return article_helper(articles)
+
+
 async def find_hot_articles():
-    return await db.articles.find({}, {"_id": 0}).sort([("cnt", -1), ("datetime", -1)]).to_list(length=5)
+    articles = await db.articles.find().sort([("cnt", -1), ("_id", -1)]).to_list(length=4)
+
+    return article_helper(articles)
+
+
+async def find_all_hot_articles(limit: int, next: str | None):
+    if next is None:
+        articles = await db.articles.find().sort([("cnt", -1), ("_id", -1)]).to_list(length=limit)
+    else:
+        next_cnt, next_id = next.split("_")
+        articles = await db.articles.find({"$or": [{"cnt": {"$lt": next_cnt}}, {"_id": {"$lt": ObjectId(next_id)}}]}).sort([("cnt", -1), ("_id", -1)]).to_list(length=limit)
+    
+    return article_helper(articles)
 
 
 async def find_article(article_id: str):
@@ -45,21 +49,24 @@ async def find_article(article_id: str):
 
 
 async def find_article_by_link(link: str):
-    article = await db.articles.find_one({"link": link}, {"_id": 1})
+    article = await db.articles.find_one({"link": link})
+    
+    if article is None:
+        return None
+    
+    article["_id"] = str(article["_id"])
 
-    return str(article["_id"]) if article else None
+    return article
 
 
 async def add_article(article: Article):
-    await db.articles.insert_one(article)
+    newArticle = await db.articles.insert_one(article)
     
-    return article_helper(article)
+    return str(newArticle.inserted_id)
 
 
-async def update_article(article_id: article_helper, image_url: str):
-    await db.articles.update_one({"_id":ObjectId(article_id['id'])}, {"$set":{"image":image_url}})
-    
-    return
+async def update_article(article_id: str, image_url: str):
+    return await db.articles.update_one({"_id":ObjectId(article_id)}, {"$set":{"image":image_url}})
 
 
 async def update_article_cnt(article_id: str):
