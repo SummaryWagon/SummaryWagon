@@ -28,8 +28,9 @@ export default function SearchBar({ session }: SearchBarProps) {
     setInputValue(e.target.value);
   };
   const searchHandler = async (e: any) => {
+    console.log("입력된 링크:", inputValue);
     if (e.key !== "Enter" && e.type !== "click") return;
-    if (!inputRef?.current?.value) {
+    if (!inputValue) {
       alert("no input");
       return;
     }
@@ -38,7 +39,7 @@ export default function SearchBar({ session }: SearchBarProps) {
       fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/articles`, {
         method: "POST",
         body: JSON.stringify({
-          link: inputRef.current.value,
+          link: inputValue,
           email: session.user.email,
         }),
         headers: {
