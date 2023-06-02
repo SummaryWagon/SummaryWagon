@@ -34,6 +34,12 @@ app/utils/thumbnail/lambda-s3/prerequisite
 app/utils/thumbnail/lambda-s3/package
 app/utils/aws
 
+# docker (summary_wagon)
+docker-compose.*.yaml 
+
+# shell script (summary_wagon)
+deploy.sh
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
