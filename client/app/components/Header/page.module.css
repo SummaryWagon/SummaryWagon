@@ -6,6 +6,7 @@
   z-index: 2;
   background-color: #ffffff; /* 배경색 설정 */
   border-bottom: 1px solid #e0e0e0; /* 구분선 추가 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
 }
 
 .menuContainer {

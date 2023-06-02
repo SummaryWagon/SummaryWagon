@@ -7,7 +7,7 @@
   border-radius: 10px;
   padding: 0 1rem;
   margin: 1rem;
-  background-color: #576cbc;
+  background-color: #6C9BCF;
   color: #fff;
   box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
 }
@@ -16,4 +16,26 @@
   overflow: hidden;
   margin: 0;
   padding: 0;
+}
+
+.scrollButtonContainer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.scrollButton {
+  padding: 10px 20px;
+  margin-top: 1rem;
+  background-color: #6C9BCF;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.scrollButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

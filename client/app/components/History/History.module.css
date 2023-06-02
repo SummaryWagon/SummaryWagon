@@ -7,13 +7,26 @@
   border-radius: 10px;
   padding: 0 1rem;
   margin: 1rem;
-  background-color: #576cbc;
+  background-color: #6c9bcf;
   color: #fff;
   box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 .ul {
   list-style-type: none;
   overflow: hidden;
   margin: 0;
   padding: 0;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  cursor: pointer;
+}
+.login:hover {
+  text-decoration: underline;
 }

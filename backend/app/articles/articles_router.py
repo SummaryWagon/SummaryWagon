@@ -24,7 +24,7 @@ async def read_all_articles(email: str, limit: int, next: str | None = None):
 async def read_hot_articles():
     return await articles_service.read_hot_articles()
 
-  
+
 # 카테고리 별 hot articles로 개선 가능
 @router.get("/hot/all")
 async def read_all_hot_articles(limit: int, next: str | None = None):
