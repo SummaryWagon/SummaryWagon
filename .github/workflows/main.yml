@@ -3,14 +3,15 @@ name: Python package
 on:   
   pull_request:
     branches:
-      - feat/BlueGreen
+      - develop
     types:
       - closed
-
+  # push:
+  #   branches: feat/BlueGreen
 jobs:
   if_merged:
     if: github.event.pull_request.merged == true
-    
+  # build:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,11 +24,12 @@ jobs:
           port: ${{secrets.AWS_SSH_PORT}}
           script: |
             whoami
-            cd /SummaryWagon/backend
-            git pull origin feat/BlueGreen
-            . .venv/bin/activate 
-            sudo ./deploy.sh
-
+            cd SummaryWagon/backend
+            git checkout develop
+            git pull origin develop
+            . .venv/bin/activate
+            ls -al
+            ./deploy.sh
 
       - name: Jobs Done
         run: |
