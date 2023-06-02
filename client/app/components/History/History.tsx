@@ -60,7 +60,7 @@ const History = ({ userEmail }: HistoryProps) => {
   return (
     <div className={styles.main_container}>
       <Link href="/MyHistory">
-        <h1>📝 My History</h1>
+        <h2>📝 나의 기술 부채</h2>
       </Link>
       {historys.length > 1 && (
         <ul className={styles.ul}>

@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import ReactQueryProvider from "@/util/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header session={session} />
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
         {/* <Footer /> */}
       </body>
     </html>
