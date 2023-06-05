@@ -101,7 +101,7 @@ async def add_article(addArticleDto: addArticleDto):
     title = og_info['og_title']
     image = og_info['og_image']
     image_content_type = og_info['og_image_content_type']
-    desc = og_info["desc"]
+    desc = og_info["og_desc"]
     
     
     # keyword 추출
