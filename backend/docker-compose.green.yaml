@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  redis-server:
+    image: redis:latest
+  fast-api:
+    image: "${DOCKER_IMAGE}:green"
+    build: .
+    container_name: summary_wagon_green
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
+    restart: always
+    depends_on:
+      - redis-server
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./app:/backend/app
+      - ./.env:/backend/.env
