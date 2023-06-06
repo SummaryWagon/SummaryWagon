@@ -3,12 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin-top: 50px; */
   border-radius: 10px;
   padding: 0 1rem;
   margin: 1rem;
-  background-color: #6C9BCF;
-  color: #fff;
+  border-style: groove;
+  border-color: #576cbc;
   box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
 }
 .ul {
@@ -18,24 +17,30 @@
   padding: 0;
 }
 
-.scrollButtonContainer {
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.logo {
+  padding-top: 5px;
 }
-.scrollButton {
-  padding: 10px 20px;
-  margin-top: 1rem;
-  background-color: #6C9BCF;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.title {
+  margin-left: 10px;
+  margin-top: 6px;
+  text-decoration: underline;
+  text-decoration-color: #576cbc;
+  text-decoration-thickness: 3px;
 }
 
-.scrollButton:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.title_container {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 10px;
+}
+
+.arrowIcon {
+  margin-top: 15px;
+}
+
+.title_main_container {
+  display: flex;
+  display: flex;
+  justify-content: space-between;
 }

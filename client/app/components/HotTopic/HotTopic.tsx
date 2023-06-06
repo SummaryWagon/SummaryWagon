@@ -3,6 +3,9 @@ import styles from "./HotTopic.module.css";
 import Link from "next/link";
 import SimpleArticleListItem from "../SimpleArticleListItem/SimpleArticleListItem/SimpleArticleListItem";
 import { clientDB } from "@/util/database";
+import HotTopicIcon from "@/public/icon/HotTopicIcon.svg";
+import RightArrowIcon from "@/public/icon/RightArrowIcon.svg";
+import Image from "next/image";
 
 // export const dynamic = "force-dynamic";
 
@@ -13,9 +16,29 @@ const HotTopic = async (props: HotTopicProps) => {
   let result = await db.collection("articles").find({}).toArray();
   return (
     <div className={styles.main_container}>
-      <Link href="/hot">
-        <h2> 🔥 대세 토픽 </h2>
-      </Link>
+      <div className={styles.title_main_container}>
+        <div>
+          <Link href={"/hot"} className={styles.title_container}>
+            <Image
+              className={styles.logo}
+              src={HotTopicIcon}
+              height={30}
+              width={30}
+              alt=""
+            ></Image>
+            <h2 className={styles.title}>트렌드 토픽</h2>
+          </Link>
+        </div>
+        <Link href={"/hot"}>
+          <Image
+            className={styles.arrowIcon}
+            src={RightArrowIcon}
+            height={20}
+            width={20}
+            alt=""
+          ></Image>
+        </Link>
+      </div>
       <ul className={styles.ul}>
         {result.map((item, idx) => {
           if (idx > 3) return;
@@ -32,17 +55,11 @@ const HotTopic = async (props: HotTopicProps) => {
           );
         })}
       </ul>
-      <div className={styles.scrollButtonContainer}>
-        <button className={styles.scrollButton}>
-          <Link href="/hot">🔎</Link>
-        </button>
-      </div>
     </div>
   );
 };
 
 export default HotTopic;
-
 
 // async function fetchData(params:any) {
 //   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
