@@ -3,9 +3,9 @@ import styles from "./HotTopic.module.css";
 import Link from "next/link";
 import SimpleArticleListItem from "../SimpleArticleListItem/SimpleArticleListItem/SimpleArticleListItem";
 import { clientDB } from "@/util/database";
+import Image from "next/image";
 import HotTopicIcon from "@/public/icon/HotTopicIcon.svg";
 import RightArrowIcon from "@/public/icon/RightArrowIcon.svg";
-import Image from "next/image";
 
 // export const dynamic = "force-dynamic";
 

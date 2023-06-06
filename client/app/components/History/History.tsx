@@ -63,8 +63,6 @@ const History = ({ userEmail }: HistoryProps) => {
 
   return (
     <div className={styles.main_container}>
-
-
       <div className={styles.title_main_container}>
         <div>
           <Link href={"/myHistory"} className={styles.title_container}>
