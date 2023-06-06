@@ -21,7 +21,7 @@
   font-family: var(--font-mono);
 }
 
-.userImage{
+.userImage {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -30,6 +30,10 @@
   background-position: center;
   cursor: pointer;
 }
-.userImage:hover{
+.userImage:hover {
   opacity: 0.8;
+}
+
+.logo {
+  cursor: pointer;
 }
