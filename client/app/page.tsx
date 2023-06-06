@@ -21,8 +21,8 @@ export default async function Home() {
     <main className={styles.main}>
       <SearchBar session={session}></SearchBar>
       <div className={styles.categories}>
-        {/* <History userEmail={userEmail} /> */}
-        {/* <HotTopic /> */}
+        <History userEmail={userEmail} />
+        <HotTopic />
       </div>
       <KeywordTag></KeywordTag>
     </main>
