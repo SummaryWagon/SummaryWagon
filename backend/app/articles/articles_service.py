@@ -6,7 +6,7 @@ from ..users import users_repository
 from .articles_schema import addArticleDto, getKeywordDto
 from ..models import ResponseModel
 
-from ..utils.bs4.preprocess import title_image_parsing, text_parsing, load_text
+from ..utils.bs4.preprocess import og_parsing, text_parsing, load_text
 from ..utils.bs4.keyword import keyword_finder
 from ..utils.chat_gpt.summary import summarize
 from ..utils.thumbnail.image_resizing import upload_to_s3
@@ -96,7 +96,13 @@ async def add_article(addArticleDto: addArticleDto):
     # text 및 title, image 파싱
     text_parsing(link)
     content = load_text()
-    title, image, image_content_type = title_image_parsing(link)
+    og_info = og_parsing(link)
+    
+    title = og_info['og_title']
+    image = og_info['og_image']
+    image_content_type = og_info['og_image_content_type']
+    desc = og_info["og_desc"]
+    
     
     # keyword 추출
     keyword = keyword_finder(content)
@@ -111,7 +117,7 @@ async def add_article(addArticleDto: addArticleDto):
         "image": image,
         "cnt": 1,
         "summary": summary,
-        "description": summary[0], # og_description으로 수정
+        "description": desc,
         "categories": [keyword]
     }
 

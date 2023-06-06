@@ -65,15 +65,8 @@ def load_text():
 
 
 """ Title, Image 파싱 """
-def title_image_parsing(link : str): # return = [title, image, image_content_type]
+def og_parsing(link : str): # return = [title, image, image_content_type]
     
     soup = bs4_preprocess(link)
-    
-    title_and_image = find_og_info(soup)
-        
-    og_title = title_and_image[0]
-    og_image = title_and_image[1]
-    image_content_type = title_and_image[2]
-
-    return [og_title, og_image, image_content_type]
+    return find_og_info(soup)
         
