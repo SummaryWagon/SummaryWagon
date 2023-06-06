@@ -46,8 +46,6 @@ async def add_article(addArticleDto: addArticleDto):
         return await articles_service.add_article(addArticleDto)
     else:
         raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail={"message": "call limit reached", "ttl": res["ttl"]})
-    
-    return await articles_service.add_article(addArticleDto)
 
 
 @router.post("/keyword")

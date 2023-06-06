@@ -6,6 +6,7 @@ from ..users import users_repository
 from .articles_schema import addArticleDto, getKeywordDto
 from ..models import ResponseModel
 
+from ..utils.selenium.youtube import get_transcripts
 from ..utils.bs4.preprocess import og_parsing, text_parsing, load_text
 from ..utils.bs4.keyword import keyword_finder
 from ..utils.chat_gpt.summary import summarize
@@ -78,68 +79,73 @@ async def add_article(addArticleDto: addArticleDto):
 
     email = addArticleDto.email
     link = addArticleDto.link
+    
+    if "youtube" in link:
+        get_transcripts(link)
+        return 1
 
-    # 기사가 이미 존재하는지 확인
-    isArticle = await articles_repository.find_article_by_link(link)
-    
-    if isArticle:
-        isArticle_id = isArticle["_id"]
-        await articles_repository.update_article_cnt(isArticle_id)
+    else:
+        # 기사가 이미 존재하는지 확인
+        isArticle = await articles_repository.find_article_by_link(link)
+        
+        if isArticle:
+            isArticle_id = isArticle["_id"]
+            await articles_repository.update_article_cnt(isArticle_id)
 
-        isSameUser = await users_repository.find_user_by_article_id(email, isArticle_id)
+            isSameUser = await users_repository.find_user_by_article_id(email, isArticle_id)
 
-        if isSameUser is None:
-            await users_repository.update_user(email, isArticle_id)
+            if isSameUser is None:
+                await users_repository.update_user(email, isArticle_id)
 
-        return ResponseModel(isArticle, "Article already exists in DB.")
-    
-    # text 및 title, image 파싱
-    text_parsing(link)
-    content = load_text()
-    og_info = og_parsing(link)
-    
-    title = og_info['og_title']
-    image = og_info['og_image']
-    image_content_type = og_info['og_image_content_type']
-    desc = og_info["og_desc"]
-    
-    
-    # keyword 추출
-    keyword = keyword_finder(content)
-    
-    # text 요약
-    summary = summarize(content)
+            return ResponseModel(isArticle, "Article already exists in DB.")
+        
+        # text 및 title, image 파싱
+        text_parsing(link)
+        content = load_text()
+        og_info = og_parsing(link)
+        
+        title = og_info['og_title']
+        image = og_info['og_image']
+        image_content_type = og_info['og_image_content_type']
+        desc = og_info["og_desc"]
+        
+        
+        # keyword 추출
+        keyword = keyword_finder(content)
+        
+        # text 요약
+        summary = summarize(content)
 
-    article = {
-        "link": link,
-        "datetime": datetime.now(),
-        "title": title,
-        "image": image,
-        "cnt": 1,
-        "summary": summary,
-        "description": desc,
-        "categories": [keyword]
-    }
+        article = {
+            "link": link,
+            "datetime": datetime.now(),
+            "title": title,
+            "image": image,
+            "cnt": 1,
+            "summary": summary,
+            "description": desc,
+            "categories": [keyword]
+        }
 
-    article_id = await articles_repository.add_article(article)
-    
-    # file extension setting 
-    idx_start = image_content_type.find('/')
-    extension = image_content_type[(idx_start+1):]
+        article_id = await articles_repository.add_article(article)
+        
+        # file extension setting 
+        idx_start = image_content_type.find('/')
+        extension = image_content_type[(idx_start+1):]
 
-    # image_resizing 
-    upload_to_s3(article_id, image, extension)
-    image_url = IMAGE_URL + 'resized-' + article_id + "." + extension
-    
-    await articles_repository.update_article(article_id, image_url)
-    print("Resized image updated to DB successfully")
-    
-    # 유저 히스토리에 추가
-    await users_repository.update_user(email, article_id)
+        # image_resizing 
+        upload_to_s3(article_id, image, extension)
+        image_url = IMAGE_URL + 'resized-' + article_id + "." + extension
+        
+        await articles_repository.update_article(article_id, image_url)
+        print("Resized image updated to DB successfully")
+        
+        # 유저 히스토리에 추가
+        await users_repository.update_user(email, article_id)
 
-    # end_time = process_time()
-    end_time = time()
-    print("time: ", end_time - start_time)
+        # end_time = process_time()
+        end_time = time()
+        print("time: ", end_time - start_time)
 
     return ResponseModel(article_id, "Article added successfully.")
 
