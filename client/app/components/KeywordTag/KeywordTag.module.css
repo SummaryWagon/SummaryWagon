@@ -30,6 +30,9 @@
 
 .focused {
   color: #537188;
+  text-decoration: underline;
+  text-decoration-color: #576cbc;
+  text-decoration-thickness: 3px
 }
 .divide {
   margin-right: 0.6rem;

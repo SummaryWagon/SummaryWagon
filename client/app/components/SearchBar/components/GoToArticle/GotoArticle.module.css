@@ -1,16 +1,16 @@
 .link {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  margin-top: 2rem;
-  font-size: 2rem;
+  padding: 50px;
+  font-size: 1.5rem;
   color: #0077cc;
 }
-.link:hover {
-  color: #005fa3;
-}
-.link:active {
-  color: #004d85;
+
+.quickLink {
+  font-size: 1rem;
+  color: black;
+  padding-top: 0;
 }

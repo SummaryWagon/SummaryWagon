@@ -11,11 +11,12 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ session }: SearchBarProps) {
+  console.log(session);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [url, setUrl] = useState("");
-
+  const userEmail = session ? session.email : undefined;
   const [inputValue, setInputValue] = useState("");
 
   const handleButtonClick = () => {
@@ -28,6 +29,7 @@ export default function SearchBar({ session }: SearchBarProps) {
     setInputValue(e.target.value);
   };
   const searchHandler = async (e: any) => {
+    if (!userEmail) return alert('로그인이 필요한 서비스입니다.')
     console.log("입력된 링크:", inputValue);
     if (e.key !== "Enter" && e.type !== "click") return;
     if (!inputValue) {
@@ -60,35 +62,43 @@ export default function SearchBar({ session }: SearchBarProps) {
     }
   };
   if (isLoading) return <Spinner />;
-  if (isDone) return <GotoArticle url={url} />;
+
   return (
     <div className={styles.searchBox}>
-      <h1 className={styles.title}>
-        {` 혹시 `}
-        <span className={styles.emphasize}>세줄 요약</span>
-        {` 필요하신가요? 링크만 가져오세요🤖`}
-      </h1>
-      <div className={styles.buttonContainer}>
-        <input
-          type="text"
-          className={styles.input}
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Ctrl + v 하거나 옆에 버튼을 클릭하세요 📎"
-        />
+      {isDone ? (
+        <GotoArticle url={url} />
+      ) : (
+        <>
+          <h1 className={styles.title}>
+            {` 혹시 `}
+            <span className={styles.emphasize}>세줄 요약</span>
+            {` 필요하신가요? 링크만 가져오세요🤖`}
+          </h1>
+          <div className={styles.buttonContainer}>
+            <input
+              type="text"
+              className={styles.input}
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Ctrl + v 하거나 옆에 버튼을 클릭하세요 📎"
+            />
 
-        {!inputValue ? (
-          <button className={styles.paste_button} onClick={handleButtonClick}>
-            붙여넣기
-          </button>
-        ) : (
-          <button className={styles.summary_button} onClick={searchHandler}>
-            요약하기
-          </button>
-        )}
-      </div>
-      <RemainingCount></RemainingCount>
-      <div id="related-keywords"></div>
+            {!inputValue ? (
+              <button
+                className={styles.paste_button}
+                onClick={handleButtonClick}
+              >
+                붙여넣기
+              </button>
+            ) : (
+              <button className={styles.summary_button} onClick={searchHandler}>
+                요약하기
+              </button>
+            )}
+          </div>
+          <RemainingCount></RemainingCount>
+        </>
+      )}
     </div>
   );
 }

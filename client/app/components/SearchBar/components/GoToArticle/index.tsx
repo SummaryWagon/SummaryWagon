@@ -1,13 +1,17 @@
 import Link from "next/link";
 import styles from "./GotoArticle.module.css";
+import QuickLink from "@/app/components/QuickLink/QuickLink";
 interface GotoArticleProps {
-    url: string;
+  url: string;
 }
 
 export default function GotoArticle({ url }: GotoArticleProps) {
   return (
     <div className={styles.link}>
-      <Link href={`Detail/${url}`}> 💫 Go to Article</Link>
+      <h2> 요약 완료 🤖 </h2>
+      <p className={styles.quickLink}>
+        source : <QuickLink link={`Detail/${url}`}></QuickLink>
+      </p>
     </div>
   );
 }
