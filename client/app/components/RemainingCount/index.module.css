@@ -1,8 +1,15 @@
 .general_text {
   color: #576cbc;
   text-shadow: 1rem;
+  margin-bottom: 0;
 }
 .remain_text {
-  color: #f266ab;
+  color: #FF0032;
   text-shadow: 1rem;
+}
+.textMute {
+  color: #6c757d;
+  font-size: 0.7rem;
+  font-weight: 400;
+  margin-top: 0;
 }

@@ -1,0 +1,42 @@
+.searchBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  margin-top: 2rem;
+  border-style: groove;
+  border-color: #576cbc;
+  border-radius: 10px;
+  padding: 0 1rem;
+  margin: 1.5rem 1rem;
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.searchBox h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-family: Verdana, sans-serif;
+}
+
+.emphasize {
+  color: #576cbc;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-decoration-line: underline;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+}
+.login:hover {
+  text-decoration: underline;
+}
