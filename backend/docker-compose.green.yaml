@@ -2,19 +2,21 @@ version: "3.7"
 services:
   nginx_proxy:
     image: nginx
-    container_name: nginx_proxy    
+    container_name: nginx_proxy_green   
     ports:
-      - 80:80
+      - "80:80"
+      - "443:443"
     volumes:
       - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - fast-api
       - redis-server
+  
   fast-api:
     image: "${DOCKER_IMAGE}:green"
     build: .
     container_name: summary_wagon_green
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload --proxy-headers
     restart: always
     depends_on:
       - redis-server
@@ -23,5 +25,6 @@ services:
     volumes:
       - ./app:/backend/app
       - ./.env:/backend/.env
+
   redis-server:
     image: redis:latest
