@@ -13,6 +13,7 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ userEmail }: SearchBarProps) {
+  console.log('이메일확인', userEmail)
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -77,12 +78,6 @@ export default function SearchBar({ userEmail }: SearchBarProps) {
             />
 
             {!inputValue ? (
-              // <button
-              //   className={styles.paste_button}
-              //   onClick={handleButtonClick}
-              // >
-              //   붙여넣기
-              // </button>
               <Image
                 className={styles.paste_button}
                 src={PasteIcon}
@@ -92,9 +87,6 @@ export default function SearchBar({ userEmail }: SearchBarProps) {
                 alt=""
               ></Image>
             ) : (
-              // <button className={styles.summary_button} onClick={searchHandler}>
-              //   요약하기
-              // </button>
               <div className={styles.summary_button}>
                 <Image
                   src={SummarizeIcon}

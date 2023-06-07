@@ -13,8 +13,7 @@ interface SummaryProps {
 }
 
 export default function Summary({ session }: SummaryProps) {
-  const userEmail = session ? session.email : undefined;
-  console.log(userEmail);
+  const userEmail = session ? session.user.email : undefined;
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>
