@@ -68,5 +68,6 @@ def load_text():
 def og_parsing(link : str): # return = [title, image, image_content_type]
     
     soup = bs4_preprocess(link)
-    return find_og_info(soup)
+    og_info = find_og_info(soup)
+    return og_info
         
