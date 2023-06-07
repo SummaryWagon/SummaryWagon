@@ -10,7 +10,7 @@ export default function GotoArticle({ url }: GotoArticleProps) {
     <div className={styles.link}>
       <h2> 요약 완료 🤖 </h2>
       <p className={styles.quickLink}>
-        source : <QuickLink link={`Detail/${url}`}></QuickLink>
+        source : <QuickLink link={`detail/${url}`}></QuickLink>
       </p>
     </div>
   );

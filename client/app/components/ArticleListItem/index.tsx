@@ -15,7 +15,7 @@ function ArticleListItem({
   id
 }: ArticleListItemProps) {
   return (
-    <Link href={`Detail/${id}`}>
+    <Link href={`detail/${id}`}>
       <div className={styles.article_list_item}>
         <img src={imageSrc} alt="" className={styles.article_list_item_img} />
         <div className={styles.article_list_item_text}>

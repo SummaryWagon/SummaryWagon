@@ -44,7 +44,7 @@ const HotTopic = async (props: HotTopicProps) => {
           if (idx > 3) return;
           return (
             <Link
-              href={`Detail/${item._id.toString()}`}
+              href={`detail/${item._id.toString()}`}
               key={item._id.toString()}
             >
               <SimpleArticleListItem
