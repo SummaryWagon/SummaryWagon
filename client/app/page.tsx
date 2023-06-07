@@ -22,8 +22,7 @@ export default async function Home() {
       <Summary session={session}></Summary>
       <div className={styles.categories}>
         <History userEmail={userEmail} />
-        {/* @ts-expect-error Async Server Component */}
-        <HotTopic />
+        {/* <HotTopic /> */}
       </div>
       {/* <KeywordTag></KeywordTag> */}
     </main>
