@@ -1,7 +1,15 @@
 version: "3.7"
 services:
-  redis-server:
-    image: redis:latest
+  nginx_proxy:
+    image: nginx
+    container_name: nginx_proxy    
+    ports:
+      - 80:80
+    volumes:
+      - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - fast-api
+      - redis-server
   fast-api:
     image: "${DOCKER_IMAGE}:green"
     build: .
@@ -15,3 +23,5 @@ services:
     volumes:
       - ./app:/backend/app
       - ./.env:/backend/.env
+  redis-server:
+    image: redis:latest
