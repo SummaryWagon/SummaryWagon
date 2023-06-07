@@ -9,16 +9,14 @@
 html,
 body {
   max-width: 1000px;
+  /* height: 100%; */
   margin: 0 auto;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   font-family: "Noto Sans KR", sans-serif;
 }
 main {
   flex: 1;
   padding: 20px;
-}
-body {
-  background-color: white;
 }
 
 a {
