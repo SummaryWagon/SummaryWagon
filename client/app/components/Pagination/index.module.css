@@ -8,6 +8,7 @@
   width: 500px;
   height: 50px;
   margin: 0 auto;
+  margin-bottom: 5px;
   padding-top: 0;
 }
 
@@ -25,4 +26,19 @@
 
 .pagination li.active {
   color: #007bff;
+}
+
+.rightArrowIcon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.rightArrowIcon:hover {
+  transform: translateX(5px);
+}
+.leftArrowIcon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.leftArrowIcon:hover {
+  transform: translateX(-5px);
 }
