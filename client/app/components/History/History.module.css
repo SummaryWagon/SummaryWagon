@@ -6,8 +6,7 @@
   border-radius: 10px;
   padding: 0 1rem;
   margin: 1rem;
-  border-style: groove;
-  border-color: #576cbc;
+  border : 1px solid #576cbc;
   box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
 }
 .ul {

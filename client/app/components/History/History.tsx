@@ -8,40 +8,42 @@ import HistoryIcon from "@/public/icon/HistoryIcon.svg";
 import RightArrowIcon from "@/public/icon/RightArrowIcon.svg";
 import Image from "next/image";
 import { Article } from "@/types/Article";
-
+import useMainHistory from "@/app/hooks/useMainHistory";
+import SimpleArticleList from "../SimpleArticleList/SimpleArticleListItem";
+import Spinner from "../Spinner";
 interface HistoryProps {
   userEmail: string;
 }
 
 const History = ({ userEmail }: HistoryProps) => {
   console.log(userEmail);
-  const [historys, setHistorys] = useState([]);
+  // const [historys, setHistorys] = useState([]);
+  const { data: historys, isLoading, isError } = useMainHistory(userEmail);
 
-  useEffect(() => {
-    const fetchDatas = async () => {
-      const data = await fetchData();
-      setHistorys(data);
+  // useEffect(() => {
+  //   const fetchDatas = async () => {
+  //     const data = await fetchData();
+  //     setHistorys(data);
 
-      console.log('히스토리',data);
-    };
-    fetchDatas();
-  }, []);
+  //   };
+  //   fetchDatas();
+  // }, []);
 
-  const fetchData = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/?email=${userEmail}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await res.json();
-    console.log(data);
-    return data;
-  };
-
+  // const fetchData = async () => {
+  //   const res = await fetch(
+  //     `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/?email=${userEmail}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+  //   const data = await res.json();
+  //   console.log("hishory", data);
+  //   return data;
+  // };
+  // if (isLoading) return <div>loading...</div>;
   return (
     <div className={styles.main_container}>
       <div className={styles.title_main_container}>
@@ -67,24 +69,10 @@ const History = ({ userEmail }: HistoryProps) => {
           ></Image>
         </Link>
       </div>
-      {userEmail ? (
-        historys.length > 0 ? (
-          <ul className={styles.ul}>
-            {historys.map((item: Article) => (
-              <Link key={item.title} href={`detail/${item._id}`}>
-                <SimpleArticleListItem
-                  imageSrc={item.image}
-                  title={item.title}
-                ></SimpleArticleListItem>
-              </Link>
-            ))}
-          </ul>
-        ) : (
-          <div className={styles.empty}>
-            <p>삐비비빅.. 히스토리가 비어있습니다.</p>
-            <p>지금 바로 SummaryWagon을 이용해보세요🤖</p>
-          </div>
-        )
+      {isLoading ? (
+        <Spinner></Spinner>
+      ) : userEmail ? (
+        <SimpleArticleList articles={historys}></SimpleArticleList>
       ) : (
         <div className={styles.login} onClick={() => signIn()}>
           <p> 로그인이 필요한 서비스입니다 😅</p>
