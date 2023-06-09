@@ -24,7 +24,7 @@ export default async function Home() {
         <History userEmail={userEmail} />
         <HotTopic />
       </div>
-      <KeywordTag></KeywordTag>
+      {/* <KeywordTag></KeywordTag> */}
     </main>
   );
 }
