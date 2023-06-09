@@ -1,0 +1,9 @@
+.loading_layout {
+  width: 80%;
+  max-width: 800px;
+  margin: 100px auto;
+  text-align: center;
+  background-color: #fff;
+  padding: 50px;
+}
+

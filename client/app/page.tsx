@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./css/page.module.css";
 import PopularKeywords from "./components/PopularKeywords/PopularKeywords";
 import SearchBar from "./components/SearchBar/SearchBar";
 import RealtimeSearch from "./components/RealtimeSearch";
