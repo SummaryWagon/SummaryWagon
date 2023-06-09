@@ -1,4 +1,4 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 
 from . import articles_repository
 from ..users import users_repository
@@ -14,8 +14,11 @@ from time import time, process_time
 from datetime import datetime
 from decouple import config
 
+from ..redis import limiter, checker
+
 IMAGE_URL = config('IMAGE_URL')
 DEFAULT_IMAGE_URL = config('DEFAULT_IMAGE_URL')
+LIMIT = int(config('LIMIT'))
 
 
 async def read_articles(email: str):
@@ -67,6 +70,10 @@ async def read_all_hot_articles(limit: int, next: str | None):
     return {"articles": articles, "next": next}
 
 
+async def read_remain_cnt(email: str):
+    return checker(email)
+
+
 async def read_article(article_id: str):
     return await articles_repository.find_article(article_id)
 
@@ -78,20 +85,36 @@ async def add_article(addArticleDto: addArticleDto):
     email = addArticleDto.email
     link = addArticleDto.link
 
+    rate_limit = ''
+
     # 기사가 이미 존재하는지 확인
     isArticle = await articles_repository.find_article_by_link(link)
     
     if isArticle:
-        isArticle_id = isArticle["_id"]
-        await articles_repository.update_article_cnt(isArticle_id)
-
-        isSameUser = await users_repository.find_user_by_article_id(email, isArticle_id)
+        # 유저가 이미 기사를 찾았는지 확인
+        isSameUser = await users_repository.find_user_by_article_id(email, isArticle)
 
         if isSameUser is None:
-            await users_repository.update_user(email, isArticle_id)
+            # rate limit 적용
+            rate_limit = limiter(email, LIMIT)
 
-        return ResponseModel(isArticle, "Article already exists in DB.")
+            if rate_limit["call"] == False:
+                raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail={"message": "call limit reached", "ttl": rate_limit["ttl"]})
+            
+            await users_repository.update_user(email, isArticle)
+            await articles_repository.update_article_cnt(isArticle)
+
+        else:
+            rate_limit = checker(email)
+
+        return ResponseModel(isArticle, rate_limit, "Article already exists in DB.")
     
+    # rate limit 적용
+    rate_limit = limiter(email, LIMIT)
+
+    if rate_limit["call"] == False:
+        raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail={"message": "call limit reached", "ttl": rate_limit["ttl"]})
+
     # 기사 히스토리에 추가
     title, image, image_content_type, keyword = word_preprocess(link)
     default_image = DEFAULT_IMAGE_URL
@@ -107,6 +130,8 @@ async def add_article(addArticleDto: addArticleDto):
         text += line
 
     summary = summarize(text)
+
+    #TODO: 토큰 초과 시 에러 처리
 
     article = {
         "link": link,
@@ -138,5 +163,5 @@ async def add_article(addArticleDto: addArticleDto):
     # end_time = process_time()
     end_time = time()
     print("time: ", end_time - start_time)
-    
-    return ResponseModel(article_id, "Article added successfully.")
+
+    return ResponseModel(article_id, rate_limit, "Article added successfully.")

@@ -12,7 +12,7 @@ def summarize(text):
 
     max_tokens = 200
     
-    prompt = f'''Summarize the paragraph below in 3 sentences. Put an newline between the sentences so that each sentence can be distinguished.
+    prompt = f'''Summarize the paragraph below in 3 sentences.
 
     {text}
     '''

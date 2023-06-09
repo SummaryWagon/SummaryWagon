@@ -12,7 +12,7 @@ file_path = "app/data/articles.txt"
 
 # ToDo : ChatGPT에게 보낼 텍스트 파싱 필요
 def word_preprocess(url : str):
-    response = requests.get(url)
+    response = requests.get(url, headers={'User-Agent':'Mozilla/5.0'})
     
     if (os.path.exists(file_path)):
         os.remove(file_path)

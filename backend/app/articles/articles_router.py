@@ -1,7 +1,6 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter
 from . import articles_service
 from .articles_schema import addArticleDto
-from ..redis import limiter
 
 router = APIRouter(
     prefix="/articles",
@@ -29,6 +28,11 @@ async def read_all_hot_articles(limit: int, next: str | None = None):
     return await articles_service.read_all_hot_articles(limit, next)
 
 
+@router.get("/remainCnt")
+async def read_remain_cnt(email: str):
+    return await articles_service.read_remain_cnt(email)
+
+
 @router.get("/{article_id}")
 async def read_article(article_id: str):
     return await articles_service.read_article(article_id)
@@ -36,11 +40,4 @@ async def read_article(article_id: str):
 
 @router.post("/")
 async def add_article(addArticleDto: addArticleDto):
-    client = addArticleDto.email
-
-    res = limiter(client, 5)
-
-    if res["call"]:
-        return await articles_service.add_article(addArticleDto)
-    else:
-        raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail={"message": "call limit reached", "ttl": res["ttl"]})
+    return await articles_service.add_article(addArticleDto)

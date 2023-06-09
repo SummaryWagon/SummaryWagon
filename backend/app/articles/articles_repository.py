@@ -53,10 +53,8 @@ async def find_article_by_link(link: str):
     
     if article is None:
         return None
-    
-    article["_id"] = str(article["_id"])
 
-    return article
+    return str(article["_id"])
 
 
 async def add_article(article: Article):

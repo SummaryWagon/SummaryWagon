@@ -8,7 +8,7 @@ async def find_user_by_email(email: str):
 
 async def find_user_by_article_id(email: str, article_id: str):
     user = await db.users.find_one({"email": email, "article_ids": article_id}, {"_id": 1})
-
+    
     return str(user["_id"]) if user else None
 
 
