@@ -4,6 +4,10 @@ import Link from "next/link";
 import SimpleArticleListItem from "../SimpleArticleListItem/SimpleArticleListItem/SimpleArticleListItem";
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
+import HistoryIcon from "@/public/icon/HistoryIcon.svg";
+import RightArrowIcon from "@/public/icon/RightArrowIcon.svg";
+import Image from "next/image";
+
 const dummpy = [
   {
     title: "AI is the future",
@@ -59,9 +63,29 @@ const History = ({ userEmail }: HistoryProps) => {
 
   return (
     <div className={styles.main_container}>
-      <Link href="/MyHistory">
-        <h2>📝 나의 기술 부채</h2>
-      </Link>
+      <div className={styles.title_main_container}>
+        <div>
+          <Link href={"/myHistory"} className={styles.title_container}>
+            <Image
+              className={styles.logo}
+              src={HistoryIcon}
+              height={30}
+              width={30}
+              alt=""
+            ></Image>
+            <h2 className={styles.title}>히스토리</h2>
+          </Link>
+        </div>
+        <Link href={"/myHistory"}>
+          <Image
+            className={styles.arrowIcon}
+            src={RightArrowIcon}
+            height={20}
+            width={20}
+            alt=""
+          ></Image>
+        </Link>
+      </div>
       {historys.length > 1 && (
         <ul className={styles.ul}>
           {dummpy.map((item) => (
@@ -76,7 +100,7 @@ const History = ({ userEmail }: HistoryProps) => {
       )}
       {!userEmail && (
         <div className={styles.login} onClick={() => signIn()}>
-          <p> 로그인 해주세요 😅</p>
+          <p> 로그인이 필요한 서비스입니다 😅</p>
         </div>
       )}
     </div>

@@ -11,6 +11,7 @@
   border-radius: 10px;
   padding: 0 1rem;
   margin: 1.5rem 1rem;
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .searchBox h1 {
@@ -55,32 +56,35 @@
 }
 
 .paste_button {
-  background-color: #576cbc;
-  color: white;
-  padding: 8px 16px;
-  border: none;
+  display: inline-block;
   cursor: pointer;
-  margin-right: 8px;
-  border-radius: 4px;
-  height: 2.5rem;
+  transition: opacity 0.3s ease;
 }
 
 .paste_button:hover {
-  background-color: #2c4375;
-}
-.summary_button {
-  background-color: #BE5A83;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  cursor: pointer;
-  margin-right: 8px;
-  border-radius: 4px;
-  height: 2.5rem;
+  opacity: 0.7;
 }
 
+.summary_button {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background-color: #E90064;
+  cursor: pointer;
+  border-radius: 4px;
+  border-width: 3px;
+  height: 2.5rem;
+  width: 2.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.summary_logo {
+  /* color: #be5a83; */
+  /* margin-top: 5px; */
+  margin-left: 10px;
+}
 .summary_button:hover {
-  background-color: #D687A3;
+  opacity: 0.7;
 }
 
 .input {
@@ -95,4 +99,5 @@
   color: #576cbc;
   font-weight: bold;
   font-size: 1.4rem;
+  text-decoration-line: underline;
 }

@@ -8,7 +8,7 @@ import HotTopic from "./components/HotTopic/HotTopic";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import KeywordTag from "./components/KeywordTag/KeywordTag";
-
+import Summary from "./components/Summary/Summary"
 export default async function Home() {
   let session = await getServerSession(authOptions);
   // 세션가져올때 정보에 있어야하나? ㅇㅇ 그럴듯
@@ -19,10 +19,10 @@ export default async function Home() {
   // console.log(userEmail);
   return (
     <main className={styles.main}>
-      <SearchBar session={session}></SearchBar>
+      <Summary session={session}></Summary>
       <div className={styles.categories}>
-        {/* <History userEmail={userEmail} /> */}
-        {/* <HotTopic /> */}
+        <History userEmail={userEmail} />
+        <HotTopic />
       </div>
       <KeywordTag></KeywordTag>
     </main>
