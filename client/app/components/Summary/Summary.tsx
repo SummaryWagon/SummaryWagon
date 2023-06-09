@@ -18,7 +18,7 @@ export default function Summary({ session }: SummaryProps) {
     <div className={styles.searchBox}>
       <h1 className={styles.title}>
         {` 혹시 `}
-        <span className={styles.emphasize}>세줄 요약</span>
+        <span className={styles.emphasize}>요약</span>
         {` 필요하신가요? 링크만 가져오세요🤖`}
       </h1>
       {!session ? (
