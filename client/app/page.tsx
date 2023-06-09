@@ -22,9 +22,9 @@ export default async function Home() {
       <Summary session={session}></Summary>
       <div className={styles.categories}>
         <History userEmail={userEmail} />
-        {/* <HotTopic /> */}
+        <HotTopic />
       </div>
-      {/* <KeywordTag></KeywordTag> */}
+      <KeywordTag></KeywordTag>
     </main>
   );
 }
