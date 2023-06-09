@@ -3,10 +3,11 @@ from fastapi import HTTPException, status
 from . import articles_repository
 from ..users import users_repository
 
-from .articles_schema import addArticleDto
+from .articles_schema import addArticleDto, getKeywordDto
 from ..models import ResponseModel
 
-from ..utils.bs4.preprocess import word_preprocess
+from ..utils.bs4.preprocess import og_parsing, text_parsing, load_text
+from ..utils.bs4.keyword import keyword_finder
 from ..utils.chat_gpt.summary import summarize
 from ..utils.thumbnail.image_resizing import upload_to_s3
 
@@ -115,21 +116,21 @@ async def add_article(addArticleDto: addArticleDto):
     if rate_limit["call"] == False:
         raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail={"message": "call limit reached", "ttl": rate_limit["ttl"]})
 
-    # 기사 히스토리에 추가
-    title, image, image_content_type, keyword = word_preprocess(link)
-    default_image = DEFAULT_IMAGE_URL
-
-    file_path = "app/data/articles.txt"
-    text = ''''''
-
-    f = open(file_path, "r")
-
-    while True:
-        line = f.readline()
-        if not line: break
-        text += line
-
-    summary = summarize(text)
+    # text 및 title, image 파싱
+    text_parsing(link)
+    content = load_text()
+    og_info = og_parsing(link)
+    
+    title = og_info['og_title']
+    image = og_info['og_image']
+    image_content_type = og_info['og_image_content_type']
+    desc = og_info["og_desc"]
+    
+    # keyword 추출
+    keyword = keyword_finder(content)
+    
+    # text 요약
+    summary = summarize(content)
 
     #TODO: 토큰 초과 시 에러 처리
 
@@ -140,7 +141,7 @@ async def add_article(addArticleDto: addArticleDto):
         "image": image,
         "cnt": 1,
         "summary": summary,
-        "description": summary[0], # og_description으로 수정
+        "description": desc,
         "categories": [keyword]
     }
 
@@ -165,3 +166,11 @@ async def add_article(addArticleDto: addArticleDto):
     print("time: ", end_time - start_time)
 
     return ResponseModel(article_id, rate_limit, "Article added successfully.")
+
+
+async def get_keyword(getKeywordDto: getKeywordDto):
+    text_parsing(getKeywordDto.link)
+    content = load_text()
+    keyword = keyword_finder(content)
+    
+    return keyword

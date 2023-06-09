@@ -14,7 +14,7 @@ const HotTopic = async (props: HotTopicProps) => {
   return (
     <div className={styles.main_container}>
       <Link href="/hot">
-        <h1> 🔥 Hot Topic </h1>
+        <h2> 🔥 대세 토픽 </h2>
       </Link>
       <ul className={styles.ul}>
         {result.map((item, idx) => {
@@ -32,8 +32,18 @@ const HotTopic = async (props: HotTopicProps) => {
           );
         })}
       </ul>
+      <div className={styles.scrollButtonContainer}>
+        <button className={styles.scrollButton}>
+          <Link href="/hot">🔎</Link>
+        </button>
+      </div>
     </div>
   );
 };
 
 export default HotTopic;
+
+
+// async function fetchData(params:any) {
+//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
+// }

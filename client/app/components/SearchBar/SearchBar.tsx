@@ -4,6 +4,7 @@ import Spinner from "../Spinner";
 import styles from "./page.module.css";
 import { useRef, useState } from "react";
 import GotoArticle from "./components/GoToArticle";
+import RemainingCount from "../RemainingCount";
 
 interface SearchBarProps {
   session: any;
@@ -23,21 +24,22 @@ export default function SearchBar({ session }: SearchBarProps) {
     });
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     setInputValue(e.target.value);
   };
   const searchHandler = async (e: any) => {
+    console.log("입력된 링크:", inputValue);
     if (e.key !== "Enter" && e.type !== "click") return;
-    if (!inputRef?.current?.value) {
+    if (!inputValue) {
       alert("no input");
       return;
     }
     setIsLoading(true);
     if (session) {
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, {
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/articles`, {
         method: "POST",
         body: JSON.stringify({
-          link: inputRef.current.value,
+          link: inputValue,
           email: session.user.email,
         }),
         headers: {
@@ -62,35 +64,30 @@ export default function SearchBar({ session }: SearchBarProps) {
   return (
     <div className={styles.searchBox}>
       <h1 className={styles.title}>
-        {`🤖 "Which link would you like me to `}
-        <span className={styles.emphasize}>summarize</span>
-        {` for you?"`}
+        {` 혹시 `}
+        <span className={styles.emphasize}>세줄 요약</span>
+        {` 필요하신가요? 링크만 가져오세요🤖`}
       </h1>
-      {/* <div className={styles.inputContainer}>
-        <input
-          type="text"
-          placeholder="Search.."
-          ref={inputRef}
-          onKeyDown={searchHandler}
-        />
-        <button className={styles.searchButton} onClick={searchHandler}>
-          <span role="img" aria-label="Search">
-            🔍
-          </span>
-        </button>
-      </div> */}
       <div className={styles.buttonContainer}>
         <input
           type="text"
           className={styles.input}
           value={inputValue}
           onChange={handleInputChange}
+          placeholder="Ctrl + v 하거나 옆에 버튼을 클릭하세요 📎"
         />
-        <button className={styles.button} onClick={handleButtonClick}>
-          붙여넣기
-        </button>
+
+        {!inputValue ? (
+          <button className={styles.paste_button} onClick={handleButtonClick}>
+            붙여넣기
+          </button>
+        ) : (
+          <button className={styles.summary_button} onClick={searchHandler}>
+            요약하기
+          </button>
+        )}
       </div>
-      <p>count:1/5</p>
+      <RemainingCount></RemainingCount>
       <div id="related-keywords"></div>
     </div>
   );

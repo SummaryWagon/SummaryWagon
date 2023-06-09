@@ -7,19 +7,24 @@ import History from "./components/History/History";
 import HotTopic from "./components/HotTopic/HotTopic";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import KeywordTag from "./components/KeywordTag/KeywordTag";
 
 export default async function Home() {
   let session = await getServerSession(authOptions);
   // 세션가져올때 정보에 있어야하나? ㅇㅇ 그럴듯
+  let userEmail;
+  if (session) {
+    userEmail = session.user.email;
+  }
+  // console.log(userEmail);
   return (
     <main className={styles.main}>
       <SearchBar session={session}></SearchBar>
-      {/* <PopularKeywords></PopularKeywords> */}
       <div className={styles.categories}>
-        {session && <History />}
-        <HotTopic />
+        {/* <History userEmail={userEmail} /> */}
+        {/* <HotTopic /> */}
       </div>
-      <RealtimeSearch></RealtimeSearch>
+      <KeywordTag></KeywordTag>
     </main>
   );
 }

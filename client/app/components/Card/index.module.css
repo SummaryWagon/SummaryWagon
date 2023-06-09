@@ -1,0 +1,22 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 1rem;
+}
+
+.card:hover .cardImg {
+  transform: scale(1.05);
+}
+
+.cardImg {
+  border-radius: 7px;
+  transition: transform 0.3s ease;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 900;
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
+}
