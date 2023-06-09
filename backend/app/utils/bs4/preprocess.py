@@ -3,13 +3,13 @@ import requests
 from bs4 import BeautifulSoup
 from app.utils.bs4.info import find_og_info
 from app.utils.thumbnail.image_resizing import *
-import time
 
 file_path = "app/data/articles.txt"
 
+
 """ BS4 동작 """
 def bs4_preprocess(link: str):
-    response = requests.get(link)
+    response = requests.get(link, headers={'User-Agent':'Mozilla/5.0'})
     
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, "html.parser")
@@ -68,5 +68,6 @@ def load_text():
 def og_parsing(link : str): # return = [title, image, image_content_type]
     
     soup = bs4_preprocess(link)
-    return find_og_info(soup)
+    og_info = find_og_info(soup)
+    return og_info
         
