@@ -1,6 +1,7 @@
-def ResponseModel(data, message):
+def ResponseModel(data, rate, message):
     return {
         "data": data,
+        "rate": rate,
         "code": 200,
         "message": message,
     }
