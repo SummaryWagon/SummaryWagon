@@ -30,12 +30,3 @@ services:
 
   redis-server:
     image: redis:latest
-
-  certbot:
-    depends_on:
-      - nginx_proxy
-    image: certbot/certbot
-    container_name: certbot 
-    volumes:
-      - ./certbot/www:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
