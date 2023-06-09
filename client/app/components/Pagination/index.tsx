@@ -21,23 +21,36 @@ const Pagination = ({
     }
   };
 
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
+const renderPageNumbers = () => {
+  const pageNumbers = [];
+  const maxPageToShow = 5;
+  const halfMaxPageToShow = Math.floor(maxPageToShow / 2);
+  let startPage = currentPage - halfMaxPageToShow;
+  let endPage = currentPage + halfMaxPageToShow;
 
-    for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(
-        <li
-          key={i}
-          className={currentPage === i ? `${styles.active}` : ""}
-          onClick={() => handlePageChange(i)}
-        >
-          {i}
-        </li>
-      );
-    }
+  // Adjust startPage and endPage if they go beyond the valid range
+  if (startPage < 1) {
+    startPage = 1;
+    endPage = maxPageToShow;
+  } else if (endPage > totalPages) {
+    startPage = totalPages - maxPageToShow + 1;
+    endPage = totalPages;
+  }
 
-    return pageNumbers;
-  };
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(
+      <li
+        key={i}
+        className={currentPage === i ? `${styles.active}` : ""}
+        onClick={() => handlePageChange(i)}
+      >
+        {i}
+      </li>
+    );
+  }
+
+  return pageNumbers;
+};
 
   return (
     <ul className={styles.pagination}>
@@ -46,6 +59,7 @@ const Pagination = ({
         src={LeftArrowIcon}
         height={15}
         width={15}
+        onClick={() => handlePageChange(currentPage - 1)}
         alt=""
       ></Image>
       {renderPageNumbers()}
@@ -54,6 +68,7 @@ const Pagination = ({
         src={RightArrowIcon}
         height={15}
         width={15}
+        onClick={() => handlePageChange(currentPage + 1)}
         alt=""
       ></Image>
     </ul>

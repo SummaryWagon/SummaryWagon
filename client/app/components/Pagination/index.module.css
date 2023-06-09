@@ -3,13 +3,14 @@
   list-style-type: none;
   justify-content: center;
   align-items: center;
-  border-style: groove;
+  border : 1px solid #576cbc;
   border-radius: 5px;
   width: 500px;
   height: 50px;
   margin: 0 auto;
   margin-bottom: 5px;
   padding-top: 0;
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pagination li {
@@ -30,15 +31,19 @@
 
 .rightArrowIcon {
   cursor: pointer;
+  opacity: 0.5;
   transition: transform 0.3s ease;
 }
 .rightArrowIcon:hover {
+  opacity: 1;
   transform: translateX(5px);
 }
 .leftArrowIcon {
   cursor: pointer;
+  opacity: 0.5;
   transition: transform 0.3s ease;
 }
 .leftArrowIcon:hover {
+  opacity: 1;
   transform: translateX(-5px);
 }
