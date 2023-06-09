@@ -9,7 +9,7 @@ import RightArrowIcon from "@/public/icon/RightArrowIcon.svg";
 import Image from "next/image";
 import { Article } from "@/types/Article";
 import useMainHistory from "@/app/hooks/useMainHistory";
-import SimpleArticleList from "../SimpleArticleList/SimpleArticleListItem";
+import SimpleArticleList from "../SimpleArticleList";
 import Spinner from "../Spinner";
 interface HistoryProps {
   userEmail: string;
