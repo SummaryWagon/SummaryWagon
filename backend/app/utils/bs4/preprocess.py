@@ -20,12 +20,11 @@ def bs4_preprocess(link: str):
     
     
 """ Text 전체 파싱 """
-def text_parsing(link: str): # return = text_all
-    
-    soup = bs4_preprocess(link)
-    
+def text_parsing(soup): # return = text_all    
+
     if (os.path.exists(file_path)):
         os.remove(file_path)
+
     f = open(file_path, "w")
     
     find_all_p = soup.find_all('p')
@@ -47,7 +46,7 @@ def text_parsing(link: str): # return = text_all
     
     f.close()
     
-    return 
+    return
 
 
 """ 메모장에서 text 불러오기 """
@@ -65,8 +64,5 @@ def load_text():
 
 
 """ Title, Image 파싱 """
-def og_parsing(link : str): # return = [title, image, image_content_type]
-    
-    soup = bs4_preprocess(link)
+def og_parsing(soup): # return = [title, image, image_content_type]
     return find_og_info(soup)
-        

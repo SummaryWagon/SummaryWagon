@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from . import articles_service
-from .articles_schema import addArticleDto, getKeywordDto
+from .articles_schema import addArticleDto
 
 router = APIRouter(
     prefix="/articles",
@@ -11,6 +11,11 @@ router = APIRouter(
 @router.get("/")
 async def read_articles(email: str):
     return await articles_service.read_articles(email)
+
+
+@router.get("/category/{keyword}")
+async def read_articles_by_category(keyword: str, page: int, limit: int):
+    return await articles_service.read_articles_by_category(keyword, page, limit)
 
 
 @router.get("/all")
@@ -44,5 +49,5 @@ async def add_article(addArticleDto: addArticleDto):
 
 
 @router.post("/keyword")
-async def get_keyword(getKeywordDto: getKeywordDto):
-    return await articles_service.get_keyword(getKeywordDto)
+async def get_keyword():
+    return await articles_service.get_keyword()
