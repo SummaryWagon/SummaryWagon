@@ -1,27 +1,28 @@
 .main {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
   min-height: 100vh;
   font-family: var(--font-mono);
 }
 .title {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 600;
   font-family: "Courier New", Courier, monospace;
+  margin-bottom: 0;
 }
 .keyword_container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1rem;
   list-style-type: none;
+  margin-top: 0;
+  padding-top: 0;
   padding-left: 0;
   gap: 0.5rem;
 }
 .main h2 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.7rem;
+  font-weight: 500;
   font-family: "Courier New", Courier, monospace;
 }
 .summary_container {
@@ -29,6 +30,7 @@
   flex-direction: column;
   margin-bottom: 20px;
   padding-left: 1.2rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  text-decoration-line: underline;
   gap: 0.5rem;
 }

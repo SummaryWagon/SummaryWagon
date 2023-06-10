@@ -3,10 +3,10 @@ from fastapi import HTTPException, status
 from . import articles_repository
 from ..users import users_repository
 
-from .articles_schema import addArticleDto, getKeywordDto
+from .articles_schema import addArticleDto
 from ..models import ResponseModel
 
-from ..utils.bs4.preprocess import og_parsing, text_parsing, load_text
+from ..utils.bs4.preprocess import bs4_preprocess, og_parsing, text_parsing, load_text
 from ..utils.bs4.keyword import keyword_finder
 from ..utils.chat_gpt.summary import summarize
 from ..utils.thumbnail.image_resizing import upload_to_s3
@@ -15,7 +15,7 @@ from time import time, process_time
 from datetime import datetime
 from decouple import config
 
-from ..redis import limiter, checker
+from ..redis import limiter, checker, hget_all_cache, hmset_cache
 
 IMAGE_URL = config('IMAGE_URL')
 DEFAULT_IMAGE_URL = config('DEFAULT_IMAGE_URL')
@@ -30,6 +30,15 @@ async def read_articles(email: str):
         raise HTTPException(status_code=404, detail="Articles not found")
 
     return await articles_repository.find_articles(article_ids)
+
+
+async def read_articles_by_category(keyword: str, page: int, limit: int):
+    articles = await articles_repository.find_articles_by_category(keyword, page, limit)
+
+    if len(articles) == 0:
+        raise HTTPException(status_code=404, detail="There is no article in this category.")
+    
+    return articles
 
 
 async def read_all_articles(email: str, limit: int, next: str | None):
@@ -117,9 +126,10 @@ async def add_article(addArticleDto: addArticleDto):
         raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail={"message": "call limit reached", "ttl": rate_limit["ttl"]})
 
     # text 및 title, image 파싱
-    text_parsing(link)
+    soup = bs4_preprocess(link)
+    text_parsing(soup)
+    og_info = og_parsing(soup)
     content = load_text()
-    og_info = og_parsing(link)
     
     title = og_info['og_title']
     image = og_info['og_image']
@@ -168,9 +178,28 @@ async def add_article(addArticleDto: addArticleDto):
     return ResponseModel(article_id, rate_limit, "Article added successfully.")
 
 
-async def get_keyword(getKeywordDto: getKeywordDto):
-    text_parsing(getKeywordDto.link)
-    content = load_text()
-    keyword = keyword_finder(content)
+async def get_keyword():
+    cache = hget_all_cache("keyword")
+
+    if cache:
+        return cache
     
-    return keyword
+    else:
+        keywordList = await articles_repository.find_keyword()
+        keywordDict = {}
+
+        for keywords in keywordList:
+            for keyword in keywords:
+
+                if keyword in keywordDict:
+                    keywordDict[keyword] += 1
+                else:
+                    keywordDict[keyword] = 1
+
+        sortedKeyword = sorted(keywordDict.items(), key=lambda x: x[1], reverse=True)
+        
+        # 5개만 추출
+        value = dict(sortedKeyword[:5])
+        hmset_cache("keyword", value)
+
+        return hget_all_cache("keyword")

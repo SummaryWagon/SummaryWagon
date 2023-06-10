@@ -6,16 +6,12 @@
   width: auto;
   height: 100%;
   margin-top: 2rem;
-  border-style: groove;
-  border-color: #576cbc;
-  border-radius: 10px;
-  padding: 0 1rem;
+  padding: 0 2rem;
   margin: 1.5rem 1rem;
-  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .searchBox h1 {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -25,9 +21,10 @@
 .emphasize {
   color: #576cbc;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.9rem;
   text-decoration-line: underline;
 }
+
 
 .login {
   display: flex;

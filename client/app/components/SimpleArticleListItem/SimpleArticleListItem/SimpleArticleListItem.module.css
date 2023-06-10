@@ -1,3 +1,7 @@
+.item_container{
+  display: flex;
+  justify-content: space-between;
+}
 .article_list_item {
   display: flex;
   height: 100%;

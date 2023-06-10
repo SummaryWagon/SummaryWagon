@@ -16,6 +16,13 @@ async def find_articles(article_ids: list[str]):
     return article_helper(articles)
 
 
+async def find_articles_by_category(keyword: str, page: int, limit: int):
+    offset = (page - 1) * limit
+    articles = await db.articles.find({"categories": keyword}).sort([("cnt", -1), ("_id", -1)]).skip(offset).limit(limit).to_list(length=limit)
+
+    return article_helper(articles)
+
+
 async def find_all_articles(article_ids: list[str], limit: int, next: str | None):
     if next is None:
         articles = await db.articles.find({"_id": {"$in": [ObjectId(article_id) for article_id in article_ids]}}).sort([("datetime", -1), ("_id", -1)]).to_list(length=limit)
@@ -69,3 +76,12 @@ async def update_article(article_id: str, image_url: str):
 
 async def update_article_cnt(article_id: str):
     return await db.articles.update_one({"_id": ObjectId(article_id)}, {"$inc": {"cnt": 1}})
+
+
+async def find_keyword():
+    keywordList = []
+
+    async for category in db.articles.find({}, {"_id": 0, "categories": 1}):
+        keywordList.append(category["categories"])
+
+    return keywordList

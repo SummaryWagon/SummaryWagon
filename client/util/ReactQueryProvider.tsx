@@ -5,7 +5,7 @@ import {
   QueryClientProvider,
   Hydrate,
 } from "react-query";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { PropsWithChildren, useState } from "react";
 
 export default function ReactQueryProvider({ children }: PropsWithChildren) {
@@ -14,7 +14,7 @@ export default function ReactQueryProvider({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
