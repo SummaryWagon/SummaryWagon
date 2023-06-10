@@ -1,5 +1,5 @@
 
-import styles from "./NotFound.module.css";
+import styles from "./css/NotFound.module.css";
 
 export default function NotFound() {
   return (

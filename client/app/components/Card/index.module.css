@@ -9,6 +9,9 @@
   transform: scale(1.05);
 }
 
+.card:hover .cardTitle{
+  text-decoration: underline;
+}
 .cardImg {
   border-radius: 7px;
   transition: transform 0.3s ease;

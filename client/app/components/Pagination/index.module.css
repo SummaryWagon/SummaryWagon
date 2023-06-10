@@ -1,0 +1,49 @@
+.pagination {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  border : 1px solid #576cbc;
+  border-radius: 5px;
+  width: 500px;
+  height: 50px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding-top: 0;
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination li {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 5px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.pagination li:hover {
+  color: #e1e1e1;
+}
+
+.pagination li.active {
+  color: #007bff;
+}
+
+.rightArrowIcon {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.rightArrowIcon:hover {
+  opacity: 1;
+  transform: translateX(5px);
+}
+.leftArrowIcon {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+.leftArrowIcon:hover {
+  opacity: 1;
+  transform: translateX(-5px);
+}

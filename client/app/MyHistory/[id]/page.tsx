@@ -26,7 +26,7 @@ export default function FavoriteTech() {
   return (
     <main className={styles.main}>
       {dummy.map((item, idx) => (
-        <Link href={`Detail/${idx}`} key={idx}>
+        <Link href={`detail/${idx}`} key={idx}>
           <ArticleListItem
             imageSrc={item.image}
             title={item.title}

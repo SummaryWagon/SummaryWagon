@@ -38,6 +38,12 @@ app/utils/aws
 # docker-compose.*.yaml 
 docker-compose.yaml 
 
+# certbot 
+certbot
+
+# nginx 
+etc/nginx
+
 # shell script (summary_wagon)
 deploy.sh
 
