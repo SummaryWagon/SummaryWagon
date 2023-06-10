@@ -5,7 +5,7 @@ import styles from "./css/Loading.module.css";
 function Loading() {
   return (
     <div className={styles.loading_layout}>
-      <Spinner></Spinner>;
+      <Spinner></Spinner>
     </div>
   );
 }
