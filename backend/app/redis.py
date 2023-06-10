@@ -7,6 +7,15 @@ TTL = int(config('TTL'))
 client = redis.Redis(host="redis-server")
 
 
+def hget_all_cache(key):
+    return client.hgetall(key)
+
+
+def hmset_cache(key, value):
+    client.hmset(key, value)
+    client.expire(key, TTL)
+
+
 def limiter(key, limit):
     req = client.incr(key)
 
@@ -29,4 +38,3 @@ def checker(key):
         return {"remain_cnt": LIMIT, "ttl": TTL}
     
     return {"remain_cnt": LIMIT - int(cnt), "ttl": client.ttl(key)}
-        
