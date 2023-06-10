@@ -5,9 +5,8 @@ def keyword_finder(content):
     tr4w.analyze(content, candidate_pos = ['NOUN', 'PROPN'], window_size=4, lower=False)
     top10_keywords = tr4w.get_keywords(10)
     
-    main_keyword = max(top10_keywords, key=top10_keywords.get)
-    
-    return main_keyword
+    main_keyword = [k for k, v in top10_keywords.items()]
+    return main_keyword[:2]
 
      
     
