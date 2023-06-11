@@ -152,7 +152,7 @@ async def add_article(addArticleDto: addArticleDto):
         "cnt": 1,
         "summary": summary,
         "description": desc,
-        "categories": [keyword]
+        "categories": keyword
     }
 
     article_id = await articles_repository.add_article(article)
