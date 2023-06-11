@@ -38,6 +38,11 @@ async def read_remain_cnt(email: str):
     return await articles_service.read_remain_cnt(email)
 
 
+@router.post("/keyword")
+async def get_keyword():
+    return await articles_service.get_keyword()
+
+
 @router.get("/{article_id}")
 async def read_article(article_id: str):
     return await articles_service.read_article(article_id)
@@ -46,8 +51,3 @@ async def read_article(article_id: str):
 @router.post("/")
 async def add_article(addArticleDto: addArticleDto):
     return await articles_service.add_article(addArticleDto)
-
-
-@router.post("/keyword")
-async def get_keyword():
-    return await articles_service.get_keyword()
