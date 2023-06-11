@@ -1,4 +1,5 @@
-export const getArticleDetails = async (id: string) => {
+import { cache } from "react";
+export const getArticleDetails = cache(async (id: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/${id}`,
     {
@@ -10,4 +11,4 @@ export const getArticleDetails = async (id: string) => {
   );
   const data = await res.json();
   return data;
-};
+});
