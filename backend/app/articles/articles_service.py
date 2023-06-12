@@ -173,8 +173,6 @@ async def add_article(addArticleDto: addArticleDto):
     # text 요약
     summary = summarize(content)
 
-    #TODO: 토큰 초과 시 에러 처리
-
     article = {
         "link": link,
         "datetime": datetime.now(),
