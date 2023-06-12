@@ -33,12 +33,12 @@ async def read_articles(email: str):
 
 
 async def read_articles_by_category(keyword: str, page: int, limit: int):
-    articles = await articles_repository.find_articles_by_category(keyword, page, limit)
+    data = await articles_repository.find_articles_by_category(keyword, page, limit)
 
-    if len(articles) == 0:
+    if len(data["articles"]) == 0:
         raise HTTPException(status_code=404, detail="There is no article in this category.")
     
-    return articles
+    return data
 
 
 async def read_all_articles(email: str, limit: int, next: str | None):
@@ -49,12 +49,14 @@ async def read_all_articles(email: str, limit: int, next: str | None):
         raise HTTPException(status_code=404, detail="Articles not found")
 
     articles = await articles_repository.find_all_articles(article_ids, limit, next)
-
-    if len(articles) == 0:
-        raise HTTPException(status_code=404, detail="This page is the last page.")
-
     lastArticle = articles[-1]
-    next = str(lastArticle["datetime"]) + "_" + lastArticle["_id"]
+
+    has_next = await articles_repository.has_next("datetime", lastArticle)
+
+    if has_next:
+        next = str(lastArticle["datetime"]) + "_" + lastArticle["_id"]
+    else:
+        next = None
 
     return {"articles": articles, "next": next}
 
@@ -70,18 +72,47 @@ async def read_hot_articles():
 
 async def read_all_hot_articles(limit: int, next: str | None):
     articles = await articles_repository.find_all_hot_articles(limit, next)
-    
-    if len(articles) == 0:
-        raise HTTPException(status_code=404, detail="This page is the last page.")
-
     lastArticle = articles[-1]
-    next = str(lastArticle["cnt"]) + "_" + lastArticle["_id"]
+    
+    has_next = await articles_repository.has_next("cnt", lastArticle)
+    
+    if has_next:
+        next = str(lastArticle["cnt"]) + "_" + lastArticle["_id"]
+    else:
+        next = None
 
     return {"articles": articles, "next": next}
 
 
 async def read_remain_cnt(email: str):
     return checker(email)
+
+
+async def get_keyword():
+    cache = hget_all_cache("keyword")
+
+    if cache:
+        return cache
+    
+    else:
+        keywordList = await articles_repository.find_keyword()
+        keywordDict = {}
+
+        for keywords in keywordList:
+            for keyword in keywords:
+
+                if keyword in keywordDict:
+                    keywordDict[keyword] += 1
+                else:
+                    keywordDict[keyword] = 1
+
+        sortedKeyword = sorted(keywordDict.items(), key=lambda x: x[1], reverse=True)
+        
+        # 5개만 추출
+        value = dict(sortedKeyword[:5])
+        hmset_cache("keyword", value)
+
+        return hget_all_cache("keyword")
 
 
 async def read_article(article_id: str):
@@ -176,30 +207,3 @@ async def add_article(addArticleDto: addArticleDto):
     print("time: ", end_time - start_time)
 
     return ResponseModel(article_id, rate_limit, "Article added successfully.")
-
-
-async def get_keyword():
-    cache = hget_all_cache("keyword")
-
-    if cache:
-        return cache
-    
-    else:
-        keywordList = await articles_repository.find_keyword()
-        keywordDict = {}
-
-        for keywords in keywordList:
-            for keyword in keywords:
-
-                if keyword in keywordDict:
-                    keywordDict[keyword] += 1
-                else:
-                    keywordDict[keyword] = 1
-
-        sortedKeyword = sorted(keywordDict.items(), key=lambda x: x[1], reverse=True)
-        
-        # 5개만 추출
-        value = dict(sortedKeyword[:5])
-        hmset_cache("keyword", value)
-
-        return hget_all_cache("keyword")
