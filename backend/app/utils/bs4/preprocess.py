@@ -46,7 +46,7 @@ def text_parsing(soup): # return = text_all
     
     f.close()
     
-    return
+    return text_all
 
 
 """ 메모장에서 text 불러오기 """
