@@ -8,7 +8,7 @@ OPENAI_API_KEY = config("OPENAI_API_KEY")
 openai.api_key = OPENAI_API_KEY
 
 maximum_token_length = 4096
-maximum_context_length = 4 * 4096
+maximum_context_length = 4 * 4096 # 영어 기준
 
 
 def summarize(text):
