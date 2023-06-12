@@ -3,6 +3,7 @@ FROM python:3.11.2
 WORKDIR /backend
 
 COPY requirements.txt .
+
 COPY .env .
 
 RUN pip install --no-cache-dir -r requirements.txt
