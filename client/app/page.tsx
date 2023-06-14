@@ -9,9 +9,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import KeywordTag from "./components/KeywordTag/KeywordTag";
 import Summary from "./components/Summary/Summary";
+import { getKeyword } from "./api/getKeyword";
+
 export default async function Home() {
   let session = await getServerSession(authOptions);
-  // 세션가져올때 정보에 있어야하나? ㅇㅇ 그럴듯
+  const keywords = await getKeyword();
   let userEmail;
   if (session) {
     userEmail = session.user.email;
@@ -24,7 +26,7 @@ export default async function Home() {
         <History userEmail={userEmail} />
         <HotTopic />
       </div>
-      {/* <KeywordTag></KeywordTag> */}
+      <KeywordTag keywords={keywords}></KeywordTag>
     </main>
   );
 }
