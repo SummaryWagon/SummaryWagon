@@ -38,7 +38,7 @@ async def read_remain_cnt(email: str):
     return await articles_service.read_remain_cnt(email)
 
 
-@router.post("/keyword")
+@router.get("/keyword")
 async def get_keyword():
     return await articles_service.get_keyword()
 
