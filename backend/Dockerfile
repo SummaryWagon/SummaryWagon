@@ -14,6 +14,8 @@ RUN pip install -U spacy
 
 RUN python -m spacy download en_core_web_sm
 
+RUN python -c "import nltk; nltk.download('punkt')"
+
 COPY ["./app", "./etc"] .
 
 # CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "8000", "--reload"]

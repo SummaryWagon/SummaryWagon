@@ -1,32 +1,20 @@
 import openai
 from decouple import config
 from ..bs4.preprocess import text_parsing, bs4_preprocess
-from .count import num_tokens_from_string
+from .count import split_prompt
 
 OPENAI_API_KEY = config("OPENAI_API_KEY")
 
 openai.api_key = OPENAI_API_KEY
 
-maximum_token_length = 4096
-maximum_context_length = 4 * 4096 # 영어 기준
-
 
 def summarize(text):
     model_engine = "text-davinci-003"
     # 세 문장(영어) 평균 75토큰
-    max_tokens = 100
+    max_tokens = 200
 
-    prompt = f'''Summarize the text below in 3 sentences.
-    [Start of text]
-    {text}
-    [End of text]'''
-
-    total_tokens = num_tokens_from_string(prompt, model_engine)
-
-    if total_tokens + max_tokens > maximum_token_length:
-        prompt_chunks = [prompt[i:i+maximum_context_length] for i in range(0, len(prompt), maximum_context_length)]
-    else:
-        prompt_chunks = [prompt]
+    prompt = f'''Summarize the text below in 3 sentences.\n\n[Start of text]{text}[End of text]'''
+    prompt_chunks = split_prompt(prompt, model_engine)
 
     response = []
 
