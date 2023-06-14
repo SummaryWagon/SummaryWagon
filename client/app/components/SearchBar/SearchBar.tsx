@@ -13,7 +13,7 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ userEmail }: SearchBarProps) {
-  console.log('이메일확인', userEmail)
+  console.log("이메일확인", userEmail);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -31,7 +31,7 @@ export default function SearchBar({ userEmail }: SearchBarProps) {
   };
   const searchHandler = async (e: any) => {
     if (!userEmail) return alert("로그인이 필요한 서비스입니다.");
-    console.log("입력된 링크:", inputValue);
+
     if (e.key !== "Enter" && e.type !== "click") return;
     if (!inputValue) {
       alert("no input");
@@ -52,7 +52,7 @@ export default function SearchBar({ userEmail }: SearchBarProps) {
       .then((data) => {
         setIsLoading(false);
         setIsDone(true);
-        setUrl(data.data.id);
+        setUrl(data.data._id);
 
         alert("Success: " + data.message);
       })
@@ -99,7 +99,7 @@ export default function SearchBar({ userEmail }: SearchBarProps) {
               </div>
             )}
           </div>
-          <RemainingCount></RemainingCount>
+          <RemainingCount userEmail={userEmail}></RemainingCount>
         </>
       )}
     </>
