@@ -50,9 +50,10 @@ export default function SearchBar({ userEmail }: SearchBarProps) {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log('data', data)
         setIsLoading(false);
         setIsDone(true);
-        setUrl(data.data._id);
+        setUrl(data.data);
 
         alert("Success: " + data.message);
       })
