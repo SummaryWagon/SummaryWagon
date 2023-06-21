@@ -16,7 +16,6 @@ interface HistoryProps {
 }
 
 const History = ({ userEmail }: HistoryProps) => {
-  console.log(userEmail);
   // const [historys, setHistorys] = useState([]);
   const { data: historys, isLoading, isError } = useMainHistory(userEmail);
 
