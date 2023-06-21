@@ -15,6 +15,8 @@ const Pagination = ({
   totalPages = 6,
   onPageChange,
 }: PaginationProps) => {
+
+  console.log('총 페이지 수?',totalPages)
   const handlePageChange = (page: number) => {
     if (onPageChange) {
       onPageChange(page);
@@ -23,7 +25,7 @@ const Pagination = ({
 
 const renderPageNumbers = () => {
   const pageNumbers = [];
-  const maxPageToShow = 5;
+  const maxPageToShow = totalPages;
   const halfMaxPageToShow = Math.floor(maxPageToShow / 2);
   let startPage = currentPage - halfMaxPageToShow;
   let endPage = currentPage + halfMaxPageToShow;

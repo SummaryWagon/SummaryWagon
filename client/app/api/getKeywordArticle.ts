@@ -21,7 +21,9 @@ export const getKeywordArticle = async (
   );
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
-    return data.articles;
+    return {
+      articles: data.articles,
+      totalPage: data.total,
+    }
   }
 };

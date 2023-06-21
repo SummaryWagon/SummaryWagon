@@ -20,19 +20,17 @@ const KeywordTag = ({ keywords }: KeywordTagProps) => {
   const [page, setPage] = useState<number>(1);
 
   const {
-    data: cardList,
+    data,
     isLoading,
     isError,
   } = useFetchKeywordArticles(currentKeyword, CARDLIST_SIZE, page);
 
-  console.log("카드 리스트", cardList);
   const onClickKeyword = (keyword: string) => {
     setCurrentKeyword(keyword);
     setPage(1);
   };
 
   const onPageChange = (page: number) => {
-    console.log("page:", page);
     if (page < 1 || page > 6) {
       return;
     }
@@ -75,11 +73,11 @@ const KeywordTag = ({ keywords }: KeywordTagProps) => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <CardList cardList={cardList}></CardList>
+          <CardList cardList={data?.articles}></CardList>
       )}
       <Pagination
         currentPage={page}
-        totalPages={6}
+        totalPages={ Math.ceil(data?.totalPage / CARDLIST_SIZE)}
         onPageChange={onPageChange}
       ></Pagination>
     </div>
