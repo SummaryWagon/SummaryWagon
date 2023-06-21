@@ -12,7 +12,6 @@ import { access } from "fs";
 const PAGE_SIZE = 30;
 
 function ArticleList() {
-  // console.log("드개재~~~");
   const {
     getBoard,
     getNextPage,

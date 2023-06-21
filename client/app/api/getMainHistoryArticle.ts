@@ -9,6 +9,5 @@ export const getMainHisoryArticle = async (userEmail: string) => {
     }
   );
   const data = await res.json();
-  console.log("hishory", data);
   return data;
 };
