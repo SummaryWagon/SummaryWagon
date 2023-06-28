@@ -41,24 +41,34 @@ async def read_articles_by_category(keyword: str, page: int, limit: int):
     return data
 
 
-async def read_all_articles(email: str, limit: int, next: str | None):
+# async def read_all_articles(email: str, limit: int, next: str | None):
+#     user = await users_repository.find_user_by_email(email)
+#     article_ids = user["article_ids"]
+
+#     if len(article_ids) == 0:
+#         raise HTTPException(status_code=404, detail="Articles not found")
+
+#     articles = await articles_repository.find_all_articles(article_ids, limit, next)
+#     lastArticle = articles[-1]
+
+#     has_next = await articles_repository.has_next("datetime", lastArticle)
+
+#     if has_next:
+#         next = str(lastArticle["datetime"]) + "_" + lastArticle["_id"]
+#     else:
+#         next = None
+
+#     return {"articles": articles, "next": next}
+
+# temporary offset-based pagination
+async def read_all_articles(email: str, page: int, limit: int):
     user = await users_repository.find_user_by_email(email)
     article_ids = user["article_ids"]
 
     if len(article_ids) == 0:
         raise HTTPException(status_code=404, detail="Articles not found")
 
-    articles = await articles_repository.find_all_articles(article_ids, limit, next)
-    lastArticle = articles[-1]
-
-    has_next = await articles_repository.has_next("datetime", lastArticle)
-
-    if has_next:
-        next = str(lastArticle["datetime"]) + "_" + lastArticle["_id"]
-    else:
-        next = None
-
-    return {"articles": articles, "next": next}
+    return await articles_repository.find_all_articles(article_ids, page, limit)
 
 
 async def read_hot_articles():
@@ -70,18 +80,22 @@ async def read_hot_articles():
     return articles
 
 
-async def read_all_hot_articles(limit: int, next: str | None):
-    articles = await articles_repository.find_all_hot_articles(limit, next)
-    lastArticle = articles[-1]
+# async def read_all_hot_articles(limit: int, next: str | None):
+#     articles = await articles_repository.find_all_hot_articles(limit, next)
+#     lastArticle = articles[-1]
     
-    has_next = await articles_repository.has_next("cnt", lastArticle)
+#     has_next = await articles_repository.has_next("cnt", lastArticle)
     
-    if has_next:
-        next = str(lastArticle["cnt"]) + "_" + lastArticle["_id"]
-    else:
-        next = None
+#     if has_next:
+#         next = str(lastArticle["cnt"]) + "_" + lastArticle["_id"]
+#     else:
+#         next = None
 
-    return {"articles": articles, "next": next}
+#     return {"articles": articles, "next": next}
+
+# temporary offset-based pagination
+async def read_all_hot_articles(page:int, limit: int):
+    return await articles_repository.find_all_hot_articles(page, limit)
 
 
 async def read_remain_cnt(email: str):
