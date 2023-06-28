@@ -6,7 +6,6 @@ interface ElapsedTimeProps {
 }
 
 const ElapsedTime = ({ date }: ElapsedTimeProps) => {
-  console.log(date);
   const articleDateTime = new Date(date);
   const currentTime = new Date();
 

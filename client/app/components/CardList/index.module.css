@@ -17,3 +17,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  height: 500px;
+}

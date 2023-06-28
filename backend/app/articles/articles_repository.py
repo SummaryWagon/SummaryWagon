@@ -26,15 +26,24 @@ async def find_articles_by_category(keyword: str, page: int, limit: int):
     return {"total": total, "articles": article_helper(articles)}
 
 
-async def find_all_articles(article_ids: list[str], limit: int, next: str | None):
-    if next is None:
-        articles = await db.articles.find({"_id": {"$in": [ObjectId(article_id) for article_id in article_ids]}}).sort([("datetime", -1), ("_id", -1)]).to_list(length=limit)
-    else:
-        next_datetime, next_id = next.split("_")
-        next_datetime_format = datetime.fromisoformat(next_datetime)
-        articles = await db.articles.find({"$or": [{"datetime": {"$lt": next_datetime_format}}, {"datetime": next_datetime_format, "_id": {"$lt": ObjectId(next_id)}}]}).sort([("datetime", -1), ("_id", -1)]).to_list(length=limit)
+# async def find_all_articles(article_ids: list[str], limit: int, next: str | None):
+#     if next is None:
+#         articles = await db.articles.find({"_id": {"$in": [ObjectId(article_id) for article_id in article_ids]}}).sort([("datetime", -1), ("_id", -1)]).to_list(length=limit)
+#     else:
+#         next_datetime, next_id = next.split("_")
+#         next_datetime_format = datetime.fromisoformat(next_datetime)
+#         articles = await db.articles.find({"$or": [{"datetime": {"$lt": next_datetime_format}}, {"datetime": next_datetime_format, "_id": {"$lt": ObjectId(next_id)}}]}).sort([("datetime", -1), ("_id", -1)]).to_list(length=limit)
 
-    return article_helper(articles)
+#     return article_helper(articles)
+
+# temporary offset-based pagination
+async def find_all_articles(article_ids: list[str], page: int, limit: int):
+    offset = (page - 1) * limit
+
+    articles = await db.articles.find({"_id": {"$in": [ObjectId(article_id) for article_id in article_ids]}}).sort([("datetime", -1), ("_id", -1)]).skip(offset).limit(limit).to_list(length=limit)
+    total = await db.articles.count_documents({"_id": {"$in": [ObjectId(article_id) for article_id in article_ids]}})
+
+    return {"total": total, "articles": article_helper(articles)}
 
 
 async def find_hot_articles():
@@ -43,15 +52,24 @@ async def find_hot_articles():
     return article_helper(articles)
 
 
-async def find_all_hot_articles(limit: int, next: str | None):
-    if next is None:
-        articles = await db.articles.find().sort([("cnt", -1), ("_id", -1)]).to_list(length=limit)
-    else:
-        next_cnt, next_id = next.split("_")
-        next_cnt_format = int(next_cnt)
-        articles = await db.articles.find({"$or": [{"cnt": {"$lt": next_cnt_format}}, {"cnt": next_cnt_format, "_id": {"$lt": ObjectId(next_id)}}]}).sort([("cnt", -1), ("_id", -1)]).to_list(length=limit)
+# async def find_all_hot_articles(limit: int, next: str | None):
+#     if next is None:
+#         articles = await db.articles.find().sort([("cnt", -1), ("_id", -1)]).to_list(length=limit)
+#     else:
+#         next_cnt, next_id = next.split("_")
+#         next_cnt_format = int(next_cnt)
+#         articles = await db.articles.find({"$or": [{"cnt": {"$lt": next_cnt_format}}, {"cnt": next_cnt_format, "_id": {"$lt": ObjectId(next_id)}}]}).sort([("cnt", -1), ("_id", -1)]).to_list(length=limit)
         
-    return article_helper(articles)
+#     return article_helper(articles)
+
+# temporary offset-based pagination
+async def find_all_hot_articles(page: int, limit: int):
+    offset = (page - 1) * limit
+    
+    articles = await db.articles.find().sort([("cnt", -1), ("_id", -1)]).skip(offset).limit(limit).to_list(length=limit)
+    total = await db.articles.count_documents({})
+    
+    return {"total": total, "articles": article_helper(articles)}
 
 
 async def has_next(param: str, article):

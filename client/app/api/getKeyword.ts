@@ -1,6 +1,6 @@
-export const getMainHisoryArticle = async (userEmail: string) => {
+export const getKeyword = async () => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/?email=${userEmail}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/keyword`,
     {
       method: "GET",
       headers: {
@@ -9,5 +9,6 @@ export const getMainHisoryArticle = async (userEmail: string) => {
     }
   );
   const data = await res.json();
+
   return data;
 };

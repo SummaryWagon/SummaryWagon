@@ -4,7 +4,11 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["*", "avatars.githubusercontent.com"],
+    domains: [
+      "*",
+      "avatars.githubusercontent.com",
+      "summarywagon-bucket-resized.s3.ap-northeast-2.amazonaws.com",
+    ],
   },
 };
 
