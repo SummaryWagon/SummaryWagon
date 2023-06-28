@@ -27,7 +27,7 @@ function SimpleArticleListItem({
             width={50}
           />
           <div className={styles.article_list_item_text}>
-            <p>{title.length > 20 ? title.substring(0, 20) + "..." : title}</p>
+            <p>{title}</p>
           </div>
         </div>
       </Link>

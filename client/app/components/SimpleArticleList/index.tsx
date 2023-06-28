@@ -24,7 +24,11 @@ function SimpleArticleList({ articles = [] }: SimpleArticleListProps) {
                 key={item._id.toString()}
                 _id={item._id.toString()}
                 imageSrc={item.image}
-                title={item.title}
+                title={
+                  item.title.length > 25
+                    ? item.title.slice(0, 25) + "..."
+                    : item.title
+                }
                 date={item.datetime}
               ></SimpleArticleListItem>
             </Link>
