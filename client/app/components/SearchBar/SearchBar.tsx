@@ -13,7 +13,6 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ userEmail }: SearchBarProps) {
-  console.log("이메일확인", userEmail);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -50,7 +49,6 @@ export default function SearchBar({ userEmail }: SearchBarProps) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data', data)
         setIsLoading(false);
         setIsDone(true);
         setUrl(data.data);

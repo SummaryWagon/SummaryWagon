@@ -10,6 +10,5 @@ export const getRemainCnt = cache(async (userEmail: string) => {
     }
   );
   const data = await res.json();
-  console.log('남은 횟수:',data);
   return data.remain_cnt;
 });
