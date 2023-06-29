@@ -1,0 +1,19 @@
+.ranking_container {
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+}
+
+.ranking {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaeaea;
+  color: #333;
+  font-weight: bold;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-top: 10px;
+}
