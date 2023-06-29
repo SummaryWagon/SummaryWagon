@@ -14,11 +14,7 @@ import { getKeyword } from "./api/getKeyword";
 export default async function Home() {
   let session = await getServerSession(authOptions);
   const keywords = await getKeyword();
-  let userEmail;
-  if (session) {
-    userEmail = session.user.email;
-  }
-  console.log("메인", userEmail);
+  let userEmail = session?.user.email;
   return (
     <main className={styles.main}>
       <Summary session={session}></Summary>
