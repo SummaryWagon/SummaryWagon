@@ -32,9 +32,9 @@ export default async function Detail(props: DetailProps) {
             ))}
           </ul>
           <img src={result?.image} alt="" height="400"></img>
-          <h2>🔎 설명</h2>
+          <h2>🔎설명</h2>
           <p>{result?.description}</p>
-          <h2>요약</h2>
+          <h2>📝요약</h2>
           <ul className={styles.summary_container}>
             {result?.summary.map((item: string, idx: number) => (
               <li key={idx}>{item}</li>
