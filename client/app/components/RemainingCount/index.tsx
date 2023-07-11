@@ -2,6 +2,7 @@
 import styles from "./index.module.css";
 import { useEffect, useState } from "react";
 import { getRemainCnt } from "@/app/api/getRemainCnt";
+import { makeApiRequest } from "@/services/api-service";
 
 const LIMIT_COUNT = 5;
 interface RemainingCountProps {
@@ -9,14 +10,15 @@ interface RemainingCountProps {
 }
 const RemainingCount = ({ userEmail }: RemainingCountProps) => {
   const [count, setCount] = useState(0);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     const fetchRemainCnt = async () => {
-      if (userEmail === "") {
-        // setCount("로그인이 필요합니다.");
-        return;
-      }
       const result = await getRemainCnt(userEmail);
+      if (result === -1) {
+        setErrorMsg("로그인이 필요합니다.");
+        return
+      }
       setCount(result);
     };
     fetchRemainCnt();
@@ -29,6 +31,7 @@ const RemainingCount = ({ userEmail }: RemainingCountProps) => {
         <span className={styles.remain_text}>{count}</span> / {LIMIT_COUNT} 🤖
       </p>
       <p className={styles.textMute}>*과금 문제로 횟수 제한이 있습니다.</p>
+      {errorMsg && <p>{errorMsg}</p>}
     </div>
   );
 };
