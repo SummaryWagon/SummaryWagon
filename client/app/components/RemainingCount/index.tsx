@@ -8,10 +8,14 @@ interface RemainingCountProps {
   userEmail: string;
 }
 const RemainingCount = ({ userEmail }: RemainingCountProps) => {
-  const [count, setCount] = useState("");
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const fetchRemainCnt = async () => {
+      if (userEmail === "") {
+        // setCount("로그인이 필요합니다.");
+        return;
+      }
       const result = await getRemainCnt(userEmail);
       setCount(result);
     };

@@ -1,5 +1,5 @@
 import { cache } from "react";
-export const getRemainCnt = cache(async (userEmail: string) => {
+export const getRemainCnt = async (userEmail: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/remainCnt/?email=${userEmail}`,
     {
@@ -11,4 +11,4 @@ export const getRemainCnt = cache(async (userEmail: string) => {
   );
   const data = await res.json();
   return data.remain_cnt;
-});
+};
