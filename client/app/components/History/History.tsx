@@ -19,7 +19,7 @@ const History = ({ userEmail }: HistoryProps) => {
     <div className={styles.main_container}>
       <div className={styles.title_main_container}>
         <div>
-          <Link href={"/myHistory"} className={styles.title_container}>
+          <Link href={"/history"} className={styles.title_container}>
             <Image
               className={styles.logo}
               src={HistoryIcon}
@@ -30,7 +30,7 @@ const History = ({ userEmail }: HistoryProps) => {
             <h2 className={styles.title}>히스토리</h2>
           </Link>
         </div>
-        <Link href={"/myHistory"}>
+        <Link href={"/history"}>
           <Image
             className={styles.arrowIcon}
             src={RightArrowIcon}
