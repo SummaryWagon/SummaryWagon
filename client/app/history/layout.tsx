@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <Link href={"/hot"} className={styles.title_container}>
+      <Link href={"/history"} className={styles.title_container}>
         <Image
           className={styles.title_logo}
           src={HistoryIcon}
