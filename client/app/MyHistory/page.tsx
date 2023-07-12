@@ -13,10 +13,9 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 };
 export default async function MyHistory() {
    let session = await getServerSession(authOptions);
-   let userEmail = session?.user.email;
   return (
     <main className={styles.main}>
-      <HistoryArticleList email={userEmail}/>
+      <HistoryArticleList email={session?.user.email}/>
     </main>
   );
 }
