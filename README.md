@@ -32,24 +32,25 @@
 
 ## 프로젝트 개요
 
-프로젝트 기간 : 2023.05.01 ~ ing 🔥
+프로젝트 기간 : 2023.05.01 ~ 06.15
 
 기술 스택 :
 
-| 분류                      | 기술                                                                                                                                                                                                                                                                                                                           |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Frontend**              | <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black">                                                                                                                  |
-| **Backend**               | <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white">                                                                                                                                                                                                                       |
-| **Database**              | <img src="https://img.shields.io/badge/MongoDB%20Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white">                                                                                                                                                                                                               |
-| **AI**                    | <img src="https://img.shields.io/badge/OpenAI%20API-FF9500?style=for-the-badge&logo=openai&logoColor=white">                                                                                                                                                                                                                   |
-| **Infrastructure/DevOps** | <img src="https://img.shields.io/badge/EC2-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_lambda-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> |
+| 분류                      | 기술                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Frontend**              | <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/React%20Query-FF4154?style=for-the-badge&logo=react&logoColor=white">                                                                                                                                                                                                                         |
+| **Backend**               | <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Database**              | <img src="https://img.shields.io/badge/MongoDB%20Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white"> <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">                                                                                                                                                                                                                                                                                                                      |
+| **AI**                    | <img src="https://img.shields.io/badge/OpenAI%20API-FF9500?style=for-the-badge&logo=openai&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Infrastructure/DevOps** | <img src="https://img.shields.io/badge/EC2-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_lambda-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"> <img src="https://img.shields.io/badge/Nginx-269539?style=for-the-badge&logo=nginx&logoColor=white"> |
+| **Testing/Docs**                    | <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"> <img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 팀원 : 3
 
 | FE                                                                           | BE                                                                                         | BE                                                                               |
 | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
 | [![프로필1](https://github.com/ChoBae.png?s=200)](https://github.com/ChoBae) | [![프로필2](https://github.com/YoungwooKim09.png?s=200)](https://github.com/YoungwooKim09) | [![프로필3](https://github.com/jamiehun.png?s=200)](https://github.com/jamiehun) |
-| [🤠ChoBae](https://github.com/ChoBae)                                          | [🤡Youngwoo](https://github.com/YoungwooKim09)                                          | [🥸Jamie](https://github.com/jamiehun)                                          |
+| [🤠ChoBae](https://github.com/ChoBae)                                        | [🤡Youngwoo](https://github.com/YoungwooKim09)                                             | [🥸Jamie](https://github.com/jamiehun)                                           |
 
 <!-- 웹사이트 : [바로가기](https://highlighters.site/) -->
 
@@ -63,17 +64,14 @@
 
 ## 서비스 소개
 
- <!-- <h3 align="left">Highlighters는 3가지 고민에서 시작되었습니다.</h3>
+<h3 align="left">SummaryWagon은 링크를 입력하면 웹사이트 내용을 간결하게 요약해주는 간편한 서비스입니다.</h3>
  
 - 웹페이지에서 중요한 내용이 한 눈에 보였으면 좋겠어! 
 - 브라우저에서 곧바로 팀원에게 링크를 보낼 수 없을까? 
 - 공유한 링크를 다시 찾기 쉽게 모아두면 좋겠어!
 
  <h3 align="left">Highlighters는 이런 서비스입니다.</h3>
- 
-1. 크롬 익스텐션을 통해 텍스트, 이미지, 영상에 하이라이트를 할 수 있습니다. 
-2. 그룹원들에게 쉽게 링크를 공유할 수 있습니다. 
-3. 공유한 자료를 아카이빙하고 검색할 수 있습니다. -->
+
 
 <!-- 아키텍처 -->
 
