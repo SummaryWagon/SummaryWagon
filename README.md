@@ -66,11 +66,16 @@
 
 <h3 align="left">SummaryWagon은 링크를 입력하면 웹사이트 내용을 간결하게 요약해주는 간편한 서비스입니다.</h3>
  
-- 웹페이지에서 중요한 내용이 한 눈에 보였으면 좋겠어! 
-- 브라우저에서 곧바로 팀원에게 링크를 보낼 수 없을까? 
-- 공유한 링크를 다시 찾기 쉽게 모아두면 좋겠어!
+- Chatgpt 모델을 사용하여 요약을 진행합니다.
+- 요약된 내용을 편리하게 볼 수 있도록 웹사이트를 제공합니다.
+- 요약된 내용을 다른 사람들과 공유할 수 있습니다.
 
- <h3 align="left">Highlighters는 이런 서비스입니다.</h3>
+
+
+## 주요 기능
+
+- 웹페이지 요약
+<img width="400" height="200" src="https://github.com/ChoBae/Cloud/assets/101175828/145c5363-8360-4146-a3d5-dcb11296a0c0">
 
 
 <!-- 아키텍처 -->
@@ -83,14 +88,7 @@
 
 <p align="right">(<a href="#readme-top">맨 위로</a>)</p> -->
 
-<!-- 포스터 -->
 
-<!-- <a name="Poster"> </a> -->
-
-<!-- ## 프로젝트 포스터 -->
-
-<!--
-<p align="right">(<a href="#readme-top">맨 위로</a>)</p> -->
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
