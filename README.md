@@ -87,19 +87,20 @@
         <td><img width="400" height="200" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/232173f5-df94-4983-ad6f-09d7db59b3ac"></img></td>
    </tr>
   </table>
-- 히스토리는 유저가 가장 최근에 검색된 아티클부터 보여집니다.
+- 히스토리는 유저가 가장 최근에 검색한 순으로 보여집니다.
   <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/c98ebfbd-0cad-4f6f-9465-31c190a31702">
 
-- 트렌드 토픽은 유저들이 가장 많이 요약한 아티클부터 보여집니다.
+- 트렌드 토픽은 유저들이 가장 많이 요약한 순으로 보여집니다.
 
   <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/850408d7-ea0b-498b-a115-1368545a8520">
 
 ### 3. 키워드 별 아티클 아카이빙
 
 - 키워드 추출 알고리즘을 통해 키워드를 추출하였고, 키워드별로 아티클을 볼 수 있습니다.
-- 가장 많이 요약된 아티클 순서로 노출됩니다.
-  <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/658db5a6-e96a-4fe2-9c05-22840ab83736">
-
+- 키워드는 가장 많이 요약한 순으로 보여집니다.
+  <div>
+    <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/658db5a6-e96a-4fe2-9c05-22840ab83736">
+  </div>
 ## 업데이트 예정
 
 ### 1. BM 요소 추가
