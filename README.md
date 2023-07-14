@@ -38,12 +38,12 @@
 
 | 분류                      | 기술                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Frontend**              | <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/React%20Query-FF4154?style=for-the-badge&logo=react&logoColor=white">                                                                                                                                                                                                                         |
+| **Frontend**              | <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/React%20Query-FF4154?style=for-the-badge&logo=react&logoColor=white">                                                                                                                                                                                                                 |
 | **Backend**               | <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **Database**              | <img src="https://img.shields.io/badge/MongoDB%20Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white"> <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white">                                                                                                                                                                                                                                                                                                                      |
 | **AI**                    | <img src="https://img.shields.io/badge/OpenAI%20API-FF9500?style=for-the-badge&logo=openai&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | **Infrastructure/DevOps** | <img src="https://img.shields.io/badge/EC2-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_lambda-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/aws_s3-569A31?style=for-the-badge&logo=amazonaws&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"> <img src="https://img.shields.io/badge/Nginx-269539?style=for-the-badge&logo=nginx&logoColor=white"> |
-| **Testing/Docs**                    | <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"> <img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white">                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Testing/Docs**          | <img src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"> <img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white">                                                                                                                                                                                                                                                                                                                            |
 
 팀원 : 3
 
@@ -66,16 +66,43 @@
 
 <h3 align="left">SummaryWagon은 링크를 입력하면 웹사이트 내용을 간결하게 요약해주는 간편한 서비스입니다.</h3>
  
-- Chatgpt 모델을 사용하여 요약을 진행합니다.
+- Chatgpt 3.5 모델을 사용하여 요약을 진행합니다.
 - 요약된 내용을 편리하게 볼 수 있도록 웹사이트를 제공합니다.
 - 요약된 내용을 다른 사람들과 공유할 수 있습니다.
 
-
-
 ## 주요 기능
 
-- 웹페이지 요약
-<img width="400" height="200" src="https://github.com/ChoBae/Cloud/assets/101175828/145c5363-8360-4146-a3d5-dcb11296a0c0">
+### 1. 웹페이지 요약
+
+- 페이지 링크만으로 웹페이지 내용을 요약할 수 있습니다.
+  <img width="400" height="200" src="https://github.com/ChoBae/Cloud/assets/101175828/145c5363-8360-4146-a3d5-dcb11296a0c0">
+
+### 2. 아티클 아카이빙
+
+- 요약된 웹사이트는 아티클로 저장되고, 공유할 수 있습니다.
+   <table border="0" >
+    <tr>
+        <td><img width="400" height="200" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/e97ee1cb-49a0-4710-b386-70762fc12dc7"> </img></td>
+        <td><img width="400" height="200" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/232173f5-df94-4983-ad6f-09d7db59b3ac"></img></td>
+   </tr>
+  </table>
+- 히스토리는 유저가 가장 최근에 검색된 아티클부터 보여집니다.
+  <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/c98ebfbd-0cad-4f6f-9465-31c190a31702">
+
+- 트렌드 토픽은 유저들이 가장 많이 요약한 아티클부터 보여집니다.
+
+  <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/850408d7-ea0b-498b-a115-1368545a8520">
+### 3. 키워드 별 아티클 아카이빙
+- 키워드 추출 알고리즘을 통해 키워드를 추출하였고, 키워드별로 아티클을 볼 수 있습니다.
+- 가장 많이 요약된 아티클 순서로 노출됩니다.
+  <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/658db5a6-e96a-4fe2-9c05-22840ab83736">
+
+
+## 업데이트 예정
+
+### 1. BM 요소 추가
+- Open AI 과금으로 인해 현재 하루 5회 제한이 있습니다. 이를 해결하기 위해 BM 요소를 추가할 예정입니다.
+  <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/65a392e1-b253-4f63-a261-5d24d4e82fcd">
 
 
 <!-- 아키텍처 -->
@@ -87,8 +114,6 @@
 ![image](https://user-images.githubusercontent.com/101175828/214384335-2e829ad4-d4c2-40f0-be71-cf2ebcfc8166.png)
 
 <p align="right">(<a href="#readme-top">맨 위로</a>)</p> -->
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
