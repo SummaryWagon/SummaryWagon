@@ -24,7 +24,6 @@
 1. [프로젝트 개요](#SummaryWagon)
 2. [서비스 소개](#Intro)
 3. [서비스 구조도](#Arch)
-4. [프로젝트 포스터](#Poster)
 
 <!-- ABOUT THE PROJECT -->
 
@@ -75,7 +74,9 @@
 ### 1. 웹페이지 요약
 
 - 페이지 링크만으로 웹페이지 내용을 요약할 수 있습니다.
-  <img width="400" height="200" src="https://github.com/ChoBae/Cloud/assets/101175828/145c5363-8360-4146-a3d5-dcb11296a0c0">
+  <div>
+    <img width="400" height="200" src="https://github.com/ChoBae/Cloud/assets/101175828/145c5363-8360-4146-a3d5-dcb11296a0c0">
+  </div>
 
 ### 2. 아티클 아카이빙
 
@@ -92,18 +93,19 @@
 - 트렌드 토픽은 유저들이 가장 많이 요약한 아티클부터 보여집니다.
 
   <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/850408d7-ea0b-498b-a115-1368545a8520">
+
 ### 3. 키워드 별 아티클 아카이빙
+
 - 키워드 추출 알고리즘을 통해 키워드를 추출하였고, 키워드별로 아티클을 볼 수 있습니다.
 - 가장 많이 요약된 아티클 순서로 노출됩니다.
   <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/658db5a6-e96a-4fe2-9c05-22840ab83736">
 
-
 ## 업데이트 예정
 
 ### 1. BM 요소 추가
+
 - Open AI 과금으로 인해 현재 하루 5회 제한이 있습니다. 이를 해결하기 위해 BM 요소를 추가할 예정입니다.
   <img width="500" src="https://github.com/SummaryWagon/SummaryWagon/assets/101175828/65a392e1-b253-4f63-a261-5d24d4e82fcd">
-
 
 <!-- 아키텍처 -->
 
