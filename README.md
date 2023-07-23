@@ -112,12 +112,12 @@
 <!-- 아키텍처 -->
 
 <!-- <a name="Arch"></a> -->
-<!--
+
 ## 서비스 구조도
 
-![image](https://user-images.githubusercontent.com/101175828/214384335-2e829ad4-d4c2-40f0-be71-cf2ebcfc8166.png)
+![image](https://github.com/ChoBae/KaBrain/assets/101175828/b63d695b-930f-4af5-bb89-456b2b0561b6)
 
-<p align="right">(<a href="#readme-top">맨 위로</a>)</p> -->
+<p align="right">(<a href="#readme-top">맨 위로</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
