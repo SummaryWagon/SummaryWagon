@@ -16,7 +16,6 @@ const Pagination = ({
   onPageChange,
 }: PaginationProps) => {
 
-  console.log('총 페이지 수?',totalPages)
   const handlePageChange = (page: number) => {
     if (onPageChange) {
       onPageChange(page);

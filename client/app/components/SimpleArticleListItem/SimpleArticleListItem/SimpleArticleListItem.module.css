@@ -1,5 +1,6 @@
 .item_container{
   display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 .article_list_item {

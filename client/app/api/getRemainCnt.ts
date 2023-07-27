@@ -1,5 +1,6 @@
 import { cache } from "react";
-export const getRemainCnt = cache(async (userEmail: string) => {
+export const getRemainCnt = async (userEmail: string) => {
+  if (!userEmail) return -1;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/articles/remainCnt/?email=${userEmail}`,
     {
@@ -10,6 +11,6 @@ export const getRemainCnt = cache(async (userEmail: string) => {
     }
   );
   const data = await res.json();
-  console.log('남은 횟수:',data);
+  if (!data) return -1;
   return data.remain_cnt;
-});
+};

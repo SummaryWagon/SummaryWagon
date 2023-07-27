@@ -3,17 +3,18 @@ import { getKeywordArticle } from "../api/getKeywordArticle";
 
 const ArticleKeys = {
   all: ["articles"] as const,
-  lists: (keyword: string) => [...ArticleKeys.all, keyword] as const,
-  list: (filters: string, keyword : string) => [...ArticleKeys.lists(keyword), { filters }] as const,
+  lists: (keyword: string, page: number) =>
+    [...ArticleKeys.all, `${keyword}&page=${page}`] as const,
+  list: (filters: string, keyword: string, page: number) =>
+    [...ArticleKeys.lists(keyword, page), { filters }] as const,
 };
 const useFetchKeywordArticles = (
   keyword: string,
   limit: number,
   page: number
 ) => {
-  console.log(keyword, limit, page);
   const { data, isLoading, isError } = useQuery(
-    ArticleKeys.lists(keyword),
+    ArticleKeys.lists(keyword, page),
     () => getKeywordArticle(keyword, limit, page)
   );
 

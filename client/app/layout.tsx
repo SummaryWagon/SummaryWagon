@@ -6,6 +6,10 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import ReactQueryProvider from "@/util/ReactQueryProvider";
 
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  import ("../src/mocks");
+}
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

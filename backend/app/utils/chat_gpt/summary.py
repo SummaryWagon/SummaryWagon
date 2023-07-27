@@ -1,6 +1,5 @@
 import openai
 from decouple import config
-from ..bs4.preprocess import text_parsing, bs4_preprocess
 from .count import split_prompt
 
 OPENAI_API_KEY = config("OPENAI_API_KEY")

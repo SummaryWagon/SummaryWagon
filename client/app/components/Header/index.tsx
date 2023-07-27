@@ -2,9 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
-import SignUpBtn from "./components/SignupBtn/SignupBtn";
-import LoginBtn from "./components/LoginBtn/LoginBtn";
-import LogoutBtn from "./\bcomponents/LogoutBtn/LogoutBtn";
+import SignUpBtn from "./components/SignupBtn/SignupBtn";
+import LoginBtn from "./components/LoginBtn/LoginBtn";
+import LogoutBtn from "./components/LogoutBtn/LogoutBtn";
 import { useRouter, usePathname } from "next/navigation";
 interface HeaderProps {
   session: any;

@@ -2,7 +2,7 @@ version: "3.7"
 services:
   nginx_proxy:
     image: nginx
-    container_name: nginx_proxy_blue    
+    container_name: nginx_proxy_blue
     ports:
       - "80:80"
       - "443:443"
@@ -18,7 +18,7 @@ services:
     image: "${DOCKER_IMAGE}:blue"
     build: .
     container_name: summary_wagon_blue
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --proxy-headers
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --proxy-headers
     restart: always
     depends_on:
       - redis-server

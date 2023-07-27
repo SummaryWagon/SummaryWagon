@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import ArticleList from "../components/ArticleList";
 import RightArrowIcon from "@/public/icon/RightArrowIcon.svg";
 import HotArticleList from "../components/HotArticleList";
 import { Metadata } from "next";
@@ -15,21 +14,6 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   };
 };
 
-async function fetchData() {
-  const res = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${10}&offset=${10 * 2}`,
-    {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  const data = await res.json();
-  console.log(data);
-
-  return data;
-}
 
 export default async function Hot() {
   return <main className={styles.main}>{<HotArticleList />}</main>;
