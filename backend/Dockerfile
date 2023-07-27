@@ -1,21 +1,13 @@
-FROM python:3.11.2
+FROM python:3.11.2-slim
 
 WORKDIR /backend
 
-COPY requirements.txt .
+COPY requirements.txt .env .
 
-COPY .env .
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-RUN pip install -U pip setuptools wheel
-
-RUN pip install -U spacy
-
-RUN python -m spacy download en_core_web_sm
-
-RUN python -c "import nltk; nltk.download('punkt')"
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install -U pip setuptools wheel && \
+    pip install -U spacy && \
+    python -m spacy download en_core_web_sm && \
+    python -c "import nltk; nltk.download('punkt')"
 
 COPY ["./app", "./etc"] .
-
-# CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "8000", "--reload"]
